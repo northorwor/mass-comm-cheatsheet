@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>การสื่อสารมวลชน — Bento Cheat Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --glass: rgba(255,255,255,.08);
+  --glass-2: rgba(255,255,255,.14);
+  --stroke: rgba(255,255,255,.22);
+  --text: #f4f6ff;
+  --muted: rgba(235,240,255,.72);
+  --pink:#ff7ac6; --violet:#a78bfa; --cyan:#5eead4; --sky:#7dd3fc; --amber:#fcd34d; --lime:#bef264; --rose:#fda4af; --orange:#fdba74;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans Thai','Inter',sans-serif;
+  color:var(--text);
+  background:#0b0b1e;
+  min-height:100vh;
+  overflow-x:hidden;
+  line-height:1.55;
+  font-size:14.5px;
+}
+/* ===== Liquid background blobs ===== */
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:radial-gradient(1200px 800px at 10% 0%,#1e1b4b 0%,transparent 60%),radial-gradient(1000px 700px at 100% 100%,#0c4a6e 0%,transparent 60%),#0b0b1e}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.55;animation:float 22s ease-in-out infinite}
+.b1{width:520px;height:520px;background:#7c3aed;top:-120px;left:-80px}
+.b2{width:460px;height:460px;background:#ec4899;top:30%;right:-120px;animation-delay:-6s}
+.b3{width:520px;height:520px;background:#06b6d4;bottom:-160px;left:25%;animation-delay:-12s}
+.b4{width:340px;height:340px;background:#f59e0b;top:55%;left:-100px;opacity:.35;animation-delay:-3s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(60px,-40px) scale(1.08)}66%{transform:translate(-40px,50px) scale(.95)}}
+
+.wrap{max-width:1400px;margin:0 auto;padding:28px 20px 80px}
+
+/* ===== Header ===== */
+header.hero{
+  position:relative;padding:34px 30px;border-radius:30px;margin-bottom:18px;
+  background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.04));
+  border:1px solid var(--stroke);
+  backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);
+  box-shadow:0 20px 60px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.35);
+  overflow:hidden;
+}
+header.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.12) 45%,transparent 60%);pointer-events:none}
+.hero h1{font-size:clamp(28px,4vw,46px);font-weight:800;letter-spacing:-.5px;
+  background:linear-gradient(90deg,#fff,#c4b5fd,#f9a8d4,#67e8f9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);margin-top:6px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;align-items:center}
+.search{flex:1;min-width:220px;padding:12px 18px;border-radius:999px;border:1px solid var(--stroke);
+  background:rgba(255,255,255,.08);color:#fff;font:inherit;outline:none;backdrop-filter:blur(10px)}
+.search::placeholder{color:rgba(255,255,255,.55)}
+.btn{padding:11px 18px;border-radius:999px;border:1px solid var(--stroke);background:rgba(255,255,255,.12);color:#fff;font:inherit;cursor:pointer;transition:.2s}
+.btn:hover{background:rgba(255,255,255,.22)}
+nav.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+nav.chips a{font-size:12.5px;text-decoration:none;color:#fff;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16)}
+nav.chips a:hover{background:rgba(255,255,255,.2)}
+
+/* ===== Section title ===== */
+.section{grid-column:1/-1;display:flex;align-items:center;gap:12px;margin:22px 4px 2px;font-weight:700;font-size:20px}
+.section .num{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-family:Inter;font-weight:800;
+  background:linear-gradient(135deg,var(--c,#a78bfa),rgba(255,255,255,.15));color:#0b0b1e}
+.section::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.35),transparent)}
+
+/* ===== Bento grid ===== */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;grid-auto-flow:dense}
+.card{
+  --c:var(--violet);
+  position:relative;grid-column:span 4;padding:18px 18px 16px;border-radius:24px;
+  background:linear-gradient(160deg,rgba(255,255,255,.13),rgba(255,255,255,.04));
+  border:1px solid var(--stroke);
+  backdrop-filter:blur(22px) saturate(170%);-webkit-backdrop-filter:blur(22px) saturate(170%);
+  box-shadow:0 10px 30px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(255,255,255,.05);
+  overflow:hidden;transition:transform .25s ease,box-shadow .25s ease;
+}
+.card::before{content:"";position:absolute;top:-60px;right:-60px;width:160px;height:160px;border-radius:50%;
+  background:var(--c);filter:blur(60px);opacity:.35;pointer-events:none}
+.card:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.45)}
+.s3{grid-column:span 3}.s4{grid-column:span 4}.s5{grid-column:span 5}.s6{grid-column:span 6}.s7{grid-column:span 7}.s8{grid-column:span 8}.s12{grid-column:span 12}
+.r2{grid-row:span 2}
+
+.card h3{font-size:16px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card h3 .ic{font-size:18px}
+.pg{margin-left:auto;font-family:Inter;font-size:10.5px;font-weight:600;color:var(--c);padding:2px 8px;border-radius:999px;border:1px solid var(--c);opacity:.9}
+.card h4{font-size:13.5px;color:var(--c);margin:10px 0 4px;font-weight:700}
+.card ul,.card ol{padding-left:18px}
+.card li{margin:3px 0}
+.card li::marker{color:var(--c)}
+.card p{margin:4px 0}
+.muted{color:var(--muted);font-size:13px}
+b,strong{color:#fff;font-weight:700}
+.en{font-family:Inter;font-size:.88em;color:var(--c);font-weight:600}
+.tag{display:inline-block;padding:3px 10px;margin:3px 4px 3px 0;border-radius:999px;font-size:12.5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18)}
+.big{font-family:Inter;font-weight:800;font-size:30px;line-height:1;color:var(--c)}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0}
+.flow span{padding:6px 10px;border-radius:12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);font-size:12.5px}
+.flow i{font-style:normal;color:var(--c);font-weight:800}
+.mini{display:grid;gap:8px}
+.mini.g2{grid-template-columns:1fr 1fr}.mini.g3{grid-template-columns:repeat(3,1fr)}
+.box{padding:10px 12px;border-radius:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14)}
+.box b{color:var(--c)}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
+th,td{padding:7px 8px;text-align:left;border-bottom:1px solid rgba(255,255,255,.12);vertical-align:top}
+th{color:var(--c);font-weight:700}
+.quote{padding:12px 14px;border-left:3px solid var(--c);background:rgba(255,255,255,.06);border-radius:0 14px 14px 0;font-size:14px}
+.bar{height:8px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden;margin:3px 0 8px}
+.bar>div{height:100%;background:linear-gradient(90deg,var(--c),#fff)}
+.pyr{display:flex;flex-direction:column;align-items:center;gap:3px;margin:8px 0}
+.pyr div{background:linear-gradient(90deg,var(--c),rgba(255,255,255,.3));color:#0b0b1e;font-weight:700;font-size:12px;text-align:center;padding:4px;border-radius:6px}
+.hide{display:none!important}
+
+/* colour variants */
+.c-pink{--c:var(--pink)}.c-violet{--c:var(--violet)}.c-cyan{--c:var(--cyan)}.c-sky{--c:var(--sky)}.c-amber{--c:var(--amber)}.c-lime{--c:var(--lime)}.c-rose{--c:var(--rose)}.c-orange{--c:var(--orange)}
+
+@media (max-width:1100px){.s3{grid-column:span 6}.s4,.s5{grid-column:span 6}.s7,.s8{grid-column:span 12}.s6{grid-column:span 6}}
+@media (max-width:720px){.card,.s3,.s4,.s5,.s6,.s7,.s8{grid-column:span 12}.r2{grid-row:auto}.mini.g2,.mini.g3{grid-template-columns:1fr}}
+
+/* ===== Print mode ===== */
+body.print, body.print .bg{background:#fff}
+body.print{color:#111}
+body.print .blob{display:none}
+body.print .card, body.print header.hero{background:#fff;border:1px solid #bbb;box-shadow:none;backdrop-filter:none}
+body.print .card::before,body.print header.hero::after{display:none}
+body.print b,body.print strong,body.print .section{color:#111}
+body.print .muted{color:#444}
+body.print .hero h1{color:#111;background:none;-webkit-text-fill-color:#111}
+body.print .tag,body.print .flow span,body.print .box{background:#f4f4f4;border-color:#ccc;color:#111}
+body.print .search,body.print .btn,body.print nav.chips a{color:#111;background:#f3f3f3;border-color:#ccc}
+@media print{
+  .toolbar,nav.chips{display:none}
+  .card{break-inside:avoid}
+  .bento{gap:8px}
+}
+</style>
+</head>
+<body>
+<div class="bg"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div></div>
+
+<div class="wrap">
+<header class="hero">
+  <h1>การสื่อสารมวลชน · Cheat Sheet</h1>
+  <p>สรุปครบทั้งเล่มแบบ Bento Grid สำหรับทบทวน/จดเข้าห้องสอบ — มีเลขหน้าอ้างอิงจากเอกสารต้นฉบับ (p.)</p>
+  <div class="toolbar">
+    <input class="search" id="q" placeholder="🔎 ค้นหา เช่น Gatekeeper, 5W, Ethos, สื่อร้อน ...">
+    <button class="btn" onclick="document.body.classList.toggle('print')">🖨 โหมดพิมพ์ / ขาว-ดำ</button>
+    <button class="btn" onclick="window.print()">พิมพ์</button>
+  </div>
+  <nav class="chips">
+    <a href="#s1">1 ความหมาย</a><a href="#s2">2 องค์ประกอบ SMCR</a><a href="#s3">3 แบบจำลอง</a><a href="#s4">4 สื่อสารมวลชน</a>
+    <a href="#s5">5 การนำเสนอ</a><a href="#s6">6 ทฤษฎี</a><a href="#s7">7 จริยธรรม</a><a href="#s8">8 ระบบสังคม/เทคโนโลยี</a>
+    <a href="#s9">9 ประเภทสื่อ</a><a href="#s10">10 ข่าว</a>
+  </nav>
+</header>
+
+<main class="bento" id="grid">
+
+<!-- ================= 1 ================= -->
+<div class="section" id="s1" style="--c:var(--violet)"><span class="num">1</span>ความหมาย ความสำคัญ และประเภทของการสื่อสาร</div>
+
+<article class="card s8 c-violet">
+  <h3><span class="ic">💬</span>นิยาม "การสื่อสาร" <span class="pg">p.3–5</span></h3>
+  <p class="quote"><b>การสื่อสาร</b> = <b>กระบวนการ (Process)</b> ในการส่ง<b>สาร (Message)</b> จาก<b>ผู้ส่งสาร (Sender)</b> ไปยัง<b>ผู้รับสาร (Receiver)</b> โดยผ่าน<b>สื่อ (Channel)</b></p>
+  <table>
+    <tr><th>นักวิชาการ</th><th>ความหมาย</th></tr>
+    <tr><td>มิลเลอร์ <span class="en">Miller</span></td><td>การถ่ายทอดข่าวสารจากที่หนึ่งไปยังอีกที่หนึ่ง</td></tr>
+    <tr><td>เกิร์บเนอร์ <span class="en">Gerbner</span></td><td>การแสดงปฏิสัมพันธ์ทางสังคมโดยใช้<b>สัญลักษณ์</b></td></tr>
+    <tr><td>โฮฟแลนด์ <span class="en">Hovland</span></td><td>กระบวนการที่บุคคลหนึ่งส่ง<b>สิ่งเร้า</b>เพื่อ<b>เปลี่ยนพฤติกรรม</b>ของบุคคลอื่น</td></tr>
+    <tr><td>ชแรมม์ <span class="en">Schramm</span></td><td>การมี<b>ความเข้าใจร่วมกัน</b>ต่อเครื่องหมายที่แสดงข่าวสาร</td></tr>
+    <tr><td>โรเจอร์ส & ชูเมคเกอร์ <span class="en">Rogers & Shoemaker</span></td><td>กระบวนการซึ่งสารถูกส่งจากผู้ส่งสารไปยังผู้รับสาร</td></tr>
+  </table>
+  <p class="muted" style="margin-top:6px">ลักษณะ: เป็นสภาพการเคลื่อนไหว ดำเนินต่อไป เปลี่ยนแปลงตลอดเวลา อย่างต่อเนื่องเป็นลำดับขั้น (p.18–19)</p>
+</article>
+
+<article class="card s4 c-pink">
+  <h3><span class="ic">🧩</span>นิวลีพ (Neuliep) 9 มิติ <span class="pg">p.4</span></h3>
+  <span class="tag">Process</span><span class="tag">Dynamic</span><span class="tag">Interactive</span><span class="tag">Intentional</span><span class="tag">Contextual</span><span class="tag">Ubiquitous</span><span class="tag">Transactional</span><span class="tag">Cultural</span><span class="tag">Symbolic</span>
+  <p class="muted" style="margin-top:8px">กระบวนการ · พลวัต · ปฏิสัมพันธ์ · มีเจตนา · ขึ้นกับบริบท · มีอยู่ทุกที่ · แลกเปลี่ยน · วัฒนธรรม · สัญลักษณ์</p>
+</article>
+
+<article class="card s4 c-cyan">
+  <h3><span class="ic">⭐</span>ความสำคัญของการสื่อสาร <span class="pg">p.11</span></h3>
+  <ol><li>ต่อ<b>ชีวิต</b></li><li>ต่อ<b>สังคม</b></li><li>ต่อ<b>อุตสาหกรรมและธุรกิจ</b></li><li>ต่อ<b>การปกครอง</b></li><li>ต่อ<b>เวทีระหว่างประเทศ</b></li></ol>
+</article>
+
+<article class="card s4 c-amber">
+  <h3><span class="ic">🎯</span>วัตถุประสงค์ของการสื่อสาร <span class="pg">p.12</span></h3>
+  <table>
+    <tr><th>ผู้ส่งสาร</th><th>ผู้รับสาร</th></tr>
+    <tr><td>To Inform (แจ้งให้ทราบ)</td><td>To Understand (เข้าใจ)</td></tr>
+    <tr><td>To Educate (ให้การศึกษา)</td><td>To Learn (เรียนรู้)</td></tr>
+    <tr><td>To Persuade (โน้มน้าว)</td><td>To Decide (ตัดสินใจ)</td></tr>
+    <tr><td>To Entertain (ให้ความบันเทิง)</td><td>To Enjoy (เพลิดเพลิน)</td></tr>
+  </table>
+</article>
+
+<article class="card s4 c-rose">
+  <h3><span class="ic">📰</span>แบ่งตามผลลัพธ์: Soft vs Hard News <span class="pg">p.13–15</span></h3>
+  <div class="mini">
+    <div class="box"><b>Soft News</b> = วัตถุประสงค์ที่<b>เกิดผลทันที</b><br><span class="muted">เช่น ข่าวอาชญากรรม ข่าวบันเทิง ข่าวกีฬา</span></div>
+    <div class="box"><b>Hard News</b> = วัตถุประสงค์ที่<b>ใช้เป็นเครื่องมือ</b><br><span class="muted">เช่น ข่าวการเมือง ข่าวเศรษฐกิจ ข่าวต่างประเทศ</span></div>
+  </div>
+</article>
+
+<article class="card s6 c-sky">
+  <h3><span class="ic">🗂</span>ประเภทของการสื่อสาร <span class="pg">p.16–17</span></h3>
+  <div class="mini g2">
+    <div class="box"><b>1. ตามจำนวนผู้สื่อสาร</b><br>ภายในบุคคล · ระหว่างบุคคล · ภายในองค์กร · มวลชน</div>
+    <div class="box"><b>2. ตามภาษา</b><br>เชิง<b>วัจนะ</b> (ใช้ถ้อยคำ) · เชิง<b>อวัจนะ</b> (ไม่ใช้ถ้อยคำ)</div>
+    <div class="box"><b>3. ตามการเห็นหน้าค่าตา</b><br>เผชิญหน้า / ไม่เผชิญหน้า</div>
+    <div class="box"><b>4. ตามความแตกต่างระหว่างผู้ส่งกับผู้รับ</b></div>
+  </div>
+</article>
+
+<article class="card s6 c-lime">
+  <h3><span class="ic">🤝</span>ความสัมพันธ์ระหว่างบุคคล <span class="pg">p.6–8</span></h3>
+  <h4>องค์ประกอบ (วีเวอร์)</h4>
+  <ol><li>บุคคลอย่างน้อย 2 คน ผลัดกันเป็นผู้ส่ง-ผู้รับ</li><li>สารมีทั้ง<b>วัจนภาษา</b> (Verbal) และ<b>อวัจนภาษา</b> (Non-verbal)</li><li>ผลที่เกิดขึ้น</li></ol>
+  <h4>ลักษณะเฉพาะ (เพียร์สัน) 5 ข้อ</h4>
+  <ol><li>มีหลายรูปแบบ (ทางการ/ไม่เป็นทางการ)</li><li>เป็นขั้นตอน (รู้จัก→สนใจ→ใกล้ชิด / ห่างเหิน→สิ้นสุด)</li><li>มีหลายมิติ ผันแปรตามจิตใจและสิ่งแวดล้อม</li><li>เปลี่ยนแปลงได้ตามกาลเวลา</li><li>สลับซับซ้อน (อารมณ์และจิตใจ)</li></ol>
+</article>
+
+<article class="card s6 c-pink">
+  <h3><span class="ic">😊</span>ลักษณะผู้สื่อสารที่ดี <span class="pg">p.9–10</span></h3>
+  <span class="tag">มีน้ำใจ</span><span class="tag">เป็นผู้นำ</span><span class="tag">ถ่อมตน</span><span class="tag">พูดจาสุภาพ</span><span class="tag">ให้เกียรติผู้อื่น</span><span class="tag">เป็นผู้ฟังที่ดี</span><span class="tag">คำนึงถึงจิตวิทยาการสื่อสาร (ทางสายกลาง ไม่ Over/Under)</span><span class="tag">เปิดเผย</span><span class="tag">มองโลกในแง่ดี</span><span class="tag">ซื่อสัตย์ น่าเชื่อถือ</span>
+</article>
+
+<article class="card s6 c-amber">
+  <h3><span class="ic">🛡</span>ความน่าเชื่อถือของผู้ส่งสาร <span class="en">Source Credibility</span> <span class="pg">p.22</span></h3>
+  <ol>
+    <li>ความไว้วางใจ <span class="en">Trustworthiness</span></li>
+    <li>ความเชี่ยวชาญ <span class="en">Expertise</span></li>
+    <li>ความเอาใจใส่สิ่งแวดล้อม <span class="en">Extroversion</span></li>
+    <li>ความเป็นมิตร <span class="en">Sociability</span></li>
+    <li>ความดึงดูดใจ <span class="en">Attractive</span></li>
+  </ol>
+</article>
+
+<!-- ================= 2 ================= -->
+<div class="section" id="s2" style="--c:var(--cyan)"><span class="num">2</span>องค์ประกอบของการสื่อสาร (SMCR)</div>
+
+<article class="card s12 c-cyan">
+  <h3><span class="ic">🔁</span>4 องค์ประกอบที่กำหนดประสิทธิผลของการสื่อสาร <span class="pg">p.20–32</span></h3>
+  <div class="flow"><span><b>S</b> Source ผู้ส่งสาร</span><i>→</i><span><b>M</b> Message สาร</span><i>→</i><span><b>C</b> Channel สื่อ</span><i>→</i><span><b>R</b> Receiver ผู้รับสาร</span></div>
+  <div class="mini g2" style="grid-template-columns:repeat(4,1fr)">
+    <div class="box"><b>S ผู้ส่งสาร (p.20–22)</b><ul><li><b>ทักษะการสื่อสาร</b> (เข้ารหัส) – พูด เขียน / คิด; วัจนะ-อวัจนะ</li><li><b>ทัศนคติ</b> 3 ด้าน: ต่อตนเอง, ต่อเรื่องที่สื่อสาร, ต่อผู้รับสาร</li><li><b>ความรู้</b> ในเรื่องที่สื่อสาร + กระบวนการสื่อสาร</li><li><b>สถานภาพทางสังคม-วัฒนธรรม</b></li></ul></div>
+    <div class="box"><b>M สาร (p.23)</b><ul><li><b>รหัส</b> <span class="en">Code</span></li><li><b>เนื้อหา</b> <span class="en">Content</span></li><li><b>การจัดสาร</b> <span class="en">Treatment</span></li></ul></div>
+    <div class="box"><b>C สื่อ (p.24)</b><ul><li>เลือกตาม<b>ประสาทสัมผัสทั้ง 5</b> (ดู ฟัง สัมผัส ดมกลิ่น ลิ้มรส)</li><li>เลือกให้เหมาะกับสถานการณ์ คำนึงถึง ผู้รับสาร, สาร, ผู้ส่งสาร, ประเภทสื่อ</li></ul></div>
+    <div class="box"><b>R ผู้รับสาร (p.28)</b><ul><li><b>ทักษะการสื่อสาร</b> (ถอดรหัส) – ฟัง อ่าน</li><li><b>ทัศนคติ</b></li><li><b>ความรู้</b></li><li><b>สถานภาพทางสังคม-วัฒนธรรม</b></li></ul></div>
+  </div>
+</article>
+
+<article class="card s6 c-orange">
+  <h3><span class="ic">🔥</span>สื่อร้อน vs สื่อเย็น (McLuhan) <span class="pg">p.25</span></h3>
+  <div class="mini g2">
+    <div class="box"><b>สื่อร้อน Hot Media</b><br>ผู้รับสาร<b>มีส่วนร่วมได้น้อย</b><br><span class="muted">เช่น หนังสือพิมพ์ นิตยสาร</span></div>
+    <div class="box"><b>สื่อเย็น Cool Media</b><br>ผู้รับสาร<b>มีส่วนร่วมได้มาก</b> เป็นสื่อที่มีแสงเงา<br><span class="muted">เช่น วิทยุโทรทัศน์ คอมพิวเตอร์</span></div>
+  </div>
+  <h4>แบ่งตามธรรมชาติ (p.26)</h4>
+  <p><b>สื่อบุคคล</b> · <b>สื่อที่ถูกประดิษฐ์</b> (สื่อสิ่งพิมพ์, สื่ออิเล็กทรอนิกส์)</p>
+</article>
+
+<article class="card s3 c-rose">
+  <h3><span class="ic">👥</span>ปัจจัยผู้รับสาร <span class="pg">p.29</span></h3>
+  <p class="muted">ลักษณะทางประชากรศาสตร์ที่มีผลต่อการรับรู้และตีความ</p>
+  <ul><li>อายุ</li><li>เพศ</li><li>การศึกษา</li><li>สถานภาพทางสังคมและเศรษฐกิจ</li><li>สังคมและวัฒนธรรม</li></ul>
+</article>
+
+<article class="card s3 c-violet">
+  <h3><span class="ic">📐</span>หน้าที่ของแบบจำลอง (Deutsch) <span class="pg">p.33</span></h3>
+  <ol><li>จัดระเบียบ</li><li>ให้คุณค่าในการศึกษา</li><li>ทำนายปรากฏการณ์</li><li>สามารถวัดได้ (เป็นรูปธรรม)</li></ol>
+  <p class="muted">⚠ ไม่มีแบบจำลองใดสมบูรณ์ ต้องเลือกใช้ให้เหมาะกับวัตถุประสงค์ (p.34)</p>
+</article>
+
+<!-- ================= 3 ================= -->
+<div class="section" id="s3" style="--c:var(--pink)"><span class="num">3</span>แบบจำลองการสื่อสาร (Communication Models)</div>
+
+<article class="card s4 c-pink">
+  <h3><span class="ic">🏛</span>อริสโตเติล <span class="en">Aristotle</span> <span class="pg">p.37–39</span></h3>
+  <p><b>บิดาแห่งวาทวิทยา</b> <span class="en">Rhetoric</span> เน้นการพูดเพื่อ<b>โน้มน้าวใจ</b></p>
+  <div class="flow"><span>Speaker ผู้พูด</span><i>→</i><span>Speech คำพูด</span><i>→</i><span>Audience ผู้ฟัง</span></div>
+  <h4>ปัจจัยโน้มน้าวใจ 3 ประการ</h4>
+  <ul><li><b>Ethos</b> – บุคลิกลักษณะของผู้พูด</li><li><b>Logos</b> – การชี้แจงเหตุผล</li><li><b>Pathos</b> – สภาพอารมณ์ร่วม</li></ul>
+</article>
+
+<article class="card s4 c-sky">
+  <h3><span class="ic">❓</span>ลาสเวลล์ <span class="en">Lasswell</span> <span class="pg">p.44–45</span></h3>
+  <ol><li><b>Who</b> – ใคร (ผู้ส่งสาร)</li><li><b>Says What</b> – กล่าวอะไร (สาร)</li><li><b>In Which Channel</b> – ช่องทางใด (สื่อ)</li><li><b>To Whom</b> – ถึงใคร (ผู้รับสาร)</li><li><b>With What Effect</b> – เกิดผลอะไร (ผล)</li></ol>
+  <p class="muted">ใช้โมเดลจากการเลือกตั้งประธานาธิบดีสหรัฐฯ · เชื่อว่าการสื่อสาร<b>ต้องเกิดผล (Effect) เสมอ</b></p>
+</article>
+
+<article class="card s4 c-cyan">
+  <h3><span class="ic">📡</span>แชนนอน & วีเวอร์ <span class="en">Shannon & Weaver</span> <span class="pg">p.46–49</span></h3>
+  <p>อธิบาย<b>การสื่อสารอิเล็กทรอนิกส์</b></p>
+  <div class="flow"><span>Source ผู้พูด</span><i>→</i><span>Transmitter เครื่องส่ง</span><i>→</i><span>Channel</span><i>→</i><span>Receiver เครื่องรับ</span><i>→</i><span>Destination ผู้ฟัง</span></div>
+  <p>+ <b>Noise Source</b> (สิ่งรบกวน) 2 ลักษณะ</p>
+  <ul><li><b>ทางกายภาพ</b> – เช่น คลื่นรบกวน</li><li><b>ทางจิตใจ</b> – เช่น ความเครียด</li></ul>
+</article>
+
+<article class="card s4 c-amber">
+  <h3><span class="ic">🚪</span>เวสเลย์ & แมคลีน <span class="en">Westley & MacLean</span> <span class="pg">p.50–52</span></h3>
+  <p>ได้รับอิทธิพลจาก <b>ABX ของนิวคอมบ์</b> และ<b>ทฤษฎีสมดุล</b>ของไฮเดอร์ & เฟสติงเจอร์</p>
+  <ul><li><b>แบบระหว่างบุคคล</b>: A, B, X, f (feedback)</li><li><b>แบบมวลชน</b>: เพิ่ม <b>C = Gatekeeper</b> (ผู้เฝ้าประตูสาร)</li></ul>
+</article>
+
+<article class="card s4 c-lime">
+  <h3><span class="ic">🔄</span>ชแรมม์ <span class="en">Schramm</span> 4 แบบ <span class="pg">p.53–56</span></h3>
+  <ol><li>การสื่อสารระหว่างบุคคลพื้นฐาน</li><li>เพิ่ม<b>ประสบการณ์ร่วม</b> <span class="en">Field of Experience</span></li><li>บุคคลเป็นทั้ง<b>ผู้เข้ารหัสและผู้ถอดรหัส</b></li><li>แสดง<b>ปฏิสัมพันธ์</b>ผู้ส่ง-ผู้รับ (<b>สมบูรณ์ที่สุด</b>)</li></ol>
+</article>
+
+<article class="card s4 c-violet">
+  <h3><span class="ic">🧱</span>เบอร์โล <span class="en">Berlo – SMCR</span> <span class="pg">p.57–58</span></h3>
+  <p><b>S</b> Source · <b>M</b> Message · <b>C</b> Channel · <b>R</b> Receiver</p>
+  <p>เน้น<b>รายละเอียดปัจจัยย่อย</b>ในแต่ละองค์ประกอบที่ช่วย<b>เพิ่ม-ลดประสิทธิภาพ</b>การสื่อสาร (ดูรายละเอียดในหมวด 2)</p>
+</article>
+
+<article class="card s12 c-rose">
+  <h3><span class="ic">↔️</span>การสื่อสารทางเดียว vs สองทาง & Feedback <span class="pg">p.59–61</span></h3>
+  <div class="mini g3">
+    <div class="box"><b>ทางเดียว (One-way)</b><br>แบบจำลองที่<b>ไม่มี</b>การสื่อสารกลับ (Feedback)</div>
+    <div class="box"><b>สองทาง (Two-way)</b><br><b>มี</b>การสื่อสารกลับ หรือเรียกว่า<b>ยุคลวิถี</b></div>
+    <div class="box"><b>Feedback</b> ช่วยให้ผู้ส่งทราบผล และปรับพฤติกรรมการสื่อสาร<br>• <b>ทันทีทันใด</b> → การสื่อสารระหว่างบุคคล<br>• <b>ล่าช้า</b> → การสื่อสารมวลชน</div>
+  </div>
+</article>
+
+<!-- ================= 4 ================= -->
+<div class="section" id="s4" style="--c:var(--sky)"><span class="num">4</span>การสื่อสารมวลชน & หน้าที่ของสื่อมวลชน</div>
+
+<article class="card s7 c-sky">
+  <h3><span class="ic">📺</span>องค์ประกอบ/ลักษณะของการสื่อสารมวลชน <span class="pg">p.65–66</span></h3>
+  <div class="mini g2">
+    <div class="box"><b>ผู้ส่งสาร</b><br>อยู่ในรูป<b>องค์กรที่สลับซับซ้อน</b> แบ่งงานกันทำ <b>ค่าใช้จ่ายสูง</b></div>
+    <div class="box"><b>สาร</b><br>เป็น<b>สาธารณะ</b> เพื่อประชาชน รวดเร็ว กว้างขวาง ไม่เจาะจงบุคคลใด</div>
+    <div class="box"><b>สื่อ</b><br>"สื่อมวลชน" <span class="en">Mass Media</span> นำสารสู่ผู้รับจำนวนมากได้รวดเร็ว กว้างขวาง</div>
+    <div class="box"><b>ผู้รับสาร</b><br><b>จำนวนมาก · ไม่รู้จักกัน · แตกต่างกัน</b></div>
+  </div>
+</article>
+
+<article class="card s5 c-amber">
+  <h3><span class="ic">🛰</span>หน้าที่ของสื่อมวลชน <span class="pg">p.93</span></h3>
+  <p class="muted">3 ข้อแรกตามแนวคิดของลาสเวลล์ (Lasswell)</p>
+  <ol>
+    <li><b>สอดส่องระวังระไว</b>เกี่ยวกับสังคม → <span class="en">แจ้งข่าวสาร</span></li>
+    <li><b>ประสานส่วนต่าง ๆ</b> ของสังคม วิเคราะห์ เสนอแนะ → <span class="en">ชักจูงใจ</span></li>
+    <li><b>ถ่ายทอดมรดกทางสังคม</b> เผยแพร่ความรู้วิทยาการ → <span class="en">ให้การศึกษา</span></li>
+    <li><b>ให้ความบันเทิง</b> → เพิ่มโดย <b>ชแรมม์ & ไรท์</b> <span class="en">Schramm & Wright</span></li>
+  </ol>
+</article>
+
+<!-- ================= 5 ================= -->
+<div class="section" id="s5" style="--c:var(--lime)"><span class="num">5</span>เทคนิคการนำเสนออย่างมีประสิทธิภาพ</div>
+
+<article class="card s6 c-lime">
+  <h3><span class="ic">🎤</span>นิยาม & องค์ประกอบ <span class="pg">p.67–81</span></h3>
+  <p><b>การนำเสนอ</b> = กระบวนการสื่อสารของบุคคล/กลุ่มบุคคลอย่าง<b>มีวัตถุประสงค์</b> ทั้ง<b>การเขียนและการพูด</b> ต่อบุคคล/คณะบุคคล ภายใต้สถานการณ์ โอกาส และสภาพแวดล้อมเฉพาะเจาะจง</p>
+  <h4>องค์ประกอบสำคัญ</h4>
+  <span class="tag">ข้อเท็จจริงถูกต้อง</span><span class="tag">ถ้อยคำสั้นกระชับ</span><span class="tag">สื่อความหมายชัดเจน</span><span class="tag">ใจความครบถ้วน</span><span class="tag">ตรงประเด็น</span>
+  <h4>ข้อควรปฏิบัติ</h4>
+  <ul><li><b>วิเคราะห์ผู้ฟังล่วงหน้า</b> – เพศ วัย จำนวน อาชีพ ความสนใจ</li><li>ศึกษาปัจจัยการพูดที่ดี – <b>น่าประทับใจ / มีเหตุผล / มีอารมณ์ร่วม</b> (≈ Ethos, Logos, Pathos)</li><li>จัดลำดับความคิดให้เหมาะสม</li><li>ใช้ถ้อยคำ สำนวน ให้ถูกกาลเทศะ</li></ul>
+</article>
+
+<article class="card s3 c-cyan">
+  <h3><span class="ic">🗓</span>กระบวนการวางแผน 4P's</h3>
+  <ol><li><b>Plan</b> – ขั้นวางแผนงาน</li><li><b>Prepare</b> – ขั้นเตรียมงาน</li><li><b>Present</b> – ขั้นนำเสนอ</li><li><b>Proceed</b> – ขั้นดำเนินการต่อ/ติดตามผล</li></ol>
+  <h4>การใช้โสตทัศนูปกรณ์</h4>
+  <ul><li>ศึกษาการใช้งานให้ถูกต้อง</li><li>ตระหนักผลดี-ผลเสีย</li><li>เตรียมอุปกรณ์ให้พร้อม</li><li>ใช้ Pointer ยาวพอดี <b>ไม่ยืนบัง</b></li></ul>
+</article>
+
+<article class="card s3 c-pink">
+  <h3><span class="ic">👁</span>การรับรู้ของมนุษย์ <span class="pg">p.82</span></h3>
+  <div>ทางตา <b>75%</b></div><div class="bar"><div style="width:75%"></div></div>
+  <div>ทางหู <b>13%</b></div><div class="bar"><div style="width:13%"></div></div>
+  <div>สัมผัส <b>6%</b></div><div class="bar"><div style="width:6%"></div></div>
+  <div>ดมกลิ่น <b>3%</b></div><div class="bar"><div style="width:3%"></div></div>
+  <div>ชิมรส <b>3%</b></div><div class="bar"><div style="width:3%"></div></div>
+</article>
+
+<article class="card s12 c-amber">
+  <h3><span class="ic">📜</span>คติพจน์เกี่ยวกับคำพูด (รัชกาลที่ 6) <span class="pg">p.84</span></h3>
+  <p class="quote">"อันพูดนั้นไม่ยาก ปานใด เพื่อนเอย · ใครที่มีลิ้นอาจ พูดได้ · สำคัญแต่ในคำ ที่พูด นั่นเอง · อาจจะทำให้ชอบ และชัง"</p>
+</article>
+
+<!-- ================= 6 ================= -->
+<div class="section" id="s6" style="--c:var(--orange)"><span class="num">6</span>ทฤษฎีการสื่อสารมวลชน <span class="muted" style="font-size:13px;font-weight:400">(p.86–92)</span></div>
+
+<article class="card s4 c-orange">
+  <h3><span class="ic">🎯</span>ยุคแรก – ยุคโฆษณาชวนเชื่อ</h3>
+  <ul><li><b>Magic Bullet Theory</b> (ทฤษฎีกระสุนวิเศษ) – สื่อส่งผลต่อผู้รับสาร<b>โดยตรงและเสมอ</b> (สื่อทรงพลัง)</li><li><b>Lasswell's Model</b> – Who → Says What → Channel → To Whom → Effect</li></ul>
+</article>
+
+<article class="card s8 c-violet">
+  <h3><span class="ic">⚖️</span>ทฤษฎีปทัสถาน <span class="en">Normative Theories</span></h3>
+  <div class="mini g3">
+    <div class="box"><b>Authoritarian</b><br>ทฤษฎีอำนาจนิยม</div>
+    <div class="box"><b>Libertarian</b><br>ทฤษฎีเสรีนิยม</div>
+    <div class="box"><b>Social Responsibility</b><br>ความรับผิดชอบต่อสังคม</div>
+    <div class="box"><b>Totalitarian / Soviet Communism</b><br>เผด็จการ/คอมมิวนิสต์โซเวียต</div>
+    <div class="box"><b>Development Comm.</b><br>การสื่อสารเพื่อการพัฒนา</div>
+    <div class="box"><b>Democratic-Participant</b><br>สื่อแบบมีส่วนร่วมเชิงประชาธิปไตย</div>
+  </div>
+</article>
+
+<article class="card s4 c-sky">
+  <h3><span class="ic">📉</span>ยุคพลังอำนาจสื่อเริ่มลดลง</h3>
+  <ul><li><b>Two-Step Flow of Information</b> – การไหลของข่าวสาร 2 จังหวะ (สื่อ → ผู้นำความคิด → ประชาชน)</li><li><b>Limited Effects Theory</b> – ทฤษฎีผลกระทบจำกัด</li></ul>
+</article>
+
+<article class="card s4 c-rose">
+  <h3><span class="ic">🧠</span>กลุ่มการเปลี่ยนแปลงทัศนคติ</h3>
+  <ul><li><b>Individual Differences</b> – ความแตกต่างระหว่างบุคคล</li><li><b>Social Categories</b> – ประเภททางสังคม</li><li><b>Social Relations</b> – ความสัมพันธ์ทางสังคม</li><li><b>Selective Process</b> กระบวนการเลือกสรร:<br>① Selective Exposure/Attention (เลือกเปิดรับ/ใส่ใจ)<br>② Selective Interpretation (เลือกตีความ)<br>③ Selective Retention (เลือกจดจำ)</li></ul>
+</article>
+
+<article class="card s4 c-lime">
+  <h3><span class="ic">🌱</span>Diffusion of Innovation (การแพร่กระจายนวัตกรรม)</h3>
+  <p class="muted">กระบวนทัศน์อิทธิพลอันจำกัด · 5 ขั้น</p>
+  <div class="flow"><span>Awareness<br>รับรู้</span><i>→</i><span>Interest<br>สนใจ</span><i>→</i><span>Evaluation<br>ประเมิน</span><i>→</i><span>Trial<br>ทดลอง</span><i>→</i><span>Adoption<br>ยอมรับ</span></div>
+</article>
+
+<article class="card s12 c-pink">
+  <h3><span class="ic">🎬</span>กลุ่มการเรียนรู้ทางสังคม & ความรุนแรง</h3>
+  <div class="mini g3">
+    <div class="box"><b>Observational Learning</b><br>ทฤษฎีการเรียนรู้จากการสังเกต (เลียนแบบจากสื่อ)</div>
+    <div class="box"><b>Aggressive Cues</b><br>ทฤษฎีสัญญาณ/สิ่งเร้าความก้าวร้าว</div>
+    <div class="box"><b>Cultivation Theory</b><br>ทฤษฎีการปลูกฝัง/บ่มเพาะ (รับสื่อนาน ๆ → มองโลกตามสื่อ)</div>
+  </div>
+</article>
+
+<!-- ================= 7 ================= -->
+<div class="section" id="s7" style="--c:var(--rose)"><span class="num">7</span>จริยธรรมและจรรยาบรรณสื่อมวลชน</div>
+
+<article class="card s4 c-rose">
+  <h3><span class="ic">🧭</span>จริยธรรมนักหนังสือพิมพ์ฯ 7 ประการ <span class="pg">p.95–97</span></h3>
+  <ol>
+    <li>ความรับผิดชอบ <span class="en">Responsibility</span></li>
+    <li>ความมีเสรีภาพ (ที่มีความรับผิดชอบ) <span class="en">Freedom</span></li>
+    <li>ความเป็นไท <span class="en">Independence</span></li>
+    <li>ความจริงใจ <span class="en">Sincerity</span></li>
+    <li>ความเที่ยงธรรม <span class="en">Impartiality</span></li>
+    <li>ความมีน้ำใจนักกีฬา <span class="en">Fair Play</span></li>
+    <li>ความมีมารยาท <span class="en">Decency</span></li>
+  </ol>
+</article>
+
+<article class="card s4 c-amber">
+  <h3><span class="ic">🗞</span>จรรยาบรรณหนังสือพิมพ์ 7 ข้อ <span class="pg">p.98–100</span></h3>
+  <ol>
+    <li>ส่งเสริม<b>เสรีภาพ</b></li>
+    <li>เสนอข่าวด้วย<b>ความสุภาพ สุจริต</b></li>
+    <li>เสนอแต่<b>ความจริง</b></li>
+    <li>ได้มาซึ่งข่าวอย่าง<b>สุภาพและซื่อสัตย์</b></li>
+    <li><b>เคารพต่อความไว้วางใจ</b> (ของแหล่งข่าว)</li>
+    <li>ถือ<b>สาธารณประโยชน์</b>เป็นสำคัญ</li>
+    <li><b>ไม่บั่นทอนเกียรติคุณ</b>วิชาชีพ</li>
+  </ol>
+</article>
+
+<article class="card s4 c-cyan">
+  <h3><span class="ic">📻</span>จรรยาบรรณวิทยุ & โทรทัศน์ <span class="pg">p.102–105</span></h3>
+  <ol>
+    <li>ไม่เสนอข่าว<b>เท็จ</b></li>
+    <li>ไม่เสนอข่าวที่ทำให้<b>เสียขวัญ</b>/กระทบ<b>ความมั่นคง</b></li>
+    <li>ไม่เสนอข่าว<b>ลามกอนาจาร</b></li>
+    <li>ไม่เสนอ<b>ข่าวลือ</b></li>
+    <li><b>ไม่แทรกความเห็น</b>ลงในข่าว</li>
+    <li><b>แจ้งแหล่งที่มา</b>เมื่อคัดลอกข้อความ</li>
+    <li>ใช้<b>ภาษาสุภาพ</b></li>
+    <li><b>ไม่โฆษณาตนเอง</b></li>
+    <li><b>รับผิดชอบและแก้ไข</b>เมื่อเกิดความเสียหาย</li>
+    <li><b>ไม่รับอามิสสินจ้าง</b></li>
+  </ol>
+  <p class="muted">p.106 มีกรณีศึกษาจรรยาบรรณสื่อมวลชน</p>
+</article>
+
+<!-- ================= 8 ================= -->
+<div class="section" id="s8" style="--c:var(--violet)"><span class="num">8</span>ระบบการสื่อสารสังคม & เทคโนโลยีการสื่อสาร</div>
+
+<article class="card s6 c-violet">
+  <h3><span class="ic">🕸</span>ระบบการสื่อสารสังคม (De Fleur) 4 อนุระบบ <span class="pg">p.107–115</span></h3>
+  <ol>
+    <li><b>อนุระบบการสื่อสาร</b> – ผลิตสารสนเทศสู่ผู้รับสาร: ระบบย่อย<b>การผลิต</b> (ผู้ผลิต/สื่อ), <b>การจัดจำหน่าย</b> (ภูมิภาค/ท้องถิ่น), <b>ผู้รับสาร</b> (แบ่งตามรสนิยม สูง/ปานกลาง/ต่ำ)</li>
+    <li><b>อนุระบบการเมือง</b> – ฝ่ายนิติบัญญัติ & บริหาร ปกป้องประโยชน์ประชาชน (เช่น กกช., อย., สมาพันธ์หนังสือพิมพ์)</li>
+    <li><b>อนุระบบเศรษฐกิจ</b> – สนับสนุนด้าน<b>การเงิน</b> เพื่อการโฆษณา/ประชาสัมพันธ์สินค้าและบริการ</li>
+    <li><b>อนุระบบสังคมวัฒนธรรม</b> – ปัจจัยภายนอกเป็นเงื่อนไขต่ออนุระบบอื่น: ปทัสถาน ศีลธรรม ค่านิยม จารีตประเพณี</li>
+  </ol>
+</article>
+
+<article class="card s6 c-sky">
+  <h3><span class="ic">💡</span>เทคโนโลยีการสื่อสาร <span class="pg">p.118–119</span></h3>
+  <p><b>ความหมาย:</b> ศาสตร์และศิลป์เกี่ยวกับวิธีการนำอุปกรณ์และเครื่องมือต่าง ๆ มาประยุกต์ใช้<b>พัฒนากระบวนการสื่อสาร</b></p>
+  <h4>ความสำคัญ</h4>
+  <ul><li>เสนอทางเลือกใหม่ ๆ ในการสื่อสาร</li><li>อำนวยความสะดวกให้คู่สื่อสารที่อยู่ห่างไกล</li><li>รักษาบรรยากาศของการเห็นหน้าค่าตาได้</li><li>อำนวยความสะดวกในการทำงาน</li></ul>
+</article>
+
+<article class="card s12 c-lime">
+  <h3><span class="ic">⏳</span>วิวัฒนาการการสื่อสาร 6 ยุค <span class="pg">p.120–126</span></h3>
+  <div class="mini g3">
+    <div class="box"><b>ยุค 1 ภาษาพูด & การเขียนรูปภาพ</b><br>รหัสเสียง (ไม้/กลอง), รหัสภาพ (ควันไฟ/โบกธง), บันทึกบนผนังถ้ำ</div>
+    <div class="box"><b>ยุค 2 ภาษาเขียน</b><br>ผสมภาษาพูด+ภาพ → อักษรแรกสุด <b>อักษรลิ่ม (คูนิฟอร์ม)</b> → แผ่นดินเหนียว, กระดาษปาปิรุส</div>
+    <div class="box"><b>ยุค 3 การพิมพ์</b><br><b>โยฮันน์ กูเตนเบิร์ก</b> ประดิษฐ์เครื่องพิมพ์ตัวโลหะ → ผลิตสารจำนวนมาก รวดเร็ว ขยายโอกาสการศึกษา</div>
+    <div class="box"><b>ยุค 4 โทรคมนาคม</b><br>โทรเลข โทรศัพท์ เครื่องจานเสียง ภาพยนตร์ วิทยุกระจายเสียง วิทยุโทรทัศน์</div>
+    <div class="box"><b>ยุค 5 เทคโนโลยีสมัยใหม่</b><br>ยุคคอมพิวเตอร์ จัดการข้อมูลมาก แม่นยำ รวดเร็ว + ยุคบูรณาการ <span class="en">Integrated Age</span></div>
+    <div class="box"><b>ยุค 6 สังคมสารสนเทศ</b><br>ใช้ PC ในชีวิตประจำวัน เกิด <b>Prosumption</b> (ผู้บริโภคเป็นทั้งผู้ผลิตและผู้รับสาร)</div>
+  </div>
+</article>
+
+<article class="card s12 c-orange">
+  <h3><span class="ic">🌍</span>ผลกระทบของเทคโนโลยีการสื่อสาร <span class="pg">p.128–135</span></h3>
+  <div class="mini g3">
+    <div class="box"><b>สังคม</b><ul><li>ความรู้สึกต่อกาลเวลารวดเร็วขึ้น</li><li>ว่างงานเพราะใช้เทคโนโลยีแทนแรงงาน</li><li>ผู้สูงอายุ/ผู้มีความรู้น้อยปรับตัวยาก</li><li>ปฏิสัมพันธ์ในสังคมลดลง</li></ul></div>
+    <div class="box"><b>เศรษฐกิจ</b><ul><li>พรมแดนไร้ความหมาย → เศรษฐกิจโลก</li><li>เพศหญิงได้รับโอกาสทางสังคมมากขึ้น</li><li>ฟุ่มเฟือยมากขึ้น (บัตรเครดิต)</li><li>การแข่งขันทางธุรกิจมากขึ้น</li></ul></div>
+    <div class="box"><b>การเมือง</b><ul><li>ตัดสินใจบนข้อมูลและข้อเท็จจริง</li><li>ผู้เผด็จการควบคุมข้อมูลได้ยากขึ้น</li><li>ประชาชนมีช่องทางสื่อสารกับรัฐบาลมากขึ้น</li></ul></div>
+    <div class="box"><b>นิเวศวิทยา</b><ul><li>พัฒนาสู่เทคโนโลยีที่เหมาะสม ไม่ก่อมลภาวะ ตามแนวคิด<b>การพัฒนาแบบยั่งยืน</b></li></ul></div>
+    <div class="box"><b>การศึกษา</b><ul><li>ครู-นักเรียนขาดความใกล้ชิด</li><li>เหลื่อมล้ำในการเข้าถึงเทคโนโลยีตามฐานะ</li></ul></div>
+    <div class="box"><b>ปัจเจกบุคคล</b><ul><li>ตัดสินใจด้อยลงเพราะข้อมูลล้น</li><li>ความเป็นส่วนตัวลดลง</li><li>เครียดจากชีวิตเร่งรีบ</li><li>เยาวชนเสพติดเทคโนโลยี</li></ul></div>
+  </div>
+</article>
+
+<!-- ================= 9 ================= -->
+<div class="section" id="s9" style="--c:var(--cyan)"><span class="num">9</span>ประเภทและคุณลักษณะของสื่อมวลชน <span class="muted" style="font-size:13px;font-weight:400">(p.137–154)</span></div>
+
+<article class="card s12 c-cyan">
+  <p>แบ่งหลัก ๆ เป็น <span class="tag">สื่อสิ่งพิมพ์</span><span class="tag">สื่ออิเล็กทรอนิกส์ (วิทยุ/โทรทัศน์/คอมพิวเตอร์)</span><span class="tag">สื่อที่รับรู้ด้วยการฟัง (Audio)</span><span class="tag">สื่อที่รับรู้ด้วยการมองเห็น (Video)</span></p>
+</article>
+
+<article class="card s4 c-amber r2">
+  <h3><span class="ic">📖</span>สื่อสิ่งพิมพ์ <span class="pg">p.138–141</span></h3>
+  <p>หนังสือพิมพ์ฉบับแรกของไทย: <b>"บางกอกรีคอร์เดอร์"</b> <span class="en">Bangkok Recorder</span> โดย <b>หมอบรัดเลย์</b></p>
+  <p>สื่อสำหรับผู้มีการศึกษา (ต้องอ่านออก) เข้าถึงกลุ่มผู้รับค่อนข้าง<b>เล็ก</b> แต่มีอิทธิพลเพราะให้ข้อมูลละเอียด</p>
+  <h4>✅ ข้อดี</h4>
+  <ul><li>ข้อมูลละเอียดถี่ถ้วน หลากหลายกว่าสื่ออื่น</li><li>ทบทวนอ่านได้ตามต้องการ</li><li>เก็บไว้เป็นหลักฐานอ้างอิงได้</li></ul>
+  <h4>❌ ข้อเสีย</h4>
+  <ul><li>ผู้รับต้องอ่านออก</li><li>การผลิต/จัดจำหน่ายทำให้ได้รับสาร<b>ช้ากว่า</b>สื่ออื่น</li></ul>
+</article>
+
+<article class="card s4 c-pink">
+  <h3><span class="ic">🎞</span>ภาพยนตร์ <span class="pg">p.142–143</span></h3>
+  <ul><li>มี<b>ภาพ สี เสียง การเคลื่อนไหว</b> ดึงดูดใจมาก</li><li>ให้ความรู้และใช้โฆษณาได้ดี</li><li>ปัจจุบันบทบาทลดลง เพราะ<b>วีดิทัศน์</b>เข้ามาแทน (เครื่องฉายถูกลง ผลิตสะดวกกว่า)</li></ul>
+</article>
+
+<article class="card s4 c-lime">
+  <h3><span class="ic">📻</span>วิทยุกระจายเสียง <span class="pg">p.146–147</span></h3>
+  <ul><li>มี<b>มิติของเสียงอย่างเดียว</b></li><li>ผู้ฟังต้องสร้างภาพจาก<b>จินตนาการ</b></li><li>เน้นหลัก<b>การสื่อสารสองทาง</b></li></ul>
+</article>
+
+<article class="card s4 c-sky">
+  <h3><span class="ic">📺</span>วิทยุโทรทัศน์ <span class="pg">p.146, 150</span></h3>
+  <ul><li>มีบทบาทหลังการแพร่หลายของวิทยุ</li><li>เสนอ<b>ภาพและเสียงพร้อมกัน</b> ถึงบ้าน</li><li><b>อิทธิพลสูงมาก</b> ไม่ต้องมีความรู้มากก็รับสารได้</li></ul>
+</article>
+
+<article class="card s4 c-violet">
+  <h3><span class="ic">💻</span>คอมพิวเตอร์ & อินเทอร์เน็ต <span class="pg">p.154</span></h3>
+  <ul><li>สื่อใหม่ ทันสมัย อิทธิพลสูงต่อผู้มีการศึกษาและวัยรุ่น</li><li>จุดเด่น: <b>รวดเร็ว</b> + <b>ความเป็นชุมชน</b></li><li>ปัญหา: <b>ความน่าเชื่อถือของข้อมูล</b></li></ul>
+</article>
+
+<!-- ================= 10 ================= -->
+<div class="section" id="s10" style="--c:var(--amber)"><span class="num">10</span>ข่าวและการเขียนข่าว <span class="muted" style="font-size:13px;font-weight:400">(p.155–164)</span></div>
+
+<article class="card s6 c-amber">
+  <h3><span class="ic">📰</span>ความหมายของข่าว <span class="pg">p.155</span></h3>
+  <p class="quote">การรายงานเหตุการณ์หรือแจ้งเรื่องราวต่าง ๆ ที่เกิดขึ้น<b>สด ๆ ร้อน ๆ</b> ที่มี<b>ความสำคัญ</b>และ<b>แปลก</b> เป็นที่<b>น่าสนใจ</b>ของประชาชน</p>
+  <h4>องค์ประกอบคุณค่าข่าว (p.156) – 10 ข้อ</h4>
+  <span class="tag">1 ความรวดเร็ว</span><span class="tag">2 ความสนใจ/สะเทือนอารมณ์</span><span class="tag">3 ความใกล้ชิด</span><span class="tag">4 ความเด่น</span><span class="tag">5 ผลกระทบ</span><span class="tag">6 ความขัดแย้ง</span><span class="tag">7 ความมีเงื่อนงำ</span><span class="tag">8 ความแปลกประหลาด</span><span class="tag">9 องค์ประกอบทางเพศ</span><span class="tag">10 ความก้าวหน้า</span>
+</article>
+
+<article class="card s6 c-rose">
+  <h3><span class="ic">✍️</span>หลักการเขียน & คุณภาพข่าว <span class="pg">p.157–158</span></h3>
+  <h4>ปัจจัยที่ต้องคำนึง</h4>
+  <p class="muted">นโยบายสื่อ · ทัศนคติเจ้าของ · กองบรรณาธิการ · กฎหมาย · สภาวะการเมือง/เศรษฐกิจ/สังคม · เนื้อที่โฆษณา · ความสนใจของผู้รับสาร</p>
+  <h4>คุณภาพของข่าว 6 ประการ</h4>
+  <ol><li>ถูกต้อง ครบถ้วน</li><li>สมดุล เป็นธรรม</li><li>เที่ยงตรง</li><li>เข้าใจง่าย กะทัดรัด ชัดเจน</li><li>ใหม่สด ทันต่อเหตุการณ์</li><li>เขียนรายงานโดยใช้หลัก <b>5W & H</b></li></ol>
+</article>
+
+<article class="card s4 c-cyan">
+  <h3><span class="ic">🧱</span>โครงสร้างข่าว <span class="pg">p.159–163</span></h3>
+  <ol>
+    <li><b>ความนำ / วรรคนำ <span class="en">Lead</span></b> – สรุปประเด็นสำคัญที่สุดด้วย 5W & H เป็น "กุญแจสำคัญ"</li>
+    <li><b>ส่วนเชื่อม <span class="en">Neck / Bridge</span></b> – เชื่อมความนำกับเนื้อข่าว ขยายรายละเอียด</li>
+    <li><b>เนื้อข่าว <span class="en">Body</span></b> – ข้อมูลทั้งหมดที่รวบรวมมา อธิบาย/ขยายรายละเอียด</li>
+  </ol>
+</article>
+
+<article class="card s4 c-lime">
+  <h3><span class="ic">❔</span>5W & H <span class="pg">p.161</span></h3>
+  <div class="mini g2">
+    <div class="box"><b>Who</b> ใคร</div><div class="box"><b>What</b> ทำอะไร</div>
+    <div class="box"><b>When</b> เมื่อไร</div><div class="box"><b>Where</b> ที่ไหน</div>
+    <div class="box"><b>Why</b> ทำไม</div><div class="box"><b>How</b> อย่างไร</div>
+  </div>
+</article>
+
+<article class="card s4 c-violet">
+  <h3><span class="ic">🔺</span>รูปแบบการเขียนข่าว <span class="pg">p.160, 164</span></h3>
+  <h4>① ปิรามิดหัวกลับ <span class="en">Inverted Pyramid</span> ⭐ นิยมที่สุด</h4>
+  <div class="pyr"><div style="width:100%">สำคัญมากที่สุด (Lead)</div><div style="width:70%">รองลงมา</div><div style="width:40%">น้อยสุด</div></div>
+  <h4>② ปิรามิดหัวตั้ง <span class="en">Upright Pyramid</span></h4>
+  <p class="muted">สำคัญน้อย → สำคัญมากที่สุด (ไม่นิยม)</p>
+  <h4>③ สี่เหลี่ยมผืนผ้า</h4>
+  <p class="muted">ความสำคัญเท่ากันตั้งแต่ต้นจนจบ</p>
+</article>
+
+</main>
+
+<p class="muted" style="text-align:center;margin-top:30px">สรุปจากเอกสาร "การสื่อสารมวลชน ฉบับเต็ม" · ขอให้สอบผ่านฉลุย ✨</p>
+</div>
+
+<script>
+const q=document.getElementById('q');
+q.addEventListener('input',()=>{
+  const v=q.value.trim().toLowerCase();
+  document.querySelectorAll('.card').forEach(c=>{
+    c.classList.toggle('hide', v && !c.innerText.toLowerCase().includes(v));
+  });
+  document.querySelectorAll('.section').forEach(s=>s.classList.toggle('hide',!!v));
+});
+</script>
+</body>
+</html>
