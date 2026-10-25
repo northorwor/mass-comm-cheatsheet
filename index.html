@@ -60,7 +60,7 @@ nav.chips a{font-size:12.5px;text-decoration:none;color:#fff;padding:6px 12px;bo
 nav.chips a:hover{background:rgba(255,255,255,.2)}
 
 /* ===== Section title ===== */
-.section{grid-column:1/-1;display:flex;align-items:center;gap:12px;margin:22px 4px 2px;font-weight:700;font-size:20px}
+.section{grid-column:1/-1;display:flex;align-items:center;gap:12px;margin:22px 4px 2px;font-weight:700;font-size:20px;flex-wrap:wrap}
 .section .num{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-family:Inter;font-weight:800;
   background:linear-gradient(135deg,var(--c,#a78bfa),rgba(255,255,255,.15));color:#0b0b1e}
 .section::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.35),transparent)}
@@ -112,6 +112,43 @@ th{color:var(--c);font-weight:700}
 .pyr div{background:linear-gradient(90deg,var(--c),rgba(255,255,255,.3));color:#0b0b1e;font-weight:700;font-size:12px;text-align:center;padding:4px;border-radius:6px}
 .hide{display:none!important}
 
+/* ===== Animated model diagrams ===== */
+.dg{overflow-x:auto;margin:6px -4px 10px;padding:4px}
+.diagram{width:100%;min-width:560px;height:auto;display:block}
+.diagram text{fill:#f4f6ff;font-family:'Noto Sans Thai','Inter',sans-serif;font-size:12px;text-anchor:middle;dominant-baseline:middle}
+.diagram .t{font-size:14px;font-weight:700}
+.diagram .sub{font-size:10.5px;fill:rgba(235,240,255,.75)}
+.diagram .cap{font-size:12.5px;font-weight:700;fill:var(--c)}
+.diagram .lbl{font-size:11px;font-weight:600;fill:var(--c)}
+.diagram .lbl.fb{fill:#7dd3fc}
+.diagram .nd{fill:rgba(255,255,255,.07);stroke:var(--c);stroke-width:1.5}
+.diagram .nd.noise{stroke:#f87171}
+.diagram .ln{fill:none;stroke:var(--c);stroke-width:2;stroke-dasharray:7 6;animation:dashmove 1s linear infinite}
+.diagram .ln.fb{stroke:#7dd3fc}
+.diagram .ln.red{stroke:#f87171}
+.diagram .ln.off{stroke:rgba(255,255,255,.28);animation:none}
+.diagram .ah{fill:var(--c)}
+.diagram .ah.fb{fill:#7dd3fc}
+.diagram .ah.red{fill:#f87171}
+.diagram .pkt{fill:var(--c);filter:drop-shadow(0 0 6px var(--c))}
+.diagram .pkt.fb{fill:#7dd3fc;filter:drop-shadow(0 0 6px #7dd3fc)}
+.diagram .pkt.red{fill:#f87171;filter:drop-shadow(0 0 6px #f87171)}
+.diagram .glow{filter:drop-shadow(0 0 6px rgba(255,255,255,.8))}
+.diagram .seq{animation:lit 5s ease-in-out infinite}
+.diagram .pulse{animation:pulse 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.diagram .shake{animation:shake .5s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.diagram .driftL{animation:driftL 3s ease-in-out infinite alternate}
+.diagram .driftR{animation:driftR 3s ease-in-out infinite alternate}
+@keyframes dashmove{to{stroke-dashoffset:-26}}
+@keyframes lit{0%,30%,100%{fill:rgba(255,255,255,.07);stroke-width:1.5}8%,22%{fill:rgba(255,255,255,.3);stroke-width:3.5}}
+@keyframes pulse{0%,100%{opacity:.75;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
+@keyframes driftL{from{transform:translateX(-12px)}to{transform:translateX(6px)}}
+@keyframes driftR{from{transform:translateX(12px)}to{transform:translateX(-6px)}}
+.anim-btn{order:2;font-size:12px;padding:6px 14px}
+body.paused .diagram,body.paused .diagram *{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){.diagram *{animation:none!important}}
+
 /* colour variants */
 .c-pink{--c:var(--pink)}.c-violet{--c:var(--violet)}.c-cyan{--c:var(--cyan)}.c-sky{--c:var(--sky)}.c-amber{--c:var(--amber)}.c-lime{--c:var(--lime)}.c-rose{--c:var(--rose)}.c-orange{--c:var(--orange)}
 
@@ -129,6 +166,9 @@ body.print .muted{color:#444}
 body.print .hero h1{color:#111;background:none;-webkit-text-fill-color:#111}
 body.print .tag,body.print .flow span,body.print .box{background:#f4f4f4;border-color:#ccc;color:#111}
 body.print .search,body.print .btn,body.print nav.chips a{color:#111;background:#f3f3f3;border-color:#ccc}
+body.print .diagram text{fill:#111}
+body.print .diagram .sub{fill:#444}
+body.print .diagram .nd{fill:#fafafa}
 @media print{
   .toolbar,nav.chips{display:none}
   .card{break-inside:avoid}
@@ -142,7 +182,7 @@ body.print .search,body.print .btn,body.print nav.chips a{color:#111;background:
 <div class="wrap">
 <header class="hero">
   <h1>การสื่อสารมวลชน · Cheat Sheet</h1>
-  <p>สรุปครบทั้งเล่มแบบ Bento Grid สำหรับทบทวน/จดเข้าห้องสอบ — มีเลขหน้าอ้างอิงจากเอกสารต้นฉบับ (p.)</p>
+  <p>สรุปครบทั้งเล่มแบบ Bento Grid สำหรับทบทวน/จดเข้าห้องสอบ — พร้อมภาพแบบจำลองแอนิเมชันและเลขหน้าอ้างอิง (p.)</p>
   <div class="toolbar">
     <input class="search" id="q" placeholder="🔎 ค้นหา เช่น Gatekeeper, 5W, Ethos, สื่อร้อน ...">
     <button class="btn" onclick="document.body.classList.toggle('print')">🖨 โหมดพิมพ์ / ขาว-ดำ</button>
@@ -275,54 +315,221 @@ body.print .search,body.print .btn,body.print nav.chips a{color:#111;background:
 </article>
 
 <!-- ================= 3 ================= -->
-<div class="section" id="s3" style="--c:var(--pink)"><span class="num">3</span>แบบจำลองการสื่อสาร (Communication Models)</div>
+<div class="section" id="s3" style="--c:var(--pink)"><span class="num">3</span>แบบจำลองการสื่อสาร (Communication Models)<button class="btn anim-btn" onclick="toggleAnim(this)">⏸ หยุดแอนิเมชัน</button></div>
 
-<article class="card s4 c-pink">
+<!-- Aristotle -->
+<article class="card s6 c-pink">
   <h3><span class="ic">🏛</span>อริสโตเติล <span class="en">Aristotle</span> <span class="pg">p.37–39</span></h3>
-  <p><b>บิดาแห่งวาทวิทยา</b> <span class="en">Rhetoric</span> เน้นการพูดเพื่อ<b>โน้มน้าวใจ</b></p>
-  <div class="flow"><span>Speaker ผู้พูด</span><i>→</i><span>Speech คำพูด</span><i>→</i><span>Audience ผู้ฟัง</span></div>
-  <h4>ปัจจัยโน้มน้าวใจ 3 ประการ</h4>
-  <ul><li><b>Ethos</b> – บุคลิกลักษณะของผู้พูด</li><li><b>Logos</b> – การชี้แจงเหตุผล</li><li><b>Pathos</b> – สภาพอารมณ์ร่วม</li></ul>
+  <div class="dg"><svg class="diagram" viewBox="0 0 600 200">
+    <defs><marker id="m-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0L10,5L0,10z"/></marker></defs>
+    <path class="ln" d="M172,60 H222" marker-end="url(#m-ar)"/>
+    <path class="ln" d="M377,60 H427" marker-end="url(#m-ar)"/>
+    <circle class="pkt" r="6"><animateMotion dur="3s" repeatCount="indefinite" path="M95,60 H505"/></circle>
+    <rect class="nd" x="20" y="30" width="150" height="60" rx="14"/><text class="t" x="95" y="52">Speaker</text><text class="sub" x="95" y="72">ผู้พูด</text>
+    <rect class="nd" x="225" y="30" width="150" height="60" rx="14"/><text class="t" x="300" y="52">Speech</text><text class="sub" x="300" y="72">คำพูด / สาร</text>
+    <rect class="nd" x="430" y="30" width="150" height="60" rx="14"/><text class="t" x="505" y="52">Audience</text><text class="sub" x="505" y="72">ผู้ฟัง</text>
+    <path class="ln off" d="M95,92 V128"/><path class="ln off" d="M300,92 V128"/><path class="ln off" d="M505,92 V128"/>
+    <rect class="nd pulse" x="35" y="130" width="120" height="50" rx="25"/><text class="t" x="95" y="148">Ethos</text><text class="sub" x="95" y="166">บุคลิกผู้พูด</text>
+    <rect class="nd pulse" style="animation-delay:.8s" x="240" y="130" width="120" height="50" rx="25"/><text class="t" x="300" y="148">Logos</text><text class="sub" x="300" y="166">ชี้แจงเหตุผล</text>
+    <rect class="nd pulse" style="animation-delay:1.6s" x="445" y="130" width="120" height="50" rx="25"/><text class="t" x="505" y="148">Pathos</text><text class="sub" x="505" y="166">อารมณ์ร่วม</text>
+  </svg></div>
+  <p><b>บิดาแห่งวาทวิทยา</b> <span class="en">Rhetoric</span> เน้นการพูดเพื่อ<b>โน้มน้าวใจ</b> ด้วยปัจจัย 3 ประการ: <b>Ethos</b> บุคลิกลักษณะผู้พูด · <b>Logos</b> การชี้แจงเหตุผล · <b>Pathos</b> สภาพอารมณ์ร่วม</p>
 </article>
 
-<article class="card s4 c-sky">
+<!-- Lasswell -->
+<article class="card s6 c-sky">
   <h3><span class="ic">❓</span>ลาสเวลล์ <span class="en">Lasswell</span> <span class="pg">p.44–45</span></h3>
-  <ol><li><b>Who</b> – ใคร (ผู้ส่งสาร)</li><li><b>Says What</b> – กล่าวอะไร (สาร)</li><li><b>In Which Channel</b> – ช่องทางใด (สื่อ)</li><li><b>To Whom</b> – ถึงใคร (ผู้รับสาร)</li><li><b>With What Effect</b> – เกิดผลอะไร (ผล)</li></ol>
-  <p class="muted">ใช้โมเดลจากการเลือกตั้งประธานาธิบดีสหรัฐฯ · เชื่อว่าการสื่อสาร<b>ต้องเกิดผล (Effect) เสมอ</b></p>
+  <div class="dg"><svg class="diagram" viewBox="0 0 620 170">
+    <defs><marker id="m-la" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0L10,5L0,10z"/></marker></defs>
+    <path class="ln" d="M110,70 H130" marker-end="url(#m-la)"/>
+    <path class="ln" d="M236,70 H256" marker-end="url(#m-la)"/>
+    <path class="ln" d="M362,70 H382" marker-end="url(#m-la)"/>
+    <path class="ln" d="M488,70 H508" marker-end="url(#m-la)"/>
+    <circle class="pkt" r="6"><animateMotion dur="5s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;0.8;1" path="M58,70 H562"/></circle>
+    <rect class="nd seq" style="animation-delay:0s" x="6" y="30" width="104" height="80" rx="14"/><text class="t" x="58" y="55">Who</text><text class="sub" x="58" y="88">ใคร · ผู้ส่งสาร</text>
+    <rect class="nd seq" style="animation-delay:1s" x="132" y="30" width="104" height="80" rx="14"/><text class="t" x="184" y="55">Says What</text><text class="sub" x="184" y="88">กล่าวอะไร · สาร</text>
+    <rect class="nd seq" style="animation-delay:2s" x="258" y="30" width="104" height="80" rx="14"/><text class="t" x="310" y="48">In Which</text><text class="t" x="310" y="65">Channel</text><text class="sub" x="310" y="90">ช่องทาง · สื่อ</text>
+    <rect class="nd seq" style="animation-delay:3s" x="384" y="30" width="104" height="80" rx="14"/><text class="t" x="436" y="55">To Whom</text><text class="sub" x="436" y="88">ถึงใคร · ผู้รับ</text>
+    <rect class="nd seq" style="animation-delay:4s" x="510" y="30" width="104" height="80" rx="14"/><text class="t" x="562" y="48">With What</text><text class="t" x="562" y="65">Effect</text><text class="sub" x="562" y="90">เกิดผลอะไร</text>
+    <text class="sub" x="310" y="145">เชื่อว่าการสื่อสาร "ต้องเกิดผล (Effect) เสมอ" · เป็นการสื่อสารทางเดียว</text>
+  </svg></div>
+  <p class="muted">ใช้โมเดลนี้จากการศึกษาการเลือกตั้งประธานาธิบดีสหรัฐฯ</p>
 </article>
 
-<article class="card s4 c-cyan">
-  <h3><span class="ic">📡</span>แชนนอน & วีเวอร์ <span class="en">Shannon & Weaver</span> <span class="pg">p.46–49</span></h3>
-  <p>อธิบาย<b>การสื่อสารอิเล็กทรอนิกส์</b></p>
-  <div class="flow"><span>Source ผู้พูด</span><i>→</i><span>Transmitter เครื่องส่ง</span><i>→</i><span>Channel</span><i>→</i><span>Receiver เครื่องรับ</span><i>→</i><span>Destination ผู้ฟัง</span></div>
-  <p>+ <b>Noise Source</b> (สิ่งรบกวน) 2 ลักษณะ</p>
-  <ul><li><b>ทางกายภาพ</b> – เช่น คลื่นรบกวน</li><li><b>ทางจิตใจ</b> – เช่น ความเครียด</li></ul>
+<!-- Shannon & Weaver -->
+<article class="card s12 c-cyan">
+  <h3><span class="ic">📡</span>แชนนอน & วีเวอร์ <span class="en">Shannon & Weaver</span> — การสื่อสารอิเล็กทรอนิกส์ <span class="pg">p.46–49</span></h3>
+  <div class="dg"><svg class="diagram" viewBox="0 0 900 240">
+    <defs>
+      <marker id="m-sw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0L10,5L0,10z"/></marker>
+      <marker id="m-sw-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah red" d="M0,0L10,5L0,10z"/></marker>
+    </defs>
+    <text class="lbl" x="172" y="28">สาร</text><text class="lbl" x="357" y="28">สัญญาณ</text><text class="lbl" x="542" y="28">สัญญาณที่รับ</text><text class="lbl" x="727" y="28">สาร</text>
+    <path class="ln" d="M150,75 H193" marker-end="url(#m-sw)"/>
+    <path class="ln" d="M335,75 H378" marker-end="url(#m-sw)"/>
+    <path class="ln" d="M520,75 H563" marker-end="url(#m-sw)"/>
+    <path class="ln" d="M705,75 H748" marker-end="url(#m-sw)"/>
+    <path class="ln red" d="M450,163 V114" marker-end="url(#m-sw-r)"/>
+    <circle class="pkt red" r="4"><animateMotion dur="1.2s" repeatCount="indefinite" path="M450,165 V112"/></circle>
+    <circle class="glow" r="7" fill="#5eead4">
+      <animate attributeName="fill" values="#5eead4;#5eead4;#f87171;#f87171" keyTimes="0;0.47;0.53;1" dur="4s" repeatCount="indefinite"/>
+      <animateMotion dur="4s" repeatCount="indefinite" path="M80,75 H820"/>
+    </circle>
+    <rect class="nd" x="10" y="40" width="140" height="70" rx="14"/><text class="t" x="80" y="63">Source</text><text class="sub" x="80" y="88">แหล่งสาร · ผู้พูด</text>
+    <rect class="nd" x="195" y="40" width="140" height="70" rx="14"/><text class="t" x="265" y="63">Transmitter</text><text class="sub" x="265" y="88">เครื่องส่ง</text>
+    <rect class="nd" x="380" y="40" width="140" height="70" rx="14"/><text class="t" x="450" y="63">Channel</text><text class="sub" x="450" y="88">ช่องสัญญาณ</text>
+    <rect class="nd" x="565" y="40" width="140" height="70" rx="14"/><text class="t" x="635" y="63">Receiver</text><text class="sub" x="635" y="88">เครื่องรับ</text>
+    <rect class="nd" x="750" y="40" width="140" height="70" rx="14"/><text class="t" x="820" y="63">Destination</text><text class="sub" x="820" y="88">ผู้ฟัง · จุดหมาย</text>
+    <rect class="nd noise shake" x="345" y="165" width="210" height="58" rx="14"/><text class="t" x="450" y="185" style="fill:#fca5a5">Noise Source</text><text class="sub" x="450" y="207">กายภาพ (คลื่นรบกวน) · จิตใจ (ความเครียด)</text>
+  </svg></div>
+  <p class="muted">จุดสีเขียวคือสาร เมื่อผ่าน Channel จะกลายเป็นสีแดง แสดงว่า<b>สิ่งรบกวน (Noise)</b> ทำให้สารผิดเพี้ยนได้ · Noise มี 2 ลักษณะ: <b>ทางกายภาพ</b> และ <b>ทางจิตใจ</b></p>
 </article>
 
-<article class="card s4 c-amber">
-  <h3><span class="ic">🚪</span>เวสเลย์ & แมคลีน <span class="en">Westley & MacLean</span> <span class="pg">p.50–52</span></h3>
-  <p>ได้รับอิทธิพลจาก <b>ABX ของนิวคอมบ์</b> และ<b>ทฤษฎีสมดุล</b>ของไฮเดอร์ & เฟสติงเจอร์</p>
-  <ul><li><b>แบบระหว่างบุคคล</b>: A, B, X, f (feedback)</li><li><b>แบบมวลชน</b>: เพิ่ม <b>C = Gatekeeper</b> (ผู้เฝ้าประตูสาร)</li></ul>
+<!-- Westley & MacLean -->
+<article class="card s12 c-amber">
+  <h3><span class="ic">🚪</span>เวสเลย์ & แมคลีน <span class="en">Westley & MacLean</span> — แบบมวลชน <span class="pg">p.50–52</span></h3>
+  <div class="dg"><svg class="diagram" viewBox="0 0 900 300">
+    <defs>
+      <marker id="m-wm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0L10,5L0,10z"/></marker>
+      <marker id="m-wm-f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah fb" d="M0,0L10,5L0,10z"/></marker>
+    </defs>
+    <path class="ln" d="M90,62 L208,118" marker-end="url(#m-wm)"/>
+    <path class="ln" d="M90,115 L208,128" marker-end="url(#m-wm)"/>
+    <path class="ln" d="M90,170 L208,142" marker-end="url(#m-wm)"/>
+    <path class="ln" d="M90,223 L208,156" marker-end="url(#m-wm)"/>
+    <path class="ln" d="M88,46 C 230,0 430,10 505,98" marker-end="url(#m-wm)"/>
+    <text class="lbl" x="300" y="22">X ที่ C เลือกรับเองโดยตรง</text>
+    <path class="ln" d="M362,135 H438" marker-end="url(#m-wm)"/><text class="lbl" x="400" y="120">X′</text>
+    <path class="ln" d="M612,135 H698" marker-end="url(#m-wm)"/><text class="lbl" x="655" y="120">X″</text>
+    <path class="ln fb" d="M770,172 C 745,225 595,225 570,174" marker-end="url(#m-wm-f)"/><text class="lbl fb" x="670" y="232">fBC</text>
+    <path class="ln fb" d="M480,172 C 455,220 345,220 320,174" marker-end="url(#m-wm-f)"/><text class="lbl fb" x="400" y="226">fCA</text>
+    <path class="ln fb" d="M830,172 C 810,300 270,300 250,174" marker-end="url(#m-wm-f)"/><text class="lbl fb" x="540" y="284">fBA (Feedback)</text>
+    <circle class="pkt" r="6"><animateMotion dur="4s" repeatCount="indefinite" path="M90,115 L285,135 L525,135 L785,135"/></circle>
+    <circle class="pkt fb" r="5"><animateMotion dur="4s" repeatCount="indefinite" path="M830,172 C 810,300 270,300 250,174"/></circle>
+    <circle class="pkt fb" r="5"><animateMotion dur="2.5s" repeatCount="indefinite" path="M770,172 C 745,225 595,225 570,174"/></circle>
+    <circle class="nd" cx="70" cy="60" r="20"/><text class="t" x="70" y="60">X₁</text>
+    <circle class="nd" cx="70" cy="115" r="20"/><text class="t" x="70" y="115">X₂</text>
+    <circle class="nd" cx="70" cy="170" r="20"/><text class="t" x="70" y="170">X₃</text>
+    <circle class="nd" cx="70" cy="225" r="20"/><text class="t" x="70" y="225">X∞</text>
+    <text class="sub" x="70" y="265">เหตุการณ์/ข่าวสาร</text>
+    <rect class="nd" x="210" y="100" width="150" height="70" rx="14"/><text class="t" x="285" y="123">A</text><text class="sub" x="285" y="147">ผู้ส่งสาร</text>
+    <rect class="nd pulse" x="440" y="100" width="170" height="70" rx="14"/><text class="t" x="525" y="123">C · Gatekeeper</text><text class="sub" x="525" y="147">ผู้เฝ้าประตูสาร (สื่อมวลชน)</text>
+    <rect class="nd" x="700" y="100" width="170" height="70" rx="14"/><text class="t" x="785" y="123">B</text><text class="sub" x="785" y="147">ผู้รับสาร (มวลชน)</text>
+  </svg></div>
+  <div class="mini g2">
+    <div class="box"><b>ที่มา</b> ได้รับอิทธิพลจาก <b>ABX ของนิวคอมบ์</b> และ<b>ทฤษฎีสมดุล</b>ของไฮเดอร์ & เฟสติงเจอร์</div>
+    <div class="box"><b>2 แบบ</b> แบบระหว่างบุคคล: A, B, X, f (feedback) · แบบมวลชน: เพิ่ม <b>C = Gatekeeper</b> ผู้คัดเลือกสารก่อนถึงผู้รับ</div>
+  </div>
 </article>
 
-<article class="card s4 c-lime">
-  <h3><span class="ic">🔄</span>ชแรมม์ <span class="en">Schramm</span> 4 แบบ <span class="pg">p.53–56</span></h3>
-  <ol><li>การสื่อสารระหว่างบุคคลพื้นฐาน</li><li>เพิ่ม<b>ประสบการณ์ร่วม</b> <span class="en">Field of Experience</span></li><li>บุคคลเป็นทั้ง<b>ผู้เข้ารหัสและผู้ถอดรหัส</b></li><li>แสดง<b>ปฏิสัมพันธ์</b>ผู้ส่ง-ผู้รับ (<b>สมบูรณ์ที่สุด</b>)</li></ol>
+<!-- Schramm 1-2 -->
+<article class="card s6 c-lime">
+  <h3><span class="ic">🔄</span>ชแรมม์ <span class="en">Schramm</span> แบบที่ 1–2 <span class="pg">p.53–56</span></h3>
+  <div class="dg"><svg class="diagram" viewBox="0 0 600 280">
+    <defs><marker id="m-s1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0L10,5L0,10z"/></marker></defs>
+    <text class="cap" x="300" y="14">แบบที่ 1 · การสื่อสารพื้นฐาน</text>
+    <path class="ln" d="M105,58 H126" marker-end="url(#m-s1)"/>
+    <path class="ln" d="M228,58 H248" marker-end="url(#m-s1)"/>
+    <path class="ln" d="M350,58 H370" marker-end="url(#m-s1)"/>
+    <path class="ln" d="M472,58 H493" marker-end="url(#m-s1)"/>
+    <circle class="pkt" r="6"><animateMotion dur="3.5s" repeatCount="indefinite" path="M55,58 H545"/></circle>
+    <rect class="nd" x="5" y="30" width="100" height="56" rx="12"/><text class="t" x="55" y="50">Source</text><text class="sub" x="55" y="70">แหล่งสาร</text>
+    <rect class="nd" x="128" y="30" width="100" height="56" rx="12"/><text class="t" x="178" y="50">Encoder</text><text class="sub" x="178" y="70">ผู้เข้ารหัส</text>
+    <rect class="nd" x="250" y="30" width="100" height="56" rx="28"/><text class="t" x="300" y="50">Signal</text><text class="sub" x="300" y="70">สัญญาณ</text>
+    <rect class="nd" x="372" y="30" width="100" height="56" rx="12"/><text class="t" x="422" y="50">Decoder</text><text class="sub" x="422" y="70">ผู้ถอดรหัส</text>
+    <rect class="nd" x="495" y="30" width="100" height="56" rx="12"/><text class="t" x="545" y="50">Destination</text><text class="sub" x="545" y="70">ผู้รับปลายทาง</text>
+    <text class="cap" x="300" y="118">แบบที่ 2 · Field of Experience</text>
+    <g class="driftL"><ellipse cx="220" cy="200" rx="150" ry="62" style="fill:rgba(167,139,250,.18);stroke:#a78bfa;stroke-width:1.5"/></g>
+    <g class="driftR"><ellipse cx="380" cy="200" rx="150" ry="62" style="fill:rgba(94,234,212,.18);stroke:#5eead4;stroke-width:1.5"/></g>
+    <text class="t" x="140" y="192">ประสบการณ์</text><text class="sub" x="140" y="212">ของผู้ส่งสาร</text>
+    <text class="t" x="460" y="192">ประสบการณ์</text><text class="sub" x="460" y="212">ของผู้รับสาร</text>
+    <text class="t pulse" x="300" y="192" style="fill:#bef264">ประสบการณ์ร่วม</text><text class="sub" x="300" y="214">ซ้อนกันมาก = เข้าใจกันมาก</text>
+  </svg></div>
+  <p class="muted">แบบที่ 2 เพิ่ม<b>ประสบการณ์ร่วม</b> ถ้าผู้ส่งและผู้รับมีพื้นฐานร่วมกันมาก การสื่อสารจะได้ผลดี</p>
 </article>
 
-<article class="card s4 c-violet">
-  <h3><span class="ic">🧱</span>เบอร์โล <span class="en">Berlo – SMCR</span> <span class="pg">p.57–58</span></h3>
-  <p><b>S</b> Source · <b>M</b> Message · <b>C</b> Channel · <b>R</b> Receiver</p>
-  <p>เน้น<b>รายละเอียดปัจจัยย่อย</b>ในแต่ละองค์ประกอบที่ช่วย<b>เพิ่ม-ลดประสิทธิภาพ</b>การสื่อสาร (ดูรายละเอียดในหมวด 2)</p>
+<!-- Schramm 3-4 -->
+<article class="card s6 c-sky">
+  <h3><span class="ic">♻️</span>ชแรมม์ <span class="en">Schramm</span> แบบที่ 3–4 <span class="pg">p.53–56</span></h3>
+  <div class="dg"><svg class="diagram" viewBox="0 0 600 280">
+    <defs><marker id="m-s4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0L10,5L0,10z"/></marker></defs>
+    <text class="cap" x="300" y="14">ต่างเป็นทั้งผู้เข้ารหัสและผู้ถอดรหัส · มีปฏิสัมพันธ์</text>
+    <path class="ln" d="M220,105 C 280,30 320,30 380,105" marker-end="url(#m-s4)"/>
+    <path class="ln" d="M380,175 C 320,250 280,250 220,175" marker-end="url(#m-s4)"/>
+    <text class="lbl" x="300" y="38">Message · สาร</text>
+    <text class="lbl" x="300" y="262">Message · สาร (ป้อนกลับ)</text>
+    <circle class="pkt" r="6"><animateMotion dur="4s" repeatCount="indefinite" path="M220,105 C 280,30 320,30 380,105 L380,175 C 320,250 280,250 220,175 Z"/></circle>
+    <circle class="pkt" r="6"><animateMotion dur="4s" begin="-2s" repeatCount="indefinite" path="M220,105 C 280,30 320,30 380,105 L380,175 C 320,250 280,250 220,175 Z"/></circle>
+    <rect class="nd" x="30" y="75" width="190" height="130" rx="16"/>
+    <text class="t" x="125" y="98">บุคคล A</text>
+    <text x="125" y="125">Encoder · ผู้เข้ารหัส</text>
+    <text class="pulse" x="125" y="150" style="fill:#7dd3fc">Interpreter · ผู้ตีความ</text>
+    <text x="125" y="175">Decoder · ผู้ถอดรหัส</text>
+    <rect class="nd" x="380" y="75" width="190" height="130" rx="16"/>
+    <text class="t" x="475" y="98">บุคคล B</text>
+    <text x="475" y="125">Decoder · ผู้ถอดรหัส</text>
+    <text class="pulse" x="475" y="150" style="fill:#7dd3fc">Interpreter · ผู้ตีความ</text>
+    <text x="475" y="175">Encoder · ผู้เข้ารหัส</text>
+  </svg></div>
+  <p class="muted">แบบที่ 3: บุคคลเป็นทั้งผู้เข้ารหัสและผู้ถอดรหัส · แบบที่ 4: แสดง<b>ปฏิสัมพันธ์</b>ระหว่างผู้ส่งกับผู้รับ (<b>สมบูรณ์ที่สุด</b>)</p>
 </article>
 
+<!-- Berlo SMCR -->
+<article class="card s12 c-violet">
+  <h3><span class="ic">🧱</span>เบอร์โล <span class="en">Berlo — SMCR Model</span> <span class="pg">p.57–58</span></h3>
+  <div class="dg"><svg class="diagram" viewBox="0 0 900 300">
+    <defs><marker id="m-be" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0L10,5L0,10z"/></marker></defs>
+    <path class="ln" d="M200,40 H238" marker-end="url(#m-be)"/>
+    <path class="ln" d="M430,40 H468" marker-end="url(#m-be)"/>
+    <path class="ln" d="M660,40 H698" marker-end="url(#m-be)"/>
+    <circle class="pkt" r="6"><animateMotion dur="4s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;0.75;1" path="M105,40 H795"/></circle>
+    <rect class="nd seq" style="animation-duration:4s;animation-delay:0s" x="10" y="10" width="190" height="60" rx="14"/><text class="t" x="105" y="31">S · Source</text><text class="sub" x="105" y="53">ผู้ส่งสาร</text>
+    <rect class="nd seq" style="animation-duration:4s;animation-delay:1s" x="240" y="10" width="190" height="60" rx="14"/><text class="t" x="335" y="31">M · Message</text><text class="sub" x="335" y="53">สาร</text>
+    <rect class="nd seq" style="animation-duration:4s;animation-delay:2s" x="470" y="10" width="190" height="60" rx="14"/><text class="t" x="565" y="31">C · Channel</text><text class="sub" x="565" y="53">สื่อ / ช่องทาง</text>
+    <rect class="nd seq" style="animation-duration:4s;animation-delay:3s" x="700" y="10" width="190" height="60" rx="14"/><text class="t" x="795" y="31">R · Receiver</text><text class="sub" x="795" y="53">ผู้รับสาร</text>
+    <path class="ln off" d="M105,70 V85"/><path class="ln off" d="M335,70 V85"/><path class="ln off" d="M565,70 V85"/><path class="ln off" d="M795,70 V85"/>
+    <rect class="nd" x="10" y="85" width="190" height="200" rx="14"/>
+    <text x="105" y="115">ทักษะการสื่อสาร</text><text x="105" y="150">ทัศนคติ</text><text x="105" y="185">ความรู้</text><text x="105" y="220">ระบบสังคม</text><text x="105" y="255">วัฒนธรรม</text>
+    <rect class="nd" x="240" y="85" width="190" height="200" rx="14"/>
+    <text x="335" y="130">Content · เนื้อหา</text><text x="335" y="185">Code · รหัส</text><text x="335" y="240">Treatment · การจัดสาร</text>
+    <rect class="nd" x="470" y="85" width="190" height="200" rx="14"/>
+    <text x="565" y="115">การมองเห็น</text><text x="565" y="150">การได้ยิน</text><text x="565" y="185">การสัมผัส</text><text x="565" y="220">การดมกลิ่น</text><text x="565" y="255">การลิ้มรส</text>
+    <rect class="nd" x="700" y="85" width="190" height="200" rx="14"/>
+    <text x="795" y="115">ทักษะการสื่อสาร</text><text x="795" y="150">ทัศนคติ</text><text x="795" y="185">ความรู้</text><text x="795" y="220">ระบบสังคม</text><text x="795" y="255">วัฒนธรรม</text>
+  </svg></div>
+  <p class="muted">เน้น<b>ปัจจัยย่อย</b>ในแต่ละองค์ประกอบที่ช่วย<b>เพิ่ม-ลดประสิทธิภาพ</b>การสื่อสาร · ปัจจัยของ S และ R เหมือนกัน (S เข้ารหัส / R ถอดรหัส)</p>
+</article>
+
+<!-- One-way vs Two-way -->
 <article class="card s12 c-rose">
   <h3><span class="ic">↔️</span>การสื่อสารทางเดียว vs สองทาง & Feedback <span class="pg">p.59–61</span></h3>
-  <div class="mini g3">
-    <div class="box"><b>ทางเดียว (One-way)</b><br>แบบจำลองที่<b>ไม่มี</b>การสื่อสารกลับ (Feedback)</div>
-    <div class="box"><b>สองทาง (Two-way)</b><br><b>มี</b>การสื่อสารกลับ หรือเรียกว่า<b>ยุคลวิถี</b></div>
-    <div class="box"><b>Feedback</b> ช่วยให้ผู้ส่งทราบผล และปรับพฤติกรรมการสื่อสาร<br>• <b>ทันทีทันใด</b> → การสื่อสารระหว่างบุคคล<br>• <b>ล่าช้า</b> → การสื่อสารมวลชน</div>
-  </div>
+  <div class="dg"><svg class="diagram" viewBox="0 0 900 190">
+    <defs>
+      <marker id="m-ow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0L10,5L0,10z"/></marker>
+      <marker id="m-ow-f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah fb" d="M0,0L10,5L0,10z"/></marker>
+    </defs>
+    <text class="cap" x="220" y="18">ทางเดียว · One-way</text>
+    <path class="ln" d="M152,85 H288" marker-end="url(#m-ow)"/>
+    <circle class="pkt" r="6"><animateMotion dur="2s" repeatCount="indefinite" path="M152,85 H288"/></circle>
+    <circle class="pkt" r="6"><animateMotion dur="2s" begin="-1s" repeatCount="indefinite" path="M152,85 H288"/></circle>
+    <rect class="nd" x="20" y="55" width="130" height="60" rx="14"/><text class="t" x="85" y="76">ผู้ส่งสาร</text><text class="sub" x="85" y="97">Sender</text>
+    <rect class="nd" x="290" y="55" width="130" height="60" rx="14"/><text class="t" x="355" y="76">ผู้รับสาร</text><text class="sub" x="355" y="97">Receiver</text>
+    <path class="ln off" d="M290,118 C 260,155 180,155 150,118"/>
+    <text x="220" y="146" style="fill:#f87171;font-size:18px;font-weight:800">✕</text>
+    <text class="sub" x="220" y="174">ไม่มีการสื่อสารกลับ (Feedback)</text>
+    <line x1="450" y1="10" x2="450" y2="180" style="stroke:rgba(255,255,255,.15)"/>
+    <text class="cap" x="680" y="18">สองทาง · Two-way (ยุคลวิถี)</text>
+    <path class="ln" d="M612,75 H748" marker-end="url(#m-ow)"/>
+    <path class="ln fb" d="M750,97 H614" marker-end="url(#m-ow-f)"/>
+    <text class="lbl" x="680" y="62">สาร</text><text class="lbl fb" x="680" y="112">Feedback</text>
+    <circle class="pkt" r="6"><animateMotion dur="2s" repeatCount="indefinite" path="M612,75 H748"/></circle>
+    <circle class="pkt fb" r="6"><animateMotion dur="2s" begin="-1s" repeatCount="indefinite" path="M750,97 H612"/></circle>
+    <rect class="nd" x="480" y="55" width="130" height="60" rx="14"/><text class="t" x="545" y="76">ผู้ส่งสาร</text><text class="sub" x="545" y="97">Sender</text>
+    <rect class="nd" x="750" y="55" width="130" height="60" rx="14"/><text class="t" x="815" y="76">ผู้รับสาร</text><text class="sub" x="815" y="97">Receiver</text>
+    <text class="sub" x="680" y="148">Feedback ทันทีทันใด → การสื่อสารระหว่างบุคคล</text>
+    <text class="sub" x="680" y="170">Feedback ล่าช้า → การสื่อสารมวลชน</text>
+  </svg></div>
+  <p class="muted">Feedback ช่วยให้ผู้ส่งทราบผล และปรับพฤติกรรมการสื่อสารได้</p>
 </article>
 
 <!-- ================= 4 ================= -->
@@ -614,6 +821,12 @@ q.addEventListener('input',()=>{
   });
   document.querySelectorAll('.section').forEach(s=>s.classList.toggle('hide',!!v));
 });
+
+function toggleAnim(b){
+  const p=document.body.classList.toggle('paused');
+  document.querySelectorAll('svg.diagram').forEach(s=>p?s.pauseAnimations():s.unpauseAnimations());
+  b.textContent=p?'▶ เล่นแอนิเมชัน':'⏸ หยุดแอนิเมชัน';
+}
 </script>
 </body>
 </html>
