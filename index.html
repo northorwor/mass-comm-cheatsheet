@@ -6,10 +6,22 @@
 <title>การสื่อสารมวลชน — Bento Cheat Sheet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700;800&family=Inter:wght@600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
+/* ===== DB Helvethaica X (ใช้ฟอนต์ที่ติดตั้งในเครื่อง หรือไฟล์ในโฟลเดอร์ fonts/) ===== */
+@font-face{font-family:'DBH';font-weight:100 450;font-display:swap;size-adjust:135%;
+  src:local('DB Helvethaica X'),local('DB HelvethaicaX'),local('DBHelvethaicaX'),local('DB Helvethaica X Reg'),local('DBHelvethaicaX-Reg'),local('DB Helvethaica'),
+      url('fonts/DBHelvethaicaX.ttf') format('truetype'),url('fonts/DBHelvethaicaX.otf') format('opentype')}
+@font-face{font-family:'DBH';font-weight:451 650;font-display:swap;size-adjust:135%;
+  src:local('DB Helvethaica X Med'),local('DBHelvethaicaX-Med'),local('DB HelvethaicaX Med'),local('DB Helvethaica X Medium'),
+      url('fonts/DBHelvethaicaX-Med.ttf') format('truetype'),url('fonts/DBHelvethaicaX-Med.otf') format('opentype')}
+@font-face{font-family:'DBH';font-weight:651 1000;font-display:swap;size-adjust:135%;
+  src:local('DB Helvethaica X Bd'),local('DBHelvethaicaX-Bd'),local('DB HelvethaicaX Bd'),local('DB Helvethaica X Bold'),
+      url('fonts/DBHelvethaicaX-Bd.ttf') format('truetype'),url('fonts/DBHelvethaicaX-Bd.otf') format('opentype')}
+
 :root{
-  --fs:14.5px;
+  --font:'DBH','Noto Sans Thai',Tahoma,sans-serif;
+  --fs:15px;
   --bg:#0e1016;--card:#161922;--card2:#1c202b;--stroke:#272c38;--text:#e9ebf1;--muted:#9aa3b3;
   --hl:rgba(255,255,255,.2);--cover:#2f3544;--fb:#7dd3fc;--red:#f87171;--shadow:0 1px 2px rgba(0,0,0,.4);
   --pink:#f472b6;--violet:#a78bfa;--cyan:#2dd4bf;--sky:#38bdf8;--amber:#fbbf24;--lime:#a3e635;--rose:#fb7185;--orange:#fb923c;
@@ -22,89 +34,93 @@
   color-scheme:light;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Noto Sans Thai','Inter',sans-serif;background:var(--bg);color:var(--text);font-size:var(--fs);line-height:1.6;-webkit-font-smoothing:antialiased}
-button{font:inherit}
+body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:var(--fs);line-height:1.6;-webkit-font-smoothing:antialiased}
+button,input{font:inherit}
+button{-webkit-tap-highlight-color:transparent}
 
 /* ===== Sticky top bar ===== */
 .topbar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--stroke)}
 .chips{max-width:1400px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
-.chips a{flex:none;font-size:.82em;text-decoration:none;color:var(--text);padding:5px 12px;border-radius:999px;background:var(--card2);border:1px solid var(--stroke);transition:background .15s,color .15s}
+.chips a{flex:none;font-size:.85em;text-decoration:none;color:var(--text);padding:5px 12px;border-radius:999px;background:var(--card2);border:1px solid var(--stroke);transition:background .15s,color .15s}
 .chips a:hover{border-color:var(--violet)}
 .chips a.on{background:var(--text);color:var(--bg);border-color:var(--text)}
-.sp{position:absolute;left:0;bottom:-1px;width:100%;height:2px;background:linear-gradient(90deg,var(--violet),var(--pink),var(--sky));transform-origin:left;transform:scaleX(0)}
+.sp{position:absolute;left:0;bottom:-1px;width:100%;height:2px;background:linear-gradient(90deg,var(--violet),var(--pink),var(--sky));transform-origin:left;transform:scaleX(0);pointer-events:none}
 
 .wrap{max-width:1400px;margin:0 auto;padding:20px 20px 80px}
 
 /* ===== Header ===== */
 .hero{padding:26px 26px 22px;border-radius:24px;background:var(--card);border:1px solid var(--stroke);box-shadow:var(--shadow);margin-bottom:8px;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--violet),var(--pink),var(--sky),var(--lime))}
-.hero h1{font-size:clamp(26px,4vw,42px);font-weight:800;letter-spacing:-.5px;line-height:1.25;background:linear-gradient(90deg,var(--violet),var(--pink),var(--sky));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--violet),var(--pink),var(--sky),var(--lime));pointer-events:none}
+.hero h1{font-size:clamp(26px,4vw,42px);font-weight:800;line-height:1.25;background:linear-gradient(90deg,var(--violet),var(--pink),var(--sky));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p{color:var(--muted);margin-top:4px}
-.prog{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:.88em;color:var(--muted)}
-.pbar{flex:1;max-width:320px;height:6px;background:var(--card2);border:1px solid var(--stroke);border-radius:99px;overflow:hidden}
+.prog{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:.9em;color:var(--muted);flex-wrap:wrap}
+.pbar{flex:1;min-width:120px;max-width:320px;height:6px;background:var(--card2);border:1px solid var(--stroke);border-radius:99px;overflow:hidden}
 .pbar>div{height:100%;width:0;background:linear-gradient(90deg,var(--lime),var(--cyan));transition:width .3s}
+.fstate{font-size:.82em;padding:2px 10px;border-radius:999px;border:1px solid var(--stroke)}
+.fstate.ok{color:var(--lime);border-color:var(--lime)}
+.fstate.warn{color:var(--amber);border-color:var(--amber)}
 .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;align-items:center}
-.search{flex:1;min-width:220px;padding:11px 16px;border-radius:999px;border:1px solid var(--stroke);background:var(--card2);color:var(--text);font:inherit;outline:none}
+.search{flex:1;min-width:220px;padding:11px 16px;border-radius:999px;border:1px solid var(--stroke);background:var(--card2);color:var(--text);outline:none}
 .search:focus{border-color:var(--violet)}
-.cnt{font-size:.85em;color:var(--muted);min-width:70px}
-.btn{padding:7px 14px;border-radius:999px;border:1px solid var(--stroke);background:var(--card2);color:var(--text);font-size:.86em;cursor:pointer;transition:border-color .15s,background .15s}
+.cnt{font-size:.88em;color:var(--muted);min-width:70px}
+.btn{padding:7px 14px;border-radius:999px;border:1px solid var(--stroke);background:var(--card2);color:var(--text);font-size:.9em;cursor:pointer;transition:border-color .15s,background .15s;touch-action:manipulation}
 .btn:hover{border-color:var(--violet)}
+.btn:active{transform:scale(.97)}
 .btn.on{background:var(--violet);border-color:var(--violet);color:#fff}
-.btn.sm{padding:5px 12px;font-size:.8em}
-.hint{font-size:.78em;color:var(--muted);margin-top:10px}
-kbd{font-family:Inter,monospace;font-size:.9em;padding:1px 6px;border-radius:6px;border:1px solid var(--stroke);background:var(--card2)}
+.btn.warn{background:var(--red);border-color:var(--red);color:#fff}
+.btn.sm{padding:5px 12px;font-size:.82em}
+.hint{font-size:.82em;color:var(--muted);margin-top:10px}
+kbd{font-family:var(--font);font-size:.9em;padding:1px 6px;border-radius:6px;border:1px solid var(--stroke);background:var(--card2)}
 
 /* ===== Section title ===== */
 .section{grid-column:1/-1;display:flex;align-items:center;gap:12px;margin:22px 4px 2px;font-weight:700;font-size:1.3em;flex-wrap:wrap;scroll-margin-top:60px}
-.section .num{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;font-family:Inter;font-weight:800;font-size:.85em;background:var(--c,#a78bfa);color:#0b0b1e}
+.section .num{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;font-weight:800;font-size:.85em;background:var(--c,#a78bfa);color:#0b0b1e}
 .section::after{content:"";flex:1;height:1px;background:var(--stroke)}
 .section .anim-toggle{order:2}
 
 /* ===== Bento grid ===== */
 .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;grid-auto-flow:dense}
-.card{--c:var(--violet);position:relative;grid-column:span 4;padding:18px 18px 16px;border-radius:20px;background:var(--card);border:1px solid var(--stroke);box-shadow:var(--shadow);overflow:hidden;transition:border-color .2s,transform .2s;scroll-margin-top:70px}
-.card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--c);opacity:.85}
-.card:hover{border-color:var(--c)}
-.card.done{border-color:var(--c)}
+.card{--c:var(--violet);position:relative;grid-column:span 4;padding:18px 18px 16px;border-radius:20px;background:var(--card);border:1px solid var(--stroke);box-shadow:var(--shadow);overflow:hidden;transition:border-color .2s;scroll-margin-top:70px}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--c);opacity:.85;pointer-events:none}
+.card:hover,.card.done{border-color:var(--c)}
 .card.flash{animation:flash 1.4s ease-out}
 @keyframes flash{0%,50%{outline:3px solid var(--c);outline-offset:3px}100%{outline:3px solid transparent;outline-offset:3px}}
 .s3{grid-column:span 3}.s4{grid-column:span 4}.s5{grid-column:span 5}.s6{grid-column:span 6}.s7{grid-column:span 7}.s8{grid-column:span 8}.s12{grid-column:span 12}
 .r2{grid-row:span 2}
-.card h3{font-size:1.08em;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.card h3 .ic{font-size:1.15em}
-.pg{margin-left:auto;font-family:Inter;font-size:.72em;font-weight:600;color:var(--c);padding:2px 8px;border-radius:999px;border:1px solid var(--c)}
+.card h3{font-size:1.1em;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card h3 .ic{font-size:1.1em}
+.pg{margin-left:auto;font-size:.75em;font-weight:600;color:var(--c);padding:1px 8px;border-radius:999px;border:1px solid var(--c)}
 .tools{display:flex;gap:4px;margin-left:auto}
 .pg ~ .tools{margin-left:0}
-.ib{width:26px;height:26px;border-radius:50%;border:1px solid var(--stroke);background:transparent;color:var(--muted);cursor:pointer;font-size:12px;line-height:1;display:grid;place-items:center;transition:transform .2s,background .15s}
+.ib{width:28px;height:28px;border-radius:50%;border:1px solid var(--stroke);background:transparent;color:var(--muted);cursor:pointer;font-size:12px;line-height:1;display:grid;place-items:center;transition:transform .2s,background .15s;touch-action:manipulation}
 .ib:hover{border-color:var(--c);color:var(--text)}
 .card.done .chk{background:var(--c);border-color:var(--c);color:#111}
 .card.collapsed .fold{transform:rotate(-90deg)}
-.card h4{font-size:.93em;color:var(--c);margin:10px 0 4px;font-weight:700}
+.card h4{font-size:.95em;color:var(--c);margin:10px 0 4px;font-weight:700}
 .card ul,.card ol{padding-left:18px}
 .card li{margin:3px 0}
 .card li::marker{color:var(--c)}
 .card p{margin:4px 0}
-.muted{color:var(--muted);font-size:.9em}
+.muted{color:var(--muted);font-size:.92em}
 b,strong{font-weight:700}
-.en{font-family:Inter;font-size:.86em;color:var(--c);font-weight:600}
-.tag{display:inline-block;padding:3px 10px;margin:3px 4px 3px 0;border-radius:999px;font-size:.86em;background:var(--card2);border:1px solid var(--stroke)}
+.en{font-size:.9em;color:var(--c);font-weight:600}
+.tag{display:inline-block;padding:2px 10px;margin:3px 4px 3px 0;border-radius:999px;font-size:.88em;background:var(--card2);border:1px solid var(--stroke)}
 .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0}
-.flow span{padding:6px 10px;border-radius:12px;background:var(--card2);border:1px solid var(--stroke);font-size:.86em}
+.flow span{padding:5px 10px;border-radius:12px;background:var(--card2);border:1px solid var(--stroke);font-size:.88em}
 .flow i{font-style:normal;color:var(--c);font-weight:800}
 .mini{display:grid;gap:8px}
 .mini.g2{grid-template-columns:1fr 1fr}.mini.g3{grid-template-columns:repeat(3,1fr)}.mini.g4{grid-template-columns:repeat(4,1fr)}
 .box{padding:10px 12px;border-radius:14px;background:var(--card2);border:1px solid var(--stroke)}
 .box b{color:var(--c)}
-table{width:100%;border-collapse:collapse;font-size:.9em;margin-top:4px}
-th,td{padding:7px 8px;text-align:left;border-bottom:1px solid var(--stroke);vertical-align:top}
+table{width:100%;border-collapse:collapse;font-size:.92em;margin-top:4px}
+th,td{padding:6px 8px;text-align:left;border-bottom:1px solid var(--stroke);vertical-align:top}
 th{color:var(--c);font-weight:700}
 .quote{padding:12px 14px;border-left:3px solid var(--c);background:var(--card2);border-radius:0 12px 12px 0}
 .bar{height:8px;border-radius:99px;background:var(--card2);border:1px solid var(--stroke);overflow:hidden;margin:3px 0 8px}
 .bar>div{height:100%;background:var(--c)}
 .pyr{display:flex;flex-direction:column;align-items:center;gap:3px;margin:8px 0}
-.pyr div{background:var(--c);color:#0b0b1e;font-weight:700;font-size:.82em;text-align:center;padding:4px;border-radius:6px}
+.pyr div{background:var(--c);color:#0b0b1e;font-weight:700;font-size:.85em;text-align:center;padding:3px;border-radius:6px}
 .hide{display:none!important}
 mark.hl{background:#fde047;color:#111;border-radius:3px;padding:0 1px}
 .c-pink{--c:var(--pink)}.c-violet{--c:var(--violet)}.c-cyan{--c:var(--cyan)}.c-sky{--c:var(--sky)}.c-amber{--c:var(--amber)}.c-lime{--c:var(--lime)}.c-rose{--c:var(--rose)}.c-orange{--c:var(--orange)}
@@ -118,10 +134,10 @@ mark.hl{background:#fde047;color:#111;border-radius:3px;padding:0 1px}
   body.cover .card .box > b:first-child:not(.shown){color:var(--c);background:none;cursor:auto;user-select:auto}
 }
 
-/* ===== Animated diagrams (lightweight) ===== */
+/* ===== Animated diagrams ===== */
 .dg{overflow-x:auto;margin:6px -4px 10px;padding:4px}
 .diagram{width:100%;min-width:560px;height:auto;display:block}
-.diagram text{fill:var(--text);font-family:'Noto Sans Thai','Inter',sans-serif;font-size:12px;text-anchor:middle;dominant-baseline:middle}
+.diagram text{fill:var(--text);font-family:var(--font);font-size:12px;text-anchor:middle;dominant-baseline:middle}
 .diagram .t{font-size:14px;font-weight:700}
 .diagram .sub{font-size:10.5px;fill:var(--muted)}
 .diagram .cap{font-size:12.5px;font-weight:700;fill:var(--c)}
@@ -151,33 +167,34 @@ mark.hl{background:#fde047;color:#111;border-radius:3px;padding:0 1px}
 @keyframes driftL{from{transform:translateX(-12px)}to{transform:translateX(6px)}}
 @keyframes driftR{from{transform:translateX(12px)}to{transform:translateX(-6px)}}
 .diagram.idle,.diagram.idle *{animation-play-state:paused!important}
-@media (prefers-reduced-motion:reduce){.diagram *,.card{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:reduce){.diagram *,.card{animation:none!important;transition:none!important}}
 
 /* ===== FAB / toast / modal ===== */
-.fab{position:fixed;right:18px;bottom:18px;width:44px;height:44px;border-radius:50%;border:1px solid var(--stroke);background:var(--card);color:var(--text);font-size:18px;cursor:pointer;box-shadow:var(--shadow);z-index:30;opacity:0;pointer-events:none;transition:opacity .2s}
-.fab.show{opacity:1;pointer-events:auto}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:8px 16px;border-radius:999px;font-size:.86em;z-index:60;opacity:0;pointer-events:none;transition:opacity .2s}
+.fab{position:fixed;right:18px;bottom:18px;width:44px;height:44px;border-radius:50%;border:1px solid var(--stroke);background:var(--card);color:var(--text);font-size:18px;cursor:pointer;box-shadow:var(--shadow);z-index:30;opacity:0;visibility:hidden;transition:opacity .2s}
+.fab.show{opacity:1;visibility:visible}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:8px 16px;border-radius:999px;font-size:.9em;z-index:60;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw;text-align:center}
 .toast.show{opacity:1}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:grid;place-items:center;z-index:50;padding:16px}
 .modal[hidden]{display:none}
 .mbox{width:min(580px,100%);max-height:90vh;overflow:auto;background:var(--card);border:1px solid var(--stroke);border-radius:20px;padding:20px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
 .mhead{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.mhead span{margin-left:auto;font-size:.85em;color:var(--muted)}
-.qq{font-weight:700;font-size:1.08em;margin-bottom:10px}
-.qo{display:block;width:100%;text-align:left;padding:10px 14px;margin:6px 0;border-radius:12px;border:1px solid var(--stroke);background:var(--card2);color:var(--text);cursor:pointer}
+.mhead span{margin-left:auto;font-size:.88em;color:var(--muted)}
+.qq{font-weight:700;font-size:1.12em;margin-bottom:10px}
+.qo{display:flex;gap:10px;width:100%;text-align:left;padding:10px 14px;margin:6px 0;border-radius:12px;border:1px solid var(--stroke);background:var(--card2);color:var(--text);cursor:pointer}
+.qo .n{color:var(--muted);font-weight:700}
 .qo:hover:not(:disabled){border-color:var(--violet)}
 .qo:disabled{cursor:default}
 .qo.right{border-color:#22c55e;background:rgba(34,197,94,.15)}
 .qo.wrong{border-color:#ef4444;background:rgba(239,68,68,.15)}
 .qfb{margin-top:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .qres{text-align:center;padding:10px 0}
-.qres .big{font-family:Inter;font-weight:800;font-size:48px;color:var(--violet)}
+.qres .big{font-weight:800;font-size:52px;color:var(--violet);line-height:1.2}
 
 @media (max-width:1100px){.s3,.s4,.s5,.s6{grid-column:span 6}.s7,.s8{grid-column:span 12}.mini.g4{grid-template-columns:1fr 1fr}}
 @media (max-width:720px){.card,.s3,.s4,.s5,.s6,.s7,.s8{grid-column:span 12}.r2{grid-row:auto}.mini.g2,.mini.g3,.mini.g4{grid-template-columns:1fr}.hero{padding:20px}}
 
 @media print{
-  .topbar,.row,.hint,.tools,.anim-toggle,.fab,.toast,.modal{display:none!important}
+  .topbar,.row,.hint,.tools,.anim-toggle,.fab,.toast,.modal,.fstate{display:none!important}
   body{background:#fff}
   .card{break-inside:avoid;box-shadow:none}
   .bento{gap:8px}
@@ -200,24 +217,25 @@ mark.hl{background:#fde047;color:#111;border-radius:3px;padding:0 1px}
 <header class="hero">
   <h1>การสื่อสารมวลชน · Cheat Sheet</h1>
   <p>สรุปครบทั้งเล่มแบบ Bento Grid สำหรับทบทวน/จดเข้าห้องสอบ พร้อมแบบจำลองแอนิเมชัน แบบทดสอบ และเลขหน้าอ้างอิง (p.)</p>
-  <div class="prog"><span id="progTxt">จำได้แล้ว 0/0</span><div class="pbar"><div id="progBar"></div></div></div>
+  <div class="prog"><span id="progTxt">จำได้แล้ว 0/0</span><div class="pbar"><div id="progBar"></div></div><span class="fstate" id="fontState">กำลังตรวจฟอนต์…</span></div>
   <div class="row">
-    <input class="search" id="q" placeholder="🔎 ค้นหา เช่น Gatekeeper, 5W, Ethos, สื่อร้อน ... (กด /)">
+    <input class="search" id="q" type="search" placeholder="🔎 ค้นหา เช่น Gatekeeper, 5W, Ethos, สื่อร้อน ... (กด /)">
     <span class="cnt" id="cnt"></span>
   </div>
   <div class="row">
-    <button class="btn" id="themeBtn">☀️ โหมดสว่าง</button>
-    <button class="btn" id="fsDown">A−</button><button class="btn" id="fsUp">A+</button>
-    <button class="btn" id="coverBtn">🙈 ปิดคำสำคัญ</button>
-    <button class="btn" id="quizBtn">🧠 แบบทดสอบ</button>
-    <button class="btn" id="randBtn">🎲 สุ่มการ์ด</button>
-    <button class="btn" id="foldBtn">▾ ย่อทั้งหมด</button>
-    <button class="btn" id="todoBtn">📌 เฉพาะที่ยังไม่จำ</button>
-    <button class="btn anim-toggle">⏸ หยุดแอนิเมชัน</button>
-    <button class="btn" id="resetBtn">↺ ล้างเครื่องหมาย</button>
-    <button class="btn" id="printBtn">🖨 พิมพ์</button>
+    <button type="button" class="btn" data-act="theme" id="themeBtn">☀️ โหมดสว่าง</button>
+    <button type="button" class="btn" data-act="fsDown">A−</button>
+    <button type="button" class="btn" data-act="fsUp">A+</button>
+    <button type="button" class="btn" data-act="cover" id="coverBtn">🙈 ปิดคำสำคัญ</button>
+    <button type="button" class="btn" data-act="quiz">🧠 แบบทดสอบ</button>
+    <button type="button" class="btn" data-act="rand">🎲 สุ่มการ์ด</button>
+    <button type="button" class="btn" data-act="fold" id="foldBtn">▾ ย่อทั้งหมด</button>
+    <button type="button" class="btn" data-act="todo" id="todoBtn">📌 เฉพาะที่ยังไม่จำ</button>
+    <button type="button" class="btn anim-toggle" data-act="anim">⏸ หยุดแอนิเมชัน</button>
+    <button type="button" class="btn" data-act="reset" id="resetBtn">↺ ล้างเครื่องหมาย</button>
+    <button type="button" class="btn" data-act="print">🖨 พิมพ์</button>
   </div>
-  <p class="hint">ปุ่มลัด: <kbd>/</kbd> ค้นหา · <kbd>T</kbd> ธีม · <kbd>K</kbd> ปิดคำสำคัญ · <kbd>Q</kbd> แบบทดสอบ · <kbd>R</kbd> สุ่มการ์ด · <kbd>P</kbd> หยุด/เล่นแอนิเมชัน · <kbd>Esc</kbd> ปิด/ล้าง · กด ✓ ที่มุมการ์ดเมื่อจำได้แล้ว</p>
+  <p class="hint">ปุ่มลัด (ใช้ได้ทั้งแป้นไทย/อังกฤษ): <kbd>/</kbd> ค้นหา · <kbd>T</kbd> ธีม · <kbd>K</kbd> ปิดคำสำคัญ · <kbd>Q</kbd> แบบทดสอบ · <kbd>R</kbd> สุ่มการ์ด · <kbd>P</kbd> หยุด/เล่นแอนิเมชัน · <kbd>Esc</kbd> ปิด/ล้าง · ในแบบทดสอบกด <kbd>1</kbd>–<kbd>4</kbd> ตอบ, <kbd>Enter</kbd> ข้อต่อไป</p>
 </header>
 
 <main class="bento" id="grid">
@@ -340,7 +358,7 @@ mark.hl{background:#fde047;color:#111;border-radius:3px;padding:0 1px}
 </article>
 
 <!-- ================= 3 ================= -->
-<div class="section" id="s3" style="--c:var(--pink)"><span class="num">3</span>แบบจำลองการสื่อสาร (Communication Models)<button class="btn sm anim-toggle">⏸ หยุดแอนิเมชัน</button></div>
+<div class="section" id="s3" style="--c:var(--pink)"><span class="num">3</span>แบบจำลองการสื่อสาร (Communication Models)<button type="button" class="btn sm anim-toggle" data-act="anim">⏸ หยุดแอนิเมชัน</button></div>
 
 <article class="card s6 c-pink">
   <h3><span class="ic">🏛</span>อริสโตเติล <span class="en">Aristotle</span> <span class="pg">p.37–39</span></h3>
@@ -830,121 +848,182 @@ mark.hl{background:#fde047;color:#111;border-radius:3px;padding:0 1px}
 <p class="muted" style="text-align:center;margin-top:30px">สรุปจากเอกสาร "การสื่อสารมวลชน ฉบับเต็ม" · ขอให้สอบผ่านฉลุย ✨</p>
 </div>
 
-<button class="fab" id="top" title="กลับขึ้นบนสุด">↑</button>
+<button type="button" class="fab" id="topBtn" data-act="top" title="กลับขึ้นบนสุด">↑</button>
 <div class="toast" id="toast"></div>
 
 <div class="modal" id="quiz" hidden>
   <div class="mbox">
-    <div class="mhead"><b>🧠 แบบทดสอบสุ่ม</b><span id="qProg"></span><button class="ib" id="qClose" title="ปิด">✕</button></div>
+    <div class="mhead"><b>🧠 แบบทดสอบสุ่ม</b><span id="qProg"></span><button type="button" class="ib" data-act="qClose" title="ปิด">✕</button></div>
     <div id="qBody"></div>
   </div>
 </div>
 
 <script>
 (function(){
-const $=(s,r=document)=>r.querySelector(s), $=(s,r=document)=>[...r.querySelectorAll(s)];
-const LS={get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v===null?d:v}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-const root=document.documentElement, body=document.body;
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s);};
+var $=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+function safe(name,fn){try{fn();}catch(e){if(window.console)console.error('['+name+']',e);}}
+var store={
+  get:function(k,d){try{var v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}},
+  set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+};
+var root=document.documentElement, body=document.body;
 
 /* ---------- toast ---------- */
-let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),1800);}
+var tt;
+function toast(m){var t=$('#toast');if(!t)return;t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('show');},2000);}
+
+/* ---------- smooth scroll helper ---------- */
+function scrollToEl(el,block){
+  if(!el)return;
+  try{el.scrollIntoView({behavior:'smooth',block:block||'start'});}catch(e){el.scrollIntoView(true);}
+}
 
 /* ---------- theme ---------- */
-function setTheme(t){root.dataset.theme=t;LS.set('mc-theme',t);$('#themeBtn').textContent=t==='light'?'🌙 โหมดมืด':'☀️ โหมดสว่าง';}
-function toggleTheme(){setTheme(root.dataset.theme==='light'?'dark':'light');}
-setTheme(LS.get('mc-theme',matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'));
-$('#themeBtn').onclick=toggleTheme;
+function setTheme(t){root.setAttribute('data-theme',t);store.set('mc-theme',t);var b=$('#themeBtn');if(b)b.textContent=t==='light'?'🌙 โหมดมืด':'☀️ โหมดสว่าง';}
+function toggleTheme(){setTheme(root.getAttribute('data-theme')==='light'?'dark':'light');}
+safe('theme',function(){
+  var pref='dark';try{if(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)pref='light';}catch(e){}
+  setTheme(store.get('mc-theme',pref));
+});
 
 /* ---------- font size ---------- */
-let fs=LS.get('mc-fs',14.5);
-function setFs(v){fs=Math.min(19,Math.max(12,v));root.style.setProperty('--fs',fs+'px');LS.set('mc-fs',fs);}
-setFs(fs);$('#fsDown').onclick=()=>setFs(fs-1);$('#fsUp').onclick=()=>setFs(fs+1);
+var fs=15;
+function setFs(v){fs=Math.min(22,Math.max(12,v));root.style.setProperty('--fs',fs+'px');store.set('mc-fs',fs);}
+safe('fs',function(){setFs(store.get('mc-fs',15));});
 
-/* ---------- cards: done / collapse ---------- */
-const cards=$('.card').filter(c=>$('h3',c));
-const done=new Set(LS.get('mc-done',[]));
-cards.forEach((c,i)=>{
-  c.id='c'+i;
-  const tools=document.createElement('span');tools.className='tools';
-  tools.innerHTML='<button class="ib fold" title="ย่อ/ขยาย">▾</button><button class="ib chk" title="จำได้แล้ว">✓</button>';
-  $('h3',c).appendChild(tools);
-  if(done.has(c.id))c.classList.add('done');
+/* ---------- font detection ---------- */
+safe('font',function(){
+  var el=$('#fontState');if(!el)return;
+  function res(ok){el.textContent=ok?'ฟอนต์: DB Helvethaica X ✓':'ไม่พบ DB Helvethaica X ในเครื่อง · ใช้ Noto Sans Thai แทน';el.className='fstate '+(ok?'ok':'warn');}
+  if(!document.fonts||!document.fonts.load){el.textContent='';return;}
+  document.fonts.load('400 16px "DBH"').then(function(list){res(list&&list.length>0);},function(){res(false);});
 });
-function updProg(){const n=cards.filter(c=>c.classList.contains('done')).length;$('#progTxt').textContent='จำได้แล้ว '+n+'/'+cards.length;$('#progBar').style.width=(n/cards.length*100)+'%';}
-updProg();
-$('#grid').addEventListener('click',e=>{
-  const b=e.target.closest('button.ib');
-  if(b){const c=b.closest('.card');
-    if(b.classList.contains('fold'))c.classList.toggle('collapsed');
-    else{const on=c.classList.toggle('done');on?done.add(c.id):done.delete(c.id);LS.set('mc-done',[...done]);updProg();if(on)toast('เก่งมาก! ✓ บันทึกแล้ว');}
-    return;}
-  const k=e.target.closest('b');
-  if(k&&body.classList.contains('cover'))k.classList.toggle('shown');
+
+/* ---------- cards ---------- */
+var cards=[], done={};
+function updProg(){
+  var n=cards.filter(function(c){return c.classList.contains('done');}).length;
+  var t=$('#progTxt'),b=$('#progBar');
+  if(t)t.textContent='จำได้แล้ว '+n+'/'+cards.length;
+  if(b)b.style.width=(cards.length?n/cards.length*100:0)+'%';
+}
+function saveDone(){store.set('mc-done',Object.keys(done));}
+safe('cards',function(){
+  store.get('mc-done',[]).forEach(function(id){done[id]=1;});
+  cards=$('#grid .card').filter(function(c){return $('h3',c);});
+  cards.forEach(function(c,i){
+    c.id='c'+i;
+    var tools=document.createElement('span');tools.className='tools';
+    tools.innerHTML='<button type="button" class="ib fold" data-act="cardFold" title="ย่อ/ขยาย">▾</button><button type="button" class="ib chk" data-act="cardDone" title="จำได้แล้ว">✓</button>';
+    $('h3',c).appendChild(tools);
+    if(done[c.id])c.classList.add('done');
+  });
+  updProg();
 });
-let allFolded=false;
-$('#foldBtn').onclick=function(){allFolded=!allFolded;cards.forEach(c=>c.classList.toggle('collapsed',allFolded));this.textContent=allFolded?'▸ ขยายทั้งหมด':'▾ ย่อทั้งหมด';};
-$('#todoBtn').onclick=function(){const on=body.classList.toggle('todo');this.classList.toggle('on',on);};
-$('#resetBtn').onclick=()=>{if(!confirm('ล้างเครื่องหมาย "จำได้แล้ว" ทั้งหมด?'))return;done.clear();LS.set('mc-done',[]);cards.forEach(c=>c.classList.remove('done'));updProg();};
 
 /* ---------- cover keywords ---------- */
-function toggleCover(){const on=body.classList.toggle('cover');$('#coverBtn').classList.toggle('on',on);$('b.shown').forEach(b=>b.classList.remove('shown'));if(on)toast('คลิกที่แถบเพื่อเปิดดูคำสำคัญ');}
-$('#coverBtn').onclick=toggleCover;
+function toggleCover(){
+  var on=body.classList.toggle('cover');
+  var b=$('#coverBtn');if(b)b.classList.toggle('on',on);
+  $('b.shown').forEach(function(x){x.classList.remove('shown');});
+  if(on)toast('แตะที่แถบเพื่อเปิดดูคำสำคัญ');
+}
 
 /* ---------- search + highlight ---------- */
-const q=$('#q');let st;
-function clearMarks(){$('mark.hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+var q=$('#q'), st;
+function clearMarks(){$('mark.hl').forEach(function(m){var p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
 function markIn(el,v){
-  const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentNode.closest('svg,button,mark')?NodeFilter.FILTER_REJECT:(n.nodeValue.toLowerCase().includes(v)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP)});
-  const nodes=[];while(w.nextNode())nodes.push(w.currentNode);
-  nodes.forEach(n=>{const t=n.nodeValue,lo=t.toLowerCase(),f=document.createDocumentFragment();let i=0,j;
-    while((j=lo.indexOf(v,i))>-1){f.append(t.slice(i,j));const m=document.createElement('mark');m.className='hl';m.textContent=t.slice(j,j+v.length);f.append(m);i=j+v.length;}
-    f.append(t.slice(i));n.parentNode.replaceChild(f,n);});
+  var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null,false),nodes=[],n;
+  while((n=w.nextNode())){
+    var p=n.parentNode;
+    if(p&&p.closest&&p.closest('svg,button,mark'))continue;
+    if(n.nodeValue.toLowerCase().indexOf(v)>-1)nodes.push(n);
+  }
+  nodes.forEach(function(n){
+    var t=n.nodeValue,lo=t.toLowerCase(),f=document.createDocumentFragment(),i=0,j;
+    while((j=lo.indexOf(v,i))>-1){
+      f.appendChild(document.createTextNode(t.slice(i,j)));
+      var m=document.createElement('mark');m.className='hl';m.textContent=t.slice(j,j+v.length);f.appendChild(m);
+      i=j+v.length;
+    }
+    f.appendChild(document.createTextNode(t.slice(i)));
+    n.parentNode.replaceChild(f,n);
+  });
 }
 function doSearch(){
-  const v=q.value.trim().toLowerCase();clearMarks();let n=0;
-  $('.card').forEach(c=>{const hit=!v||c.textContent.toLowerCase().includes(v);c.classList.toggle('hide',!hit);if(v&&hit){n++;c.classList.remove('collapsed');markIn(c,v);}});
-  $('.section').forEach(s=>s.classList.toggle('hide',!!v));
-  $('#cnt').textContent=v?('พบ '+n+' การ์ด'):'';
+  var v=q?q.value.trim().toLowerCase():'';clearMarks();var n=0;
+  $('#grid .card').forEach(function(c){
+    var hit=!v||c.textContent.toLowerCase().indexOf(v)>-1;
+    c.classList.toggle('hide',!hit);
+    if(v&&hit){n++;c.classList.remove('collapsed');markIn(c,v);}
+  });
+  $('.section').forEach(function(s){s.classList.toggle('hide',!!v);});
+  var cnt=$('#cnt');if(cnt)cnt.textContent=v?('พบ '+n+' การ์ด'):'';
 }
-q.addEventListener('input',()=>{clearTimeout(st);st=setTimeout(doSearch,180);});
+function clearSearch(){if(q&&q.value){q.value='';doSearch();}}
+safe('search',function(){
+  if(!q)return;
+  q.addEventListener('input',function(){clearTimeout(st);st=setTimeout(doSearch,180);});
+});
 
 /* ---------- random card ---------- */
 function randomCard(){
-  const pool=cards.filter(c=>!c.classList.contains('hide')&&!(body.classList.contains('todo')&&c.classList.contains('done')));
+  var todo=body.classList.contains('todo');
+  var pool=cards.filter(function(c){return !c.classList.contains('hide')&&!(todo&&c.classList.contains('done'));});
   if(!pool.length){toast('ไม่มีการ์ดให้สุ่ม');return;}
-  const c=pool[Math.random()*pool.length|0];c.classList.remove('collapsed');
-  c.scrollIntoView({behavior:'smooth',block:'center'});
+  var c=pool[Math.floor(Math.random()*pool.length)];
+  c.classList.remove('collapsed');
+  scrollToEl(c,'center');
   c.classList.remove('flash');void c.offsetWidth;c.classList.add('flash');
 }
-$('#randBtn').onclick=randomCard;
 
 /* ---------- animations: run only when visible ---------- */
-const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-let paused=reduce||LS.get('mc-paused',false);
-const vis=new Set();
-function apply(s){const run=!paused&&vis.has(s);s.classList.toggle('idle',!run);try{run?s.unpauseAnimations():s.pauseAnimations();}catch(e){}}
-function setPaused(p,save){paused=p;if(save)LS.set('mc-paused',p);$('svg.diagram').forEach(apply);$('.anim-toggle').forEach(b=>b.textContent=p?'▶ เล่นแอนิเมชัน':'⏸ หยุดแอนิเมชัน');}
-const io=new IntersectionObserver(es=>es.forEach(e=>{e.isIntersecting?vis.add(e.target):vis.delete(e.target);apply(e.target);}),{rootMargin:'120px'});
-$('svg.diagram').forEach(s=>{s.classList.add('idle');io.observe(s);});
-setPaused(paused,false);
-$('.anim-toggle').forEach(b=>b.onclick=()=>setPaused(!paused,true));
+var paused=false, vis=[];
+function isVis(s){return vis.indexOf(s)>-1;}
+function applyAnim(s){
+  var run=!paused&&isVis(s);
+  s.classList.toggle('idle',!run);
+  try{if(run)s.unpauseAnimations();else s.pauseAnimations();}catch(e){}
+}
+function setPaused(p,save){
+  paused=p;if(save)store.set('mc-paused',p);
+  $('svg.diagram').forEach(applyAnim);
+  $('.anim-toggle').forEach(function(b){b.textContent=p?'▶ เล่นแอนิเมชัน':'⏸ หยุดแอนิเมชัน';});
+}
+safe('anim',function(){
+  var reduce=false;try{reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
+  paused=reduce||store.get('mc-paused',false);
+  var svgs=$('svg.diagram');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        var i=vis.indexOf(e.target);
+        if(e.isIntersecting&&i<0)vis.push(e.target);
+        if(!e.isIntersecting&&i>-1)vis.splice(i,1);
+        applyAnim(e.target);
+      });
+    },{rootMargin:'120px'});
+    svgs.forEach(function(s){s.classList.add('idle');io.observe(s);});
+  }else{vis=svgs.slice();}
+  setPaused(paused,false);
+});
 
-/* ---------- scroll progress / back to top / active chip ---------- */
-const sp=$('#sp'),topBtn=$('#top');let tick=false;
-addEventListener('scroll',()=>{if(tick)return;tick=true;requestAnimationFrame(()=>{const h=root,p=h.scrollTop/((h.scrollHeight-h.clientHeight)||1);sp.style.transform='scaleX('+p+')';topBtn.classList.toggle('show',h.scrollTop>600);tick=false;});},{passive:true});
-topBtn.onclick=()=>scrollTo({top:0,behavior:'smooth'});
-const chips=$('#chips a');
-const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){chips.forEach(a=>{const on=a.getAttribute('href')==='#'+e.target.id;a.classList.toggle('on',on);if(on)a.scrollIntoView({block:'nearest',inline:'center'});});}}),{rootMargin:'-40% 0px -55% 0px'});
-$('.section').forEach(s=>so.observe(s));
-
-/* ---------- print ---------- */
-let prevTheme;
-addEventListener('beforeprint',()=>{prevTheme=root.dataset.theme;root.dataset.theme='light';});
-addEventListener('afterprint',()=>{if(prevTheme)root.dataset.theme=prevTheme;});
-$('#printBtn').onclick=()=>print();
+/* ---------- reset with 2-step confirm ---------- */
+var resetTimer;
+function resetDone(btn){
+  if(btn.getAttribute('data-armed')){
+    clearTimeout(resetTimer);btn.removeAttribute('data-armed');btn.classList.remove('warn');btn.textContent='↺ ล้างเครื่องหมาย';
+    done={};saveDone();cards.forEach(function(c){c.classList.remove('done');});updProg();toast('ล้างเครื่องหมายแล้ว');
+  }else{
+    btn.setAttribute('data-armed','1');btn.classList.add('warn');btn.textContent='กดอีกครั้งเพื่อยืนยัน';
+    resetTimer=setTimeout(function(){btn.removeAttribute('data-armed');btn.classList.remove('warn');btn.textContent='↺ ล้างเครื่องหมาย';},3000);
+  }
+}
 
 /* ---------- quiz ---------- */
-const QS=[
+var QS=[
  {q:'ผู้ที่ได้ชื่อว่า "บิดาแห่งวาทวิทยา (Rhetoric)" คือใคร',a:['อริสโตเติล','ลาสเวลล์','ชแรมม์','เบอร์โล'],p:'p.37–39'},
  {q:'Ethos ในแนวคิดของอริสโตเติล หมายถึงข้อใด',a:['บุคลิกลักษณะของผู้พูด','การชี้แจงเหตุผล','สภาพอารมณ์ร่วม','ช่องทางการสื่อสาร'],p:'p.37–39'},
  {q:'Pathos หมายถึงข้อใด',a:['สภาพอารมณ์ร่วม','บุคลิกลักษณะของผู้พูด','การชี้แจงเหตุผล','ความน่าเชื่อถือของสื่อ'],p:'p.37–39'},
@@ -973,51 +1052,140 @@ const QS=[
  {q:'รูปแบบการเขียนข่าวที่นิยมมากที่สุดคือแบบใด',a:['ปิรามิดหัวกลับ','ปิรามิดหัวตั้ง','สี่เหลี่ยมผืนผ้า','แบบวงกลม'],p:'p.160, 164'},
  {q:'ส่วนของข่าวที่เชื่อมระหว่างความนำ (Lead) กับเนื้อข่าว คือข้อใด',a:['Neck / Bridge','Body','Headline','Ending'],p:'p.159–163'}
 ];
-function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];}return a;}
-let qset=[],qi=0,score=0;
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+var qset=[],qi=0,score=0,answered=false;
+function quizOpen(){var m=$('#quiz');return m&&!m.hidden;}
 function startQuiz(){qset=shuffle(QS.slice()).slice(0,10);qi=0;score=0;$('#quiz').hidden=false;showQ();}
-function showQ(){
-  const qb=$('#qBody');
-  if(qi>=qset.length){
-    $('#qProg').textContent='';
-    const msg=score>=8?'เก่งมาก! พร้อมสอบแล้ว 🎉':score>=5?'ดีแล้ว ทบทวนอีกนิด 💪':'ลองทบทวนการ์ดอีกรอบนะ 📚';
-    qb.innerHTML='<div class="qres"><div class="big">'+score+'/'+qset.length+'</div><p>'+msg+'</p><p style="margin-top:12px"><button class="btn" id="qAgain">ทำอีกครั้ง</button></p></div>';
-    return;
-  }
-  const it=qset[qi],opts=shuffle(it.a.map((t,i)=>({t,ok:i===0})));
-  $('#qProg').textContent='ข้อ '+(qi+1)+'/'+qset.length+' · คะแนน '+score;
-  qb.innerHTML='<p class="qq">'+it.q+'</p>'+opts.map(o=>'<button class="qo" data-ok="'+(o.ok?1:0)+'">'+o.t+'</button>').join('')+'<div class="qfb muted" id="qfb"></div>';
-}
-$('#qBody').addEventListener('click',e=>{
-  const b=e.target.closest('.qo');
-  if(b&&!b.disabled){
-    const ok=b.dataset.ok==='1';if(ok)score++;
-    $('.qo',$('#qBody')).forEach(x=>{x.disabled=true;if(x.dataset.ok==='1')x.classList.add('right');});
-    if(!ok)b.classList.add('wrong');
-    $('#qfb').innerHTML=(ok?'✅ ถูกต้อง':'❌ ยังไม่ถูก')+' · อ้างอิง '+qset[qi].p+' <button class="btn sm" id="qNext">'+(qi+1<qset.length?'ข้อต่อไป →':'ดูผลคะแนน')+'</button>';
-    $('#qProg').textContent='ข้อ '+(qi+1)+'/'+qset.length+' · คะแนน '+score;
-    return;
-  }
-  if(e.target.id==='qNext'){qi++;showQ();}
-  else if(e.target.id==='qAgain')startQuiz();
-});
 function closeQuiz(){$('#quiz').hidden=true;}
-$('#quizBtn').onclick=startQuiz;$('#qClose').onclick=closeQuiz;
-$('#quiz').addEventListener('click',e=>{if(e.target.id==='quiz')closeQuiz();});
+function updQProg(){$('#qProg').textContent=qi<qset.length?('ข้อ '+(qi+1)+'/'+qset.length+' · คะแนน '+score):'';}
+function showQ(){
+  var qb=$('#qBody');answered=false;
+  if(qi>=qset.length){
+    updQProg();
+    var msg=score>=8?'เก่งมาก! พร้อมสอบแล้ว 🎉':score>=5?'ดีแล้ว ทบทวนอีกนิด 💪':'ลองทบทวนการ์ดอีกรอบนะ 📚';
+    qb.innerHTML='<div class="qres"><div class="big">'+score+'/'+qset.length+'</div><p>'+msg+'</p><p style="margin-top:12px"><button type="button" class="btn" data-act="qAgain">ทำอีกครั้ง</button></p></div>';
+    return;
+  }
+  var it=qset[qi];
+  var opts=shuffle(it.a.map(function(t,i){return {t:t,ok:i===0};}));
+  updQProg();
+  qb.innerHTML='<p class="qq">'+it.q+'</p>'+opts.map(function(o,i){return '<button type="button" class="qo" data-ok="'+(o.ok?1:0)+'"><span class="n">'+(i+1)+'</span><span>'+o.t+'</span></button>';}).join('')+'<div class="qfb muted" id="qfb"></div>';
+}
+function answer(b){
+  if(answered||!b)return;answered=true;
+  var ok=b.getAttribute('data-ok')==='1';if(ok)score++;
+  $('#qBody .qo').forEach(function(x){x.disabled=true;if(x.getAttribute('data-ok')==='1')x.classList.add('right');});
+  if(!ok)b.classList.add('wrong');
+  $('#qfb').innerHTML=(ok?'✅ ถูกต้อง':'❌ ยังไม่ถูก')+' · อ้างอิง '+qset[qi].p+' <button type="button" class="btn sm" data-act="qNext">'+(qi+1<qset.length?'ข้อต่อไป →':'ดูผลคะแนน')+'</button>';
+  updQProg();
+}
+function nextQ(){if(!answered)return;qi++;showQ();}
 
-/* ---------- keyboard shortcuts ---------- */
-addEventListener('keydown',e=>{
-  const typing=/INPUT|TEXTAREA/.test(document.activeElement.tagName);
-  if(e.key==='Escape'){if(!$('#quiz').hidden){closeQuiz();return;}if(q.value){q.value='';doSearch();}q.blur();return;}
-  if(typing||e.ctrlKey||e.metaKey||e.altKey)return;
-  if(!$('#quiz').hidden)return;
-  const k=e.key.toLowerCase();
-  if(e.key==='/'){e.preventDefault();q.focus();}
-  else if(k==='t')toggleTheme();
-  else if(k==='k')toggleCover();
-  else if(k==='r')randomCard();
-  else if(k==='q')startQuiz();
-  else if(k==='p')setPaused(!paused,true);
+/* ---------- print ---------- */
+var prevTheme=null;
+function beforePrint(){prevTheme=root.getAttribute('data-theme');root.setAttribute('data-theme','light');}
+function afterPrint(){if(prevTheme)root.setAttribute('data-theme',prevTheme);prevTheme=null;}
+safe('print',function(){window.addEventListener('beforeprint',beforePrint);window.addEventListener('afterprint',afterPrint);});
+function doPrint(){
+  try{window.print();}catch(e){toast('พิมพ์จากหน้านี้ไม่ได้ ลองกด Ctrl+P (หรือ ⌘+P)');}
+}
+
+/* ---------- navigation ---------- */
+function goTo(hash){
+  clearSearch();
+  var t=document.getElementById(hash.replace('#',''));
+  if(t)scrollToEl(t,'start');
+}
+
+/* ---------- ACTIONS ---------- */
+var ACT={
+  theme:toggleTheme,
+  fsDown:function(){setFs(fs-1);},
+  fsUp:function(){setFs(fs+1);},
+  cover:toggleCover,
+  quiz:startQuiz,
+  rand:randomCard,
+  fold:function(btn){
+    var anyOpen=cards.some(function(c){return !c.classList.contains('collapsed');});
+    cards.forEach(function(c){c.classList.toggle('collapsed',anyOpen);});
+    btn.textContent=anyOpen?'▸ ขยายทั้งหมด':'▾ ย่อทั้งหมด';
+  },
+  todo:function(btn){var on=body.classList.toggle('todo');btn.classList.toggle('on',on);toast(on?'ซ่อนการ์ดที่จำได้แล้ว':'แสดงการ์ดทั้งหมด');},
+  anim:function(){setPaused(!paused,true);},
+  reset:resetDone,
+  print:doPrint,
+  top:function(){try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){window.scrollTo(0,0);}},
+  cardFold:function(btn){btn.closest('.card').classList.toggle('collapsed');},
+  cardDone:function(btn){
+    var c=btn.closest('.card'),on=c.classList.toggle('done');
+    if(on)done[c.id]=1;else delete done[c.id];
+    saveDone();updProg();if(on)toast('เก่งมาก! ✓ บันทึกแล้ว');
+  },
+  qClose:closeQuiz,
+  qNext:nextQ,
+  qAgain:startQuiz
+};
+
+/* ---------- single delegated click handler ---------- */
+document.addEventListener('click',function(e){
+  var t=e.target;if(!t||!t.closest)return;
+  var el=t.closest('[data-act]');
+  if(el){e.preventDefault();var f=ACT[el.getAttribute('data-act')];if(f)safe('act:'+el.getAttribute('data-act'),function(){f(el,e);});return;}
+  var opt=t.closest('.qo');
+  if(opt){answer(opt);return;}
+  var chip=t.closest('#chips a');
+  if(chip){e.preventDefault();goTo(chip.getAttribute('href'));return;}
+  if(t.id==='quiz'){closeQuiz();return;}
+  if(body.classList.contains('cover')){var b=t.closest('.card b');if(b)b.classList.toggle('shown');}
+});
+
+/* ---------- scroll: progress / back-to-top / active chip ---------- */
+safe('scroll',function(){
+  var sp=$('#sp'),topBtn=$('#topBtn'),nav=$('#chips'),chips=$('#chips a'),sections=$('.section'),cur='',ticking=false;
+  function onScroll(){
+    ticking=false;
+    var y=window.pageYOffset||root.scrollTop,max=root.scrollHeight-root.clientHeight;
+    if(sp)sp.style.transform='scaleX('+(max>0?y/max:0)+')';
+    if(topBtn)topBtn.classList.toggle('show',y>600);
+    var id='';
+    for(var i=0;i<sections.length;i++){var s=sections[i];if(s.classList.contains('hide'))continue;if(s.getBoundingClientRect().top<150)id=s.id;}
+    if(id!==cur){
+      cur=id;
+      chips.forEach(function(a){
+        var on=a.getAttribute('href')==='#'+id;a.classList.toggle('on',on);
+        if(on&&nav)nav.scrollLeft=a.offsetLeft-(nav.clientWidth-a.offsetWidth)/2;
+      });
+    }
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
+  onScroll();
+});
+
+/* ---------- keyboard (works on Thai & English layouts) ---------- */
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'||e.code==='Escape'){
+    if(quizOpen()){closeQuiz();return;}
+    clearSearch();if(q)q.blur();return;
+  }
+  var a=document.activeElement,tag=a&&a.tagName?a.tagName:'';
+  if(/INPUT|TEXTAREA|SELECT/.test(tag)||e.ctrlKey||e.metaKey||e.altKey)return;
+  if(quizOpen()){
+    var m=/^(Digit|Numpad)([1-4])$/.exec(e.code||'');
+    if(m){var o=$('#qBody .qo')[+m[2]-1];if(o){e.preventDefault();answer(o);}return;}
+    if(e.code==='Enter'||e.code==='NumpadEnter'||e.code==='Space'){
+      e.preventDefault();
+      if($('#qBody [data-act="qAgain"]'))startQuiz();else nextQ();
+    }
+    return;
+  }
+  switch(e.code){
+    case 'Slash':e.preventDefault();if(q)q.focus();break;
+    case 'KeyT':toggleTheme();break;
+    case 'KeyK':toggleCover();break;
+    case 'KeyR':randomCard();break;
+    case 'KeyQ':startQuiz();break;
+    case 'KeyP':setPaused(!paused,true);break;
+  }
 });
 })();
 </script>
