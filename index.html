@@ -1,198 +1,223 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="th" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>การสื่อสารมวลชน — Bento Cheat Sheet</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700;800&family=Inter:wght@600;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --glass: rgba(255,255,255,.08);
-  --glass-2: rgba(255,255,255,.14);
-  --stroke: rgba(255,255,255,.22);
-  --text: #f4f6ff;
-  --muted: rgba(235,240,255,.72);
-  --pink:#ff7ac6; --violet:#a78bfa; --cyan:#5eead4; --sky:#7dd3fc; --amber:#fcd34d; --lime:#bef264; --rose:#fda4af; --orange:#fdba74;
+  --fs:14.5px;
+  --bg:#0e1016;--card:#161922;--card2:#1c202b;--stroke:#272c38;--text:#e9ebf1;--muted:#9aa3b3;
+  --hl:rgba(255,255,255,.2);--cover:#2f3544;--fb:#7dd3fc;--red:#f87171;--shadow:0 1px 2px rgba(0,0,0,.4);
+  --pink:#f472b6;--violet:#a78bfa;--cyan:#2dd4bf;--sky:#38bdf8;--amber:#fbbf24;--lime:#a3e635;--rose:#fb7185;--orange:#fb923c;
+  color-scheme:dark;
+}
+[data-theme=light]{
+  --bg:#f4f5f7;--card:#ffffff;--card2:#f5f6f9;--stroke:#e2e5eb;--text:#1a1e27;--muted:#5c6575;
+  --hl:rgba(0,0,0,.08);--cover:#d6dae3;--fb:#0284c7;--red:#dc2626;--shadow:0 1px 3px rgba(16,24,40,.08);
+  --pink:#db2777;--violet:#7c3aed;--cyan:#0d9488;--sky:#0284c7;--amber:#b45309;--lime:#4d7c0f;--rose:#e11d48;--orange:#c2410c;
+  color-scheme:light;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  font-family:'Noto Sans Thai','Inter',sans-serif;
-  color:var(--text);
-  background:#0b0b1e;
-  min-height:100vh;
-  overflow-x:hidden;
-  line-height:1.55;
-  font-size:14.5px;
-}
-/* ===== Liquid background blobs ===== */
-.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:radial-gradient(1200px 800px at 10% 0%,#1e1b4b 0%,transparent 60%),radial-gradient(1000px 700px at 100% 100%,#0c4a6e 0%,transparent 60%),#0b0b1e}
-.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.55;animation:float 22s ease-in-out infinite}
-.b1{width:520px;height:520px;background:#7c3aed;top:-120px;left:-80px}
-.b2{width:460px;height:460px;background:#ec4899;top:30%;right:-120px;animation-delay:-6s}
-.b3{width:520px;height:520px;background:#06b6d4;bottom:-160px;left:25%;animation-delay:-12s}
-.b4{width:340px;height:340px;background:#f59e0b;top:55%;left:-100px;opacity:.35;animation-delay:-3s}
-@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(60px,-40px) scale(1.08)}66%{transform:translate(-40px,50px) scale(.95)}}
+body{font-family:'Noto Sans Thai','Inter',sans-serif;background:var(--bg);color:var(--text);font-size:var(--fs);line-height:1.6;-webkit-font-smoothing:antialiased}
+button{font:inherit}
 
-.wrap{max-width:1400px;margin:0 auto;padding:28px 20px 80px}
+/* ===== Sticky top bar ===== */
+.topbar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--stroke)}
+.chips{max-width:1400px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips a{flex:none;font-size:.82em;text-decoration:none;color:var(--text);padding:5px 12px;border-radius:999px;background:var(--card2);border:1px solid var(--stroke);transition:background .15s,color .15s}
+.chips a:hover{border-color:var(--violet)}
+.chips a.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.sp{position:absolute;left:0;bottom:-1px;width:100%;height:2px;background:linear-gradient(90deg,var(--violet),var(--pink),var(--sky));transform-origin:left;transform:scaleX(0)}
+
+.wrap{max-width:1400px;margin:0 auto;padding:20px 20px 80px}
 
 /* ===== Header ===== */
-header.hero{
-  position:relative;padding:34px 30px;border-radius:30px;margin-bottom:18px;
-  background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.04));
-  border:1px solid var(--stroke);
-  backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);
-  box-shadow:0 20px 60px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.35);
-  overflow:hidden;
-}
-header.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.12) 45%,transparent 60%);pointer-events:none}
-.hero h1{font-size:clamp(28px,4vw,46px);font-weight:800;letter-spacing:-.5px;
-  background:linear-gradient(90deg,#fff,#c4b5fd,#f9a8d4,#67e8f9);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{color:var(--muted);margin-top:6px}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;align-items:center}
-.search{flex:1;min-width:220px;padding:12px 18px;border-radius:999px;border:1px solid var(--stroke);
-  background:rgba(255,255,255,.08);color:#fff;font:inherit;outline:none;backdrop-filter:blur(10px)}
-.search::placeholder{color:rgba(255,255,255,.55)}
-.btn{padding:11px 18px;border-radius:999px;border:1px solid var(--stroke);background:rgba(255,255,255,.12);color:#fff;font:inherit;cursor:pointer;transition:.2s}
-.btn:hover{background:rgba(255,255,255,.22)}
-nav.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-nav.chips a{font-size:12.5px;text-decoration:none;color:#fff;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16)}
-nav.chips a:hover{background:rgba(255,255,255,.2)}
+.hero{padding:26px 26px 22px;border-radius:24px;background:var(--card);border:1px solid var(--stroke);box-shadow:var(--shadow);margin-bottom:8px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--violet),var(--pink),var(--sky),var(--lime))}
+.hero h1{font-size:clamp(26px,4vw,42px);font-weight:800;letter-spacing:-.5px;line-height:1.25;background:linear-gradient(90deg,var(--violet),var(--pink),var(--sky));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);margin-top:4px}
+.prog{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:.88em;color:var(--muted)}
+.pbar{flex:1;max-width:320px;height:6px;background:var(--card2);border:1px solid var(--stroke);border-radius:99px;overflow:hidden}
+.pbar>div{height:100%;width:0;background:linear-gradient(90deg,var(--lime),var(--cyan));transition:width .3s}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;align-items:center}
+.search{flex:1;min-width:220px;padding:11px 16px;border-radius:999px;border:1px solid var(--stroke);background:var(--card2);color:var(--text);font:inherit;outline:none}
+.search:focus{border-color:var(--violet)}
+.cnt{font-size:.85em;color:var(--muted);min-width:70px}
+.btn{padding:7px 14px;border-radius:999px;border:1px solid var(--stroke);background:var(--card2);color:var(--text);font-size:.86em;cursor:pointer;transition:border-color .15s,background .15s}
+.btn:hover{border-color:var(--violet)}
+.btn.on{background:var(--violet);border-color:var(--violet);color:#fff}
+.btn.sm{padding:5px 12px;font-size:.8em}
+.hint{font-size:.78em;color:var(--muted);margin-top:10px}
+kbd{font-family:Inter,monospace;font-size:.9em;padding:1px 6px;border-radius:6px;border:1px solid var(--stroke);background:var(--card2)}
 
 /* ===== Section title ===== */
-.section{grid-column:1/-1;display:flex;align-items:center;gap:12px;margin:22px 4px 2px;font-weight:700;font-size:20px;flex-wrap:wrap}
-.section .num{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-family:Inter;font-weight:800;
-  background:linear-gradient(135deg,var(--c,#a78bfa),rgba(255,255,255,.15));color:#0b0b1e}
-.section::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.35),transparent)}
+.section{grid-column:1/-1;display:flex;align-items:center;gap:12px;margin:22px 4px 2px;font-weight:700;font-size:1.3em;flex-wrap:wrap;scroll-margin-top:60px}
+.section .num{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;font-family:Inter;font-weight:800;font-size:.85em;background:var(--c,#a78bfa);color:#0b0b1e}
+.section::after{content:"";flex:1;height:1px;background:var(--stroke)}
+.section .anim-toggle{order:2}
 
 /* ===== Bento grid ===== */
 .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;grid-auto-flow:dense}
-.card{
-  --c:var(--violet);
-  position:relative;grid-column:span 4;padding:18px 18px 16px;border-radius:24px;
-  background:linear-gradient(160deg,rgba(255,255,255,.13),rgba(255,255,255,.04));
-  border:1px solid var(--stroke);
-  backdrop-filter:blur(22px) saturate(170%);-webkit-backdrop-filter:blur(22px) saturate(170%);
-  box-shadow:0 10px 30px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(255,255,255,.05);
-  overflow:hidden;transition:transform .25s ease,box-shadow .25s ease;
-}
-.card::before{content:"";position:absolute;top:-60px;right:-60px;width:160px;height:160px;border-radius:50%;
-  background:var(--c);filter:blur(60px);opacity:.35;pointer-events:none}
-.card:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.45)}
+.card{--c:var(--violet);position:relative;grid-column:span 4;padding:18px 18px 16px;border-radius:20px;background:var(--card);border:1px solid var(--stroke);box-shadow:var(--shadow);overflow:hidden;transition:border-color .2s,transform .2s;scroll-margin-top:70px}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--c);opacity:.85}
+.card:hover{border-color:var(--c)}
+.card.done{border-color:var(--c)}
+.card.flash{animation:flash 1.4s ease-out}
+@keyframes flash{0%,50%{outline:3px solid var(--c);outline-offset:3px}100%{outline:3px solid transparent;outline-offset:3px}}
 .s3{grid-column:span 3}.s4{grid-column:span 4}.s5{grid-column:span 5}.s6{grid-column:span 6}.s7{grid-column:span 7}.s8{grid-column:span 8}.s12{grid-column:span 12}
 .r2{grid-row:span 2}
-
-.card h3{font-size:16px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.card h3 .ic{font-size:18px}
-.pg{margin-left:auto;font-family:Inter;font-size:10.5px;font-weight:600;color:var(--c);padding:2px 8px;border-radius:999px;border:1px solid var(--c);opacity:.9}
-.card h4{font-size:13.5px;color:var(--c);margin:10px 0 4px;font-weight:700}
+.card h3{font-size:1.08em;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card h3 .ic{font-size:1.15em}
+.pg{margin-left:auto;font-family:Inter;font-size:.72em;font-weight:600;color:var(--c);padding:2px 8px;border-radius:999px;border:1px solid var(--c)}
+.tools{display:flex;gap:4px;margin-left:auto}
+.pg ~ .tools{margin-left:0}
+.ib{width:26px;height:26px;border-radius:50%;border:1px solid var(--stroke);background:transparent;color:var(--muted);cursor:pointer;font-size:12px;line-height:1;display:grid;place-items:center;transition:transform .2s,background .15s}
+.ib:hover{border-color:var(--c);color:var(--text)}
+.card.done .chk{background:var(--c);border-color:var(--c);color:#111}
+.card.collapsed .fold{transform:rotate(-90deg)}
+.card h4{font-size:.93em;color:var(--c);margin:10px 0 4px;font-weight:700}
 .card ul,.card ol{padding-left:18px}
 .card li{margin:3px 0}
 .card li::marker{color:var(--c)}
 .card p{margin:4px 0}
-.muted{color:var(--muted);font-size:13px}
-b,strong{color:#fff;font-weight:700}
-.en{font-family:Inter;font-size:.88em;color:var(--c);font-weight:600}
-.tag{display:inline-block;padding:3px 10px;margin:3px 4px 3px 0;border-radius:999px;font-size:12.5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18)}
-.big{font-family:Inter;font-weight:800;font-size:30px;line-height:1;color:var(--c)}
+.muted{color:var(--muted);font-size:.9em}
+b,strong{font-weight:700}
+.en{font-family:Inter;font-size:.86em;color:var(--c);font-weight:600}
+.tag{display:inline-block;padding:3px 10px;margin:3px 4px 3px 0;border-radius:999px;font-size:.86em;background:var(--card2);border:1px solid var(--stroke)}
 .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0}
-.flow span{padding:6px 10px;border-radius:12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);font-size:12.5px}
+.flow span{padding:6px 10px;border-radius:12px;background:var(--card2);border:1px solid var(--stroke);font-size:.86em}
 .flow i{font-style:normal;color:var(--c);font-weight:800}
 .mini{display:grid;gap:8px}
-.mini.g2{grid-template-columns:1fr 1fr}.mini.g3{grid-template-columns:repeat(3,1fr)}
-.box{padding:10px 12px;border-radius:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14)}
+.mini.g2{grid-template-columns:1fr 1fr}.mini.g3{grid-template-columns:repeat(3,1fr)}.mini.g4{grid-template-columns:repeat(4,1fr)}
+.box{padding:10px 12px;border-radius:14px;background:var(--card2);border:1px solid var(--stroke)}
 .box b{color:var(--c)}
-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
-th,td{padding:7px 8px;text-align:left;border-bottom:1px solid rgba(255,255,255,.12);vertical-align:top}
+table{width:100%;border-collapse:collapse;font-size:.9em;margin-top:4px}
+th,td{padding:7px 8px;text-align:left;border-bottom:1px solid var(--stroke);vertical-align:top}
 th{color:var(--c);font-weight:700}
-.quote{padding:12px 14px;border-left:3px solid var(--c);background:rgba(255,255,255,.06);border-radius:0 14px 14px 0;font-size:14px}
-.bar{height:8px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden;margin:3px 0 8px}
-.bar>div{height:100%;background:linear-gradient(90deg,var(--c),#fff)}
+.quote{padding:12px 14px;border-left:3px solid var(--c);background:var(--card2);border-radius:0 12px 12px 0}
+.bar{height:8px;border-radius:99px;background:var(--card2);border:1px solid var(--stroke);overflow:hidden;margin:3px 0 8px}
+.bar>div{height:100%;background:var(--c)}
 .pyr{display:flex;flex-direction:column;align-items:center;gap:3px;margin:8px 0}
-.pyr div{background:linear-gradient(90deg,var(--c),rgba(255,255,255,.3));color:#0b0b1e;font-weight:700;font-size:12px;text-align:center;padding:4px;border-radius:6px}
+.pyr div{background:var(--c);color:#0b0b1e;font-weight:700;font-size:.82em;text-align:center;padding:4px;border-radius:6px}
 .hide{display:none!important}
+mark.hl{background:#fde047;color:#111;border-radius:3px;padding:0 1px}
+.c-pink{--c:var(--pink)}.c-violet{--c:var(--violet)}.c-cyan{--c:var(--cyan)}.c-sky{--c:var(--sky)}.c-amber{--c:var(--amber)}.c-lime{--c:var(--lime)}.c-rose{--c:var(--rose)}.c-orange{--c:var(--orange)}
 
-/* ===== Animated model diagrams ===== */
+/* ===== Screen-only interactive states ===== */
+@media screen{
+  .card.collapsed > :not(h3){display:none}
+  .card.collapsed h3{margin-bottom:0}
+  body.todo .card.done{display:none}
+  body.cover .card :is(p,li,td,.box,.quote) > b:not(.shown){color:transparent;background:var(--cover);border-radius:5px;cursor:pointer;user-select:none}
+  body.cover .card .box > b:first-child:not(.shown){color:var(--c);background:none;cursor:auto;user-select:auto}
+}
+
+/* ===== Animated diagrams (lightweight) ===== */
 .dg{overflow-x:auto;margin:6px -4px 10px;padding:4px}
 .diagram{width:100%;min-width:560px;height:auto;display:block}
-.diagram text{fill:#f4f6ff;font-family:'Noto Sans Thai','Inter',sans-serif;font-size:12px;text-anchor:middle;dominant-baseline:middle}
+.diagram text{fill:var(--text);font-family:'Noto Sans Thai','Inter',sans-serif;font-size:12px;text-anchor:middle;dominant-baseline:middle}
 .diagram .t{font-size:14px;font-weight:700}
-.diagram .sub{font-size:10.5px;fill:rgba(235,240,255,.75)}
+.diagram .sub{font-size:10.5px;fill:var(--muted)}
 .diagram .cap{font-size:12.5px;font-weight:700;fill:var(--c)}
 .diagram .lbl{font-size:11px;font-weight:600;fill:var(--c)}
-.diagram .lbl.fb{fill:#7dd3fc}
-.diagram .nd{fill:rgba(255,255,255,.07);stroke:var(--c);stroke-width:1.5}
-.diagram .nd.noise{stroke:#f87171}
+.diagram .lbl.fb{fill:var(--fb)}
+.diagram .nd{fill:var(--card2);stroke:var(--c);stroke-width:1.5}
+.diagram .nd.noise{stroke:var(--red)}
 .diagram .ln{fill:none;stroke:var(--c);stroke-width:2;stroke-dasharray:7 6;animation:dashmove 1s linear infinite}
-.diagram .ln.fb{stroke:#7dd3fc}
-.diagram .ln.red{stroke:#f87171}
-.diagram .ln.off{stroke:rgba(255,255,255,.28);animation:none}
+.diagram .ln.fb{stroke:var(--fb)}
+.diagram .ln.red{stroke:var(--red)}
+.diagram .ln.off{stroke:var(--muted);opacity:.45;animation:none}
 .diagram .ah{fill:var(--c)}
-.diagram .ah.fb{fill:#7dd3fc}
-.diagram .ah.red{fill:#f87171}
-.diagram .pkt{fill:var(--c);filter:drop-shadow(0 0 6px var(--c))}
-.diagram .pkt.fb{fill:#7dd3fc;filter:drop-shadow(0 0 6px #7dd3fc)}
-.diagram .pkt.red{fill:#f87171;filter:drop-shadow(0 0 6px #f87171)}
-.diagram .glow{filter:drop-shadow(0 0 6px rgba(255,255,255,.8))}
+.diagram .ah.fb{fill:var(--fb)}
+.diagram .ah.red{fill:var(--red)}
+.diagram .pkt{fill:var(--c);stroke:var(--card);stroke-width:2}
+.diagram .pkt.fb{fill:var(--fb)}
+.diagram .pkt.red{fill:var(--red)}
 .diagram .seq{animation:lit 5s ease-in-out infinite}
 .diagram .pulse{animation:pulse 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
 .diagram .shake{animation:shake .5s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
 .diagram .driftL{animation:driftL 3s ease-in-out infinite alternate}
 .diagram .driftR{animation:driftR 3s ease-in-out infinite alternate}
 @keyframes dashmove{to{stroke-dashoffset:-26}}
-@keyframes lit{0%,30%,100%{fill:rgba(255,255,255,.07);stroke-width:1.5}8%,22%{fill:rgba(255,255,255,.3);stroke-width:3.5}}
-@keyframes pulse{0%,100%{opacity:.75;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+@keyframes lit{0%,30%,100%{fill:var(--card2);stroke-width:1.5}8%,22%{fill:var(--hl);stroke-width:3.5}}
+@keyframes pulse{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
 @keyframes driftL{from{transform:translateX(-12px)}to{transform:translateX(6px)}}
 @keyframes driftR{from{transform:translateX(12px)}to{transform:translateX(-6px)}}
-.anim-btn{order:2;font-size:12px;padding:6px 14px}
-body.paused .diagram,body.paused .diagram *{animation-play-state:paused!important}
-@media (prefers-reduced-motion:reduce){.diagram *{animation:none!important}}
+.diagram.idle,.diagram.idle *{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){.diagram *,.card{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 
-/* colour variants */
-.c-pink{--c:var(--pink)}.c-violet{--c:var(--violet)}.c-cyan{--c:var(--cyan)}.c-sky{--c:var(--sky)}.c-amber{--c:var(--amber)}.c-lime{--c:var(--lime)}.c-rose{--c:var(--rose)}.c-orange{--c:var(--orange)}
+/* ===== FAB / toast / modal ===== */
+.fab{position:fixed;right:18px;bottom:18px;width:44px;height:44px;border-radius:50%;border:1px solid var(--stroke);background:var(--card);color:var(--text);font-size:18px;cursor:pointer;box-shadow:var(--shadow);z-index:30;opacity:0;pointer-events:none;transition:opacity .2s}
+.fab.show{opacity:1;pointer-events:auto}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:8px 16px;border-radius:999px;font-size:.86em;z-index:60;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.show{opacity:1}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:grid;place-items:center;z-index:50;padding:16px}
+.modal[hidden]{display:none}
+.mbox{width:min(580px,100%);max-height:90vh;overflow:auto;background:var(--card);border:1px solid var(--stroke);border-radius:20px;padding:20px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.mhead{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.mhead span{margin-left:auto;font-size:.85em;color:var(--muted)}
+.qq{font-weight:700;font-size:1.08em;margin-bottom:10px}
+.qo{display:block;width:100%;text-align:left;padding:10px 14px;margin:6px 0;border-radius:12px;border:1px solid var(--stroke);background:var(--card2);color:var(--text);cursor:pointer}
+.qo:hover:not(:disabled){border-color:var(--violet)}
+.qo:disabled{cursor:default}
+.qo.right{border-color:#22c55e;background:rgba(34,197,94,.15)}
+.qo.wrong{border-color:#ef4444;background:rgba(239,68,68,.15)}
+.qfb{margin-top:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.qres{text-align:center;padding:10px 0}
+.qres .big{font-family:Inter;font-weight:800;font-size:48px;color:var(--violet)}
 
-@media (max-width:1100px){.s3{grid-column:span 6}.s4,.s5{grid-column:span 6}.s7,.s8{grid-column:span 12}.s6{grid-column:span 6}}
-@media (max-width:720px){.card,.s3,.s4,.s5,.s6,.s7,.s8{grid-column:span 12}.r2{grid-row:auto}.mini.g2,.mini.g3{grid-template-columns:1fr}}
+@media (max-width:1100px){.s3,.s4,.s5,.s6{grid-column:span 6}.s7,.s8{grid-column:span 12}.mini.g4{grid-template-columns:1fr 1fr}}
+@media (max-width:720px){.card,.s3,.s4,.s5,.s6,.s7,.s8{grid-column:span 12}.r2{grid-row:auto}.mini.g2,.mini.g3,.mini.g4{grid-template-columns:1fr}.hero{padding:20px}}
 
-/* ===== Print mode ===== */
-body.print, body.print .bg{background:#fff}
-body.print{color:#111}
-body.print .blob{display:none}
-body.print .card, body.print header.hero{background:#fff;border:1px solid #bbb;box-shadow:none;backdrop-filter:none}
-body.print .card::before,body.print header.hero::after{display:none}
-body.print b,body.print strong,body.print .section{color:#111}
-body.print .muted{color:#444}
-body.print .hero h1{color:#111;background:none;-webkit-text-fill-color:#111}
-body.print .tag,body.print .flow span,body.print .box{background:#f4f4f4;border-color:#ccc;color:#111}
-body.print .search,body.print .btn,body.print nav.chips a{color:#111;background:#f3f3f3;border-color:#ccc}
-body.print .diagram text{fill:#111}
-body.print .diagram .sub{fill:#444}
-body.print .diagram .nd{fill:#fafafa}
 @media print{
-  .toolbar,nav.chips{display:none}
-  .card{break-inside:avoid}
+  .topbar,.row,.hint,.tools,.anim-toggle,.fab,.toast,.modal{display:none!important}
+  body{background:#fff}
+  .card{break-inside:avoid;box-shadow:none}
   .bento{gap:8px}
+  .diagram *{animation:none!important}
 }
 </style>
 </head>
 <body>
-<div class="bg"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div></div>
+
+<div class="topbar">
+  <nav class="chips" id="chips">
+    <a href="#s1">1 ความหมาย</a><a href="#s2">2 SMCR</a><a href="#s3">3 แบบจำลอง</a><a href="#s4">4 สื่อสารมวลชน</a>
+    <a href="#s5">5 การนำเสนอ</a><a href="#s6">6 ทฤษฎี</a><a href="#s7">7 จริยธรรม</a><a href="#s8">8 ระบบสังคม/เทคโนโลยี</a>
+    <a href="#s9">9 ประเภทสื่อ</a><a href="#s10">10 ข่าว</a>
+  </nav>
+  <div class="sp" id="sp"></div>
+</div>
 
 <div class="wrap">
 <header class="hero">
   <h1>การสื่อสารมวลชน · Cheat Sheet</h1>
-  <p>สรุปครบทั้งเล่มแบบ Bento Grid สำหรับทบทวน/จดเข้าห้องสอบ — พร้อมภาพแบบจำลองแอนิเมชันและเลขหน้าอ้างอิง (p.)</p>
-  <div class="toolbar">
-    <input class="search" id="q" placeholder="🔎 ค้นหา เช่น Gatekeeper, 5W, Ethos, สื่อร้อน ...">
-    <button class="btn" onclick="document.body.classList.toggle('print')">🖨 โหมดพิมพ์ / ขาว-ดำ</button>
-    <button class="btn" onclick="window.print()">พิมพ์</button>
+  <p>สรุปครบทั้งเล่มแบบ Bento Grid สำหรับทบทวน/จดเข้าห้องสอบ พร้อมแบบจำลองแอนิเมชัน แบบทดสอบ และเลขหน้าอ้างอิง (p.)</p>
+  <div class="prog"><span id="progTxt">จำได้แล้ว 0/0</span><div class="pbar"><div id="progBar"></div></div></div>
+  <div class="row">
+    <input class="search" id="q" placeholder="🔎 ค้นหา เช่น Gatekeeper, 5W, Ethos, สื่อร้อน ... (กด /)">
+    <span class="cnt" id="cnt"></span>
   </div>
-  <nav class="chips">
-    <a href="#s1">1 ความหมาย</a><a href="#s2">2 องค์ประกอบ SMCR</a><a href="#s3">3 แบบจำลอง</a><a href="#s4">4 สื่อสารมวลชน</a>
-    <a href="#s5">5 การนำเสนอ</a><a href="#s6">6 ทฤษฎี</a><a href="#s7">7 จริยธรรม</a><a href="#s8">8 ระบบสังคม/เทคโนโลยี</a>
-    <a href="#s9">9 ประเภทสื่อ</a><a href="#s10">10 ข่าว</a>
-  </nav>
+  <div class="row">
+    <button class="btn" id="themeBtn">☀️ โหมดสว่าง</button>
+    <button class="btn" id="fsDown">A−</button><button class="btn" id="fsUp">A+</button>
+    <button class="btn" id="coverBtn">🙈 ปิดคำสำคัญ</button>
+    <button class="btn" id="quizBtn">🧠 แบบทดสอบ</button>
+    <button class="btn" id="randBtn">🎲 สุ่มการ์ด</button>
+    <button class="btn" id="foldBtn">▾ ย่อทั้งหมด</button>
+    <button class="btn" id="todoBtn">📌 เฉพาะที่ยังไม่จำ</button>
+    <button class="btn anim-toggle">⏸ หยุดแอนิเมชัน</button>
+    <button class="btn" id="resetBtn">↺ ล้างเครื่องหมาย</button>
+    <button class="btn" id="printBtn">🖨 พิมพ์</button>
+  </div>
+  <p class="hint">ปุ่มลัด: <kbd>/</kbd> ค้นหา · <kbd>T</kbd> ธีม · <kbd>K</kbd> ปิดคำสำคัญ · <kbd>Q</kbd> แบบทดสอบ · <kbd>R</kbd> สุ่มการ์ด · <kbd>P</kbd> หยุด/เล่นแอนิเมชัน · <kbd>Esc</kbd> ปิด/ล้าง · กด ✓ ที่มุมการ์ดเมื่อจำได้แล้ว</p>
 </header>
 
 <main class="bento" id="grid">
@@ -284,7 +309,7 @@ body.print .diagram .nd{fill:#fafafa}
 <article class="card s12 c-cyan">
   <h3><span class="ic">🔁</span>4 องค์ประกอบที่กำหนดประสิทธิผลของการสื่อสาร <span class="pg">p.20–32</span></h3>
   <div class="flow"><span><b>S</b> Source ผู้ส่งสาร</span><i>→</i><span><b>M</b> Message สาร</span><i>→</i><span><b>C</b> Channel สื่อ</span><i>→</i><span><b>R</b> Receiver ผู้รับสาร</span></div>
-  <div class="mini g2" style="grid-template-columns:repeat(4,1fr)">
+  <div class="mini g4">
     <div class="box"><b>S ผู้ส่งสาร (p.20–22)</b><ul><li><b>ทักษะการสื่อสาร</b> (เข้ารหัส) – พูด เขียน / คิด; วัจนะ-อวัจนะ</li><li><b>ทัศนคติ</b> 3 ด้าน: ต่อตนเอง, ต่อเรื่องที่สื่อสาร, ต่อผู้รับสาร</li><li><b>ความรู้</b> ในเรื่องที่สื่อสาร + กระบวนการสื่อสาร</li><li><b>สถานภาพทางสังคม-วัฒนธรรม</b></li></ul></div>
     <div class="box"><b>M สาร (p.23)</b><ul><li><b>รหัส</b> <span class="en">Code</span></li><li><b>เนื้อหา</b> <span class="en">Content</span></li><li><b>การจัดสาร</b> <span class="en">Treatment</span></li></ul></div>
     <div class="box"><b>C สื่อ (p.24)</b><ul><li>เลือกตาม<b>ประสาทสัมผัสทั้ง 5</b> (ดู ฟัง สัมผัส ดมกลิ่น ลิ้มรส)</li><li>เลือกให้เหมาะกับสถานการณ์ คำนึงถึง ผู้รับสาร, สาร, ผู้ส่งสาร, ประเภทสื่อ</li></ul></div>
@@ -315,19 +340,18 @@ body.print .diagram .nd{fill:#fafafa}
 </article>
 
 <!-- ================= 3 ================= -->
-<div class="section" id="s3" style="--c:var(--pink)"><span class="num">3</span>แบบจำลองการสื่อสาร (Communication Models)<button class="btn anim-btn" onclick="toggleAnim(this)">⏸ หยุดแอนิเมชัน</button></div>
+<div class="section" id="s3" style="--c:var(--pink)"><span class="num">3</span>แบบจำลองการสื่อสาร (Communication Models)<button class="btn sm anim-toggle">⏸ หยุดแอนิเมชัน</button></div>
 
-<!-- Aristotle -->
 <article class="card s6 c-pink">
   <h3><span class="ic">🏛</span>อริสโตเติล <span class="en">Aristotle</span> <span class="pg">p.37–39</span></h3>
   <div class="dg"><svg class="diagram" viewBox="0 0 600 200">
     <defs><marker id="m-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0L10,5L0,10z"/></marker></defs>
     <path class="ln" d="M172,60 H222" marker-end="url(#m-ar)"/>
     <path class="ln" d="M377,60 H427" marker-end="url(#m-ar)"/>
-    <circle class="pkt" r="6"><animateMotion dur="3s" repeatCount="indefinite" path="M95,60 H505"/></circle>
     <rect class="nd" x="20" y="30" width="150" height="60" rx="14"/><text class="t" x="95" y="52">Speaker</text><text class="sub" x="95" y="72">ผู้พูด</text>
     <rect class="nd" x="225" y="30" width="150" height="60" rx="14"/><text class="t" x="300" y="52">Speech</text><text class="sub" x="300" y="72">คำพูด / สาร</text>
     <rect class="nd" x="430" y="30" width="150" height="60" rx="14"/><text class="t" x="505" y="52">Audience</text><text class="sub" x="505" y="72">ผู้ฟัง</text>
+    <circle class="pkt" r="6"><animateMotion dur="3s" repeatCount="indefinite" path="M170,60 H430"/></circle>
     <path class="ln off" d="M95,92 V128"/><path class="ln off" d="M300,92 V128"/><path class="ln off" d="M505,92 V128"/>
     <rect class="nd pulse" x="35" y="130" width="120" height="50" rx="25"/><text class="t" x="95" y="148">Ethos</text><text class="sub" x="95" y="166">บุคลิกผู้พูด</text>
     <rect class="nd pulse" style="animation-delay:.8s" x="240" y="130" width="120" height="50" rx="25"/><text class="t" x="300" y="148">Logos</text><text class="sub" x="300" y="166">ชี้แจงเหตุผล</text>
@@ -336,7 +360,6 @@ body.print .diagram .nd{fill:#fafafa}
   <p><b>บิดาแห่งวาทวิทยา</b> <span class="en">Rhetoric</span> เน้นการพูดเพื่อ<b>โน้มน้าวใจ</b> ด้วยปัจจัย 3 ประการ: <b>Ethos</b> บุคลิกลักษณะผู้พูด · <b>Logos</b> การชี้แจงเหตุผล · <b>Pathos</b> สภาพอารมณ์ร่วม</p>
 </article>
 
-<!-- Lasswell -->
 <article class="card s6 c-sky">
   <h3><span class="ic">❓</span>ลาสเวลล์ <span class="en">Lasswell</span> <span class="pg">p.44–45</span></h3>
   <div class="dg"><svg class="diagram" viewBox="0 0 620 170">
@@ -345,18 +368,17 @@ body.print .diagram .nd{fill:#fafafa}
     <path class="ln" d="M236,70 H256" marker-end="url(#m-la)"/>
     <path class="ln" d="M362,70 H382" marker-end="url(#m-la)"/>
     <path class="ln" d="M488,70 H508" marker-end="url(#m-la)"/>
-    <circle class="pkt" r="6"><animateMotion dur="5s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;0.8;1" path="M58,70 H562"/></circle>
     <rect class="nd seq" style="animation-delay:0s" x="6" y="30" width="104" height="80" rx="14"/><text class="t" x="58" y="55">Who</text><text class="sub" x="58" y="88">ใคร · ผู้ส่งสาร</text>
     <rect class="nd seq" style="animation-delay:1s" x="132" y="30" width="104" height="80" rx="14"/><text class="t" x="184" y="55">Says What</text><text class="sub" x="184" y="88">กล่าวอะไร · สาร</text>
     <rect class="nd seq" style="animation-delay:2s" x="258" y="30" width="104" height="80" rx="14"/><text class="t" x="310" y="48">In Which</text><text class="t" x="310" y="65">Channel</text><text class="sub" x="310" y="90">ช่องทาง · สื่อ</text>
     <rect class="nd seq" style="animation-delay:3s" x="384" y="30" width="104" height="80" rx="14"/><text class="t" x="436" y="55">To Whom</text><text class="sub" x="436" y="88">ถึงใคร · ผู้รับ</text>
     <rect class="nd seq" style="animation-delay:4s" x="510" y="30" width="104" height="80" rx="14"/><text class="t" x="562" y="48">With What</text><text class="t" x="562" y="65">Effect</text><text class="sub" x="562" y="90">เกิดผลอะไร</text>
-    <text class="sub" x="310" y="145">เชื่อว่าการสื่อสาร "ต้องเกิดผล (Effect) เสมอ" · เป็นการสื่อสารทางเดียว</text>
+    <circle class="pkt" r="6"><animateMotion dur="5s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;0.8;1" path="M58,122 H562"/></circle>
+    <text class="sub" x="310" y="150">เชื่อว่าการสื่อสาร "ต้องเกิดผล (Effect) เสมอ" · เป็นการสื่อสารทางเดียว</text>
   </svg></div>
   <p class="muted">ใช้โมเดลนี้จากการศึกษาการเลือกตั้งประธานาธิบดีสหรัฐฯ</p>
 </article>
 
-<!-- Shannon & Weaver -->
 <article class="card s12 c-cyan">
   <h3><span class="ic">📡</span>แชนนอน & วีเวอร์ <span class="en">Shannon & Weaver</span> — การสื่อสารอิเล็กทรอนิกส์ <span class="pg">p.46–49</span></h3>
   <div class="dg"><svg class="diagram" viewBox="0 0 900 240">
@@ -370,22 +392,21 @@ body.print .diagram .nd{fill:#fafafa}
     <path class="ln" d="M520,75 H563" marker-end="url(#m-sw)"/>
     <path class="ln" d="M705,75 H748" marker-end="url(#m-sw)"/>
     <path class="ln red" d="M450,163 V114" marker-end="url(#m-sw-r)"/>
-    <circle class="pkt red" r="4"><animateMotion dur="1.2s" repeatCount="indefinite" path="M450,165 V112"/></circle>
-    <circle class="glow" r="7" fill="#5eead4">
-      <animate attributeName="fill" values="#5eead4;#5eead4;#f87171;#f87171" keyTimes="0;0.47;0.53;1" dur="4s" repeatCount="indefinite"/>
-      <animateMotion dur="4s" repeatCount="indefinite" path="M80,75 H820"/>
-    </circle>
     <rect class="nd" x="10" y="40" width="140" height="70" rx="14"/><text class="t" x="80" y="63">Source</text><text class="sub" x="80" y="88">แหล่งสาร · ผู้พูด</text>
     <rect class="nd" x="195" y="40" width="140" height="70" rx="14"/><text class="t" x="265" y="63">Transmitter</text><text class="sub" x="265" y="88">เครื่องส่ง</text>
     <rect class="nd" x="380" y="40" width="140" height="70" rx="14"/><text class="t" x="450" y="63">Channel</text><text class="sub" x="450" y="88">ช่องสัญญาณ</text>
     <rect class="nd" x="565" y="40" width="140" height="70" rx="14"/><text class="t" x="635" y="63">Receiver</text><text class="sub" x="635" y="88">เครื่องรับ</text>
     <rect class="nd" x="750" y="40" width="140" height="70" rx="14"/><text class="t" x="820" y="63">Destination</text><text class="sub" x="820" y="88">ผู้ฟัง · จุดหมาย</text>
-    <rect class="nd noise shake" x="345" y="165" width="210" height="58" rx="14"/><text class="t" x="450" y="185" style="fill:#fca5a5">Noise Source</text><text class="sub" x="450" y="207">กายภาพ (คลื่นรบกวน) · จิตใจ (ความเครียด)</text>
+    <circle class="pkt red" r="4"><animateMotion dur="1.2s" repeatCount="indefinite" path="M450,165 V114"/></circle>
+    <circle r="7" fill="#14b8a6" stroke="var(--card)" stroke-width="2">
+      <animate attributeName="fill" values="#14b8a6;#14b8a6;#ef4444;#ef4444" keyTimes="0;0.47;0.53;1" dur="4s" repeatCount="indefinite"/>
+      <animateMotion dur="4s" repeatCount="indefinite" path="M150,20 H750"/>
+    </circle>
+    <rect class="nd noise shake" x="345" y="165" width="210" height="58" rx="14"/><text class="t" x="450" y="185" style="fill:var(--red)">Noise Source</text><text class="sub" x="450" y="207">กายภาพ (คลื่นรบกวน) · จิตใจ (ความเครียด)</text>
   </svg></div>
   <p class="muted">จุดสีเขียวคือสาร เมื่อผ่าน Channel จะกลายเป็นสีแดง แสดงว่า<b>สิ่งรบกวน (Noise)</b> ทำให้สารผิดเพี้ยนได้ · Noise มี 2 ลักษณะ: <b>ทางกายภาพ</b> และ <b>ทางจิตใจ</b></p>
 </article>
 
-<!-- Westley & MacLean -->
 <article class="card s12 c-amber">
   <h3><span class="ic">🚪</span>เวสเลย์ & แมคลีน <span class="en">Westley & MacLean</span> — แบบมวลชน <span class="pg">p.50–52</span></h3>
   <div class="dg"><svg class="diagram" viewBox="0 0 900 300">
@@ -404,9 +425,6 @@ body.print .diagram .nd{fill:#fafafa}
     <path class="ln fb" d="M770,172 C 745,225 595,225 570,174" marker-end="url(#m-wm-f)"/><text class="lbl fb" x="670" y="232">fBC</text>
     <path class="ln fb" d="M480,172 C 455,220 345,220 320,174" marker-end="url(#m-wm-f)"/><text class="lbl fb" x="400" y="226">fCA</text>
     <path class="ln fb" d="M830,172 C 810,300 270,300 250,174" marker-end="url(#m-wm-f)"/><text class="lbl fb" x="540" y="284">fBA (Feedback)</text>
-    <circle class="pkt" r="6"><animateMotion dur="4s" repeatCount="indefinite" path="M90,115 L285,135 L525,135 L785,135"/></circle>
-    <circle class="pkt fb" r="5"><animateMotion dur="4s" repeatCount="indefinite" path="M830,172 C 810,300 270,300 250,174"/></circle>
-    <circle class="pkt fb" r="5"><animateMotion dur="2.5s" repeatCount="indefinite" path="M770,172 C 745,225 595,225 570,174"/></circle>
     <circle class="nd" cx="70" cy="60" r="20"/><text class="t" x="70" y="60">X₁</text>
     <circle class="nd" cx="70" cy="115" r="20"/><text class="t" x="70" y="115">X₂</text>
     <circle class="nd" cx="70" cy="170" r="20"/><text class="t" x="70" y="170">X₃</text>
@@ -415,6 +433,9 @@ body.print .diagram .nd{fill:#fafafa}
     <rect class="nd" x="210" y="100" width="150" height="70" rx="14"/><text class="t" x="285" y="123">A</text><text class="sub" x="285" y="147">ผู้ส่งสาร</text>
     <rect class="nd pulse" x="440" y="100" width="170" height="70" rx="14"/><text class="t" x="525" y="123">C · Gatekeeper</text><text class="sub" x="525" y="147">ผู้เฝ้าประตูสาร (สื่อมวลชน)</text>
     <rect class="nd" x="700" y="100" width="170" height="70" rx="14"/><text class="t" x="785" y="123">B</text><text class="sub" x="785" y="147">ผู้รับสาร (มวลชน)</text>
+    <circle class="pkt" r="6"><animateMotion dur="4s" repeatCount="indefinite" path="M90,115 L208,128 M362,135 H438 M612,135 H698"/></circle>
+    <circle class="pkt fb" r="5"><animateMotion dur="4s" repeatCount="indefinite" path="M830,172 C 810,300 270,300 250,174"/></circle>
+    <circle class="pkt fb" r="5"><animateMotion dur="2.5s" repeatCount="indefinite" path="M770,172 C 745,225 595,225 570,174"/></circle>
   </svg></div>
   <div class="mini g2">
     <div class="box"><b>ที่มา</b> ได้รับอิทธิพลจาก <b>ABX ของนิวคอมบ์</b> และ<b>ทฤษฎีสมดุล</b>ของไฮเดอร์ & เฟสติงเจอร์</div>
@@ -422,7 +443,6 @@ body.print .diagram .nd{fill:#fafafa}
   </div>
 </article>
 
-<!-- Schramm 1-2 -->
 <article class="card s6 c-lime">
   <h3><span class="ic">🔄</span>ชแรมม์ <span class="en">Schramm</span> แบบที่ 1–2 <span class="pg">p.53–56</span></h3>
   <div class="dg"><svg class="diagram" viewBox="0 0 600 280">
@@ -432,23 +452,22 @@ body.print .diagram .nd{fill:#fafafa}
     <path class="ln" d="M228,58 H248" marker-end="url(#m-s1)"/>
     <path class="ln" d="M350,58 H370" marker-end="url(#m-s1)"/>
     <path class="ln" d="M472,58 H493" marker-end="url(#m-s1)"/>
-    <circle class="pkt" r="6"><animateMotion dur="3.5s" repeatCount="indefinite" path="M55,58 H545"/></circle>
     <rect class="nd" x="5" y="30" width="100" height="56" rx="12"/><text class="t" x="55" y="50">Source</text><text class="sub" x="55" y="70">แหล่งสาร</text>
     <rect class="nd" x="128" y="30" width="100" height="56" rx="12"/><text class="t" x="178" y="50">Encoder</text><text class="sub" x="178" y="70">ผู้เข้ารหัส</text>
     <rect class="nd" x="250" y="30" width="100" height="56" rx="28"/><text class="t" x="300" y="50">Signal</text><text class="sub" x="300" y="70">สัญญาณ</text>
     <rect class="nd" x="372" y="30" width="100" height="56" rx="12"/><text class="t" x="422" y="50">Decoder</text><text class="sub" x="422" y="70">ผู้ถอดรหัส</text>
     <rect class="nd" x="495" y="30" width="100" height="56" rx="12"/><text class="t" x="545" y="50">Destination</text><text class="sub" x="545" y="70">ผู้รับปลายทาง</text>
-    <text class="cap" x="300" y="118">แบบที่ 2 · Field of Experience</text>
+    <circle class="pkt" r="6"><animateMotion dur="3.5s" repeatCount="indefinite" path="M55,96 H545"/></circle>
+    <text class="cap" x="300" y="122">แบบที่ 2 · Field of Experience</text>
     <g class="driftL"><ellipse cx="220" cy="200" rx="150" ry="62" style="fill:rgba(167,139,250,.18);stroke:#a78bfa;stroke-width:1.5"/></g>
-    <g class="driftR"><ellipse cx="380" cy="200" rx="150" ry="62" style="fill:rgba(94,234,212,.18);stroke:#5eead4;stroke-width:1.5"/></g>
+    <g class="driftR"><ellipse cx="380" cy="200" rx="150" ry="62" style="fill:rgba(45,212,191,.18);stroke:#2dd4bf;stroke-width:1.5"/></g>
     <text class="t" x="140" y="192">ประสบการณ์</text><text class="sub" x="140" y="212">ของผู้ส่งสาร</text>
     <text class="t" x="460" y="192">ประสบการณ์</text><text class="sub" x="460" y="212">ของผู้รับสาร</text>
-    <text class="t pulse" x="300" y="192" style="fill:#bef264">ประสบการณ์ร่วม</text><text class="sub" x="300" y="214">ซ้อนกันมาก = เข้าใจกันมาก</text>
+    <text class="t pulse" x="300" y="192" style="fill:var(--c)">ประสบการณ์ร่วม</text><text class="sub" x="300" y="214">ซ้อนกันมาก = เข้าใจกันมาก</text>
   </svg></div>
   <p class="muted">แบบที่ 2 เพิ่ม<b>ประสบการณ์ร่วม</b> ถ้าผู้ส่งและผู้รับมีพื้นฐานร่วมกันมาก การสื่อสารจะได้ผลดี</p>
 </article>
 
-<!-- Schramm 3-4 -->
 <article class="card s6 c-sky">
   <h3><span class="ic">♻️</span>ชแรมม์ <span class="en">Schramm</span> แบบที่ 3–4 <span class="pg">p.53–56</span></h3>
   <div class="dg"><svg class="diagram" viewBox="0 0 600 280">
@@ -458,23 +477,22 @@ body.print .diagram .nd{fill:#fafafa}
     <path class="ln" d="M380,175 C 320,250 280,250 220,175" marker-end="url(#m-s4)"/>
     <text class="lbl" x="300" y="38">Message · สาร</text>
     <text class="lbl" x="300" y="262">Message · สาร (ป้อนกลับ)</text>
-    <circle class="pkt" r="6"><animateMotion dur="4s" repeatCount="indefinite" path="M220,105 C 280,30 320,30 380,105 L380,175 C 320,250 280,250 220,175 Z"/></circle>
-    <circle class="pkt" r="6"><animateMotion dur="4s" begin="-2s" repeatCount="indefinite" path="M220,105 C 280,30 320,30 380,105 L380,175 C 320,250 280,250 220,175 Z"/></circle>
     <rect class="nd" x="30" y="75" width="190" height="130" rx="16"/>
     <text class="t" x="125" y="98">บุคคล A</text>
     <text x="125" y="125">Encoder · ผู้เข้ารหัส</text>
-    <text class="pulse" x="125" y="150" style="fill:#7dd3fc">Interpreter · ผู้ตีความ</text>
+    <text class="pulse" x="125" y="150" style="fill:var(--fb)">Interpreter · ผู้ตีความ</text>
     <text x="125" y="175">Decoder · ผู้ถอดรหัส</text>
     <rect class="nd" x="380" y="75" width="190" height="130" rx="16"/>
     <text class="t" x="475" y="98">บุคคล B</text>
     <text x="475" y="125">Decoder · ผู้ถอดรหัส</text>
-    <text class="pulse" x="475" y="150" style="fill:#7dd3fc">Interpreter · ผู้ตีความ</text>
+    <text class="pulse" x="475" y="150" style="fill:var(--fb)">Interpreter · ผู้ตีความ</text>
     <text x="475" y="175">Encoder · ผู้เข้ารหัส</text>
+    <circle class="pkt" r="6"><animateMotion dur="4s" repeatCount="indefinite" path="M220,105 C 280,30 320,30 380,105 L380,175 C 320,250 280,250 220,175 Z"/></circle>
+    <circle class="pkt" r="6"><animateMotion dur="4s" begin="-2s" repeatCount="indefinite" path="M220,105 C 280,30 320,30 380,105 L380,175 C 320,250 280,250 220,175 Z"/></circle>
   </svg></div>
   <p class="muted">แบบที่ 3: บุคคลเป็นทั้งผู้เข้ารหัสและผู้ถอดรหัส · แบบที่ 4: แสดง<b>ปฏิสัมพันธ์</b>ระหว่างผู้ส่งกับผู้รับ (<b>สมบูรณ์ที่สุด</b>)</p>
 </article>
 
-<!-- Berlo SMCR -->
 <article class="card s12 c-violet">
   <h3><span class="ic">🧱</span>เบอร์โล <span class="en">Berlo — SMCR Model</span> <span class="pg">p.57–58</span></h3>
   <div class="dg"><svg class="diagram" viewBox="0 0 900 300">
@@ -482,7 +500,6 @@ body.print .diagram .nd{fill:#fafafa}
     <path class="ln" d="M200,40 H238" marker-end="url(#m-be)"/>
     <path class="ln" d="M430,40 H468" marker-end="url(#m-be)"/>
     <path class="ln" d="M660,40 H698" marker-end="url(#m-be)"/>
-    <circle class="pkt" r="6"><animateMotion dur="4s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;0.75;1" path="M105,40 H795"/></circle>
     <rect class="nd seq" style="animation-duration:4s;animation-delay:0s" x="10" y="10" width="190" height="60" rx="14"/><text class="t" x="105" y="31">S · Source</text><text class="sub" x="105" y="53">ผู้ส่งสาร</text>
     <rect class="nd seq" style="animation-duration:4s;animation-delay:1s" x="240" y="10" width="190" height="60" rx="14"/><text class="t" x="335" y="31">M · Message</text><text class="sub" x="335" y="53">สาร</text>
     <rect class="nd seq" style="animation-duration:4s;animation-delay:2s" x="470" y="10" width="190" height="60" rx="14"/><text class="t" x="565" y="31">C · Channel</text><text class="sub" x="565" y="53">สื่อ / ช่องทาง</text>
@@ -496,11 +513,11 @@ body.print .diagram .nd{fill:#fafafa}
     <text x="565" y="115">การมองเห็น</text><text x="565" y="150">การได้ยิน</text><text x="565" y="185">การสัมผัส</text><text x="565" y="220">การดมกลิ่น</text><text x="565" y="255">การลิ้มรส</text>
     <rect class="nd" x="700" y="85" width="190" height="200" rx="14"/>
     <text x="795" y="115">ทักษะการสื่อสาร</text><text x="795" y="150">ทัศนคติ</text><text x="795" y="185">ความรู้</text><text x="795" y="220">ระบบสังคม</text><text x="795" y="255">วัฒนธรรม</text>
+    <circle class="pkt" r="6"><animateMotion dur="4s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;0.75;1" path="M200,40 H700"/></circle>
   </svg></div>
   <p class="muted">เน้น<b>ปัจจัยย่อย</b>ในแต่ละองค์ประกอบที่ช่วย<b>เพิ่ม-ลดประสิทธิภาพ</b>การสื่อสาร · ปัจจัยของ S และ R เหมือนกัน (S เข้ารหัส / R ถอดรหัส)</p>
 </article>
 
-<!-- One-way vs Two-way -->
 <article class="card s12 c-rose">
   <h3><span class="ic">↔️</span>การสื่อสารทางเดียว vs สองทาง & Feedback <span class="pg">p.59–61</span></h3>
   <div class="dg"><svg class="diagram" viewBox="0 0 900 190">
@@ -515,9 +532,9 @@ body.print .diagram .nd{fill:#fafafa}
     <rect class="nd" x="20" y="55" width="130" height="60" rx="14"/><text class="t" x="85" y="76">ผู้ส่งสาร</text><text class="sub" x="85" y="97">Sender</text>
     <rect class="nd" x="290" y="55" width="130" height="60" rx="14"/><text class="t" x="355" y="76">ผู้รับสาร</text><text class="sub" x="355" y="97">Receiver</text>
     <path class="ln off" d="M290,118 C 260,155 180,155 150,118"/>
-    <text x="220" y="146" style="fill:#f87171;font-size:18px;font-weight:800">✕</text>
+    <text x="220" y="146" style="fill:var(--red);font-size:18px;font-weight:800">✕</text>
     <text class="sub" x="220" y="174">ไม่มีการสื่อสารกลับ (Feedback)</text>
-    <line x1="450" y1="10" x2="450" y2="180" style="stroke:rgba(255,255,255,.15)"/>
+    <line x1="450" y1="10" x2="450" y2="180" style="stroke:var(--stroke)"/>
     <text class="cap" x="680" y="18">สองทาง · Two-way (ยุคลวิถี)</text>
     <path class="ln" d="M612,75 H748" marker-end="url(#m-ow)"/>
     <path class="ln fb" d="M750,97 H614" marker-end="url(#m-ow-f)"/>
@@ -590,7 +607,7 @@ body.print .diagram .nd{fill:#fafafa}
 </article>
 
 <!-- ================= 6 ================= -->
-<div class="section" id="s6" style="--c:var(--orange)"><span class="num">6</span>ทฤษฎีการสื่อสารมวลชน <span class="muted" style="font-size:13px;font-weight:400">(p.86–92)</span></div>
+<div class="section" id="s6" style="--c:var(--orange)"><span class="num">6</span>ทฤษฎีการสื่อสารมวลชน <span class="muted" style="font-weight:400">(p.86–92)</span></div>
 
 <article class="card s4 c-orange">
   <h3><span class="ic">🎯</span>ยุคแรก – ยุคโฆษณาชวนเชื่อ</h3>
@@ -725,10 +742,11 @@ body.print .diagram .nd{fill:#fafafa}
 </article>
 
 <!-- ================= 9 ================= -->
-<div class="section" id="s9" style="--c:var(--cyan)"><span class="num">9</span>ประเภทและคุณลักษณะของสื่อมวลชน <span class="muted" style="font-size:13px;font-weight:400">(p.137–154)</span></div>
+<div class="section" id="s9" style="--c:var(--cyan)"><span class="num">9</span>ประเภทและคุณลักษณะของสื่อมวลชน <span class="muted" style="font-weight:400">(p.137–154)</span></div>
 
 <article class="card s12 c-cyan">
-  <p>แบ่งหลัก ๆ เป็น <span class="tag">สื่อสิ่งพิมพ์</span><span class="tag">สื่ออิเล็กทรอนิกส์ (วิทยุ/โทรทัศน์/คอมพิวเตอร์)</span><span class="tag">สื่อที่รับรู้ด้วยการฟัง (Audio)</span><span class="tag">สื่อที่รับรู้ด้วยการมองเห็น (Video)</span></p>
+  <h3><span class="ic">🗃</span>ประเภทหลักของสื่อมวลชน <span class="pg">p.137</span></h3>
+  <span class="tag">สื่อสิ่งพิมพ์</span><span class="tag">สื่ออิเล็กทรอนิกส์ (วิทยุ/โทรทัศน์/คอมพิวเตอร์)</span><span class="tag">สื่อที่รับรู้ด้วยการฟัง (Audio)</span><span class="tag">สื่อที่รับรู้ด้วยการมองเห็น (Video)</span>
 </article>
 
 <article class="card s4 c-amber r2">
@@ -762,7 +780,7 @@ body.print .diagram .nd{fill:#fafafa}
 </article>
 
 <!-- ================= 10 ================= -->
-<div class="section" id="s10" style="--c:var(--amber)"><span class="num">10</span>ข่าวและการเขียนข่าว <span class="muted" style="font-size:13px;font-weight:400">(p.155–164)</span></div>
+<div class="section" id="s10" style="--c:var(--amber)"><span class="num">10</span>ข่าวและการเขียนข่าว <span class="muted" style="font-weight:400">(p.155–164)</span></div>
 
 <article class="card s6 c-amber">
   <h3><span class="ic">📰</span>ความหมายของข่าว <span class="pg">p.155</span></h3>
@@ -782,9 +800,9 @@ body.print .diagram .nd{fill:#fafafa}
 <article class="card s4 c-cyan">
   <h3><span class="ic">🧱</span>โครงสร้างข่าว <span class="pg">p.159–163</span></h3>
   <ol>
-    <li><b>ความนำ / วรรคนำ <span class="en">Lead</span></b> – สรุปประเด็นสำคัญที่สุดด้วย 5W & H เป็น "กุญแจสำคัญ"</li>
-    <li><b>ส่วนเชื่อม <span class="en">Neck / Bridge</span></b> – เชื่อมความนำกับเนื้อข่าว ขยายรายละเอียด</li>
-    <li><b>เนื้อข่าว <span class="en">Body</span></b> – ข้อมูลทั้งหมดที่รวบรวมมา อธิบาย/ขยายรายละเอียด</li>
+    <li><b>ความนำ / วรรคนำ (Lead)</b> – สรุปประเด็นสำคัญที่สุดด้วย 5W & H เป็น "กุญแจสำคัญ"</li>
+    <li><b>ส่วนเชื่อม (Neck / Bridge)</b> – เชื่อมความนำกับเนื้อข่าว ขยายรายละเอียด</li>
+    <li><b>เนื้อข่าว (Body)</b> – ข้อมูลทั้งหมดที่รวบรวมมา อธิบาย/ขยายรายละเอียด</li>
   </ol>
 </article>
 
@@ -812,21 +830,196 @@ body.print .diagram .nd{fill:#fafafa}
 <p class="muted" style="text-align:center;margin-top:30px">สรุปจากเอกสาร "การสื่อสารมวลชน ฉบับเต็ม" · ขอให้สอบผ่านฉลุย ✨</p>
 </div>
 
-<script>
-const q=document.getElementById('q');
-q.addEventListener('input',()=>{
-  const v=q.value.trim().toLowerCase();
-  document.querySelectorAll('.card').forEach(c=>{
-    c.classList.toggle('hide', v && !c.innerText.toLowerCase().includes(v));
-  });
-  document.querySelectorAll('.section').forEach(s=>s.classList.toggle('hide',!!v));
-});
+<button class="fab" id="top" title="กลับขึ้นบนสุด">↑</button>
+<div class="toast" id="toast"></div>
 
-function toggleAnim(b){
-  const p=document.body.classList.toggle('paused');
-  document.querySelectorAll('svg.diagram').forEach(s=>p?s.pauseAnimations():s.unpauseAnimations());
-  b.textContent=p?'▶ เล่นแอนิเมชัน':'⏸ หยุดแอนิเมชัน';
+<div class="modal" id="quiz" hidden>
+  <div class="mbox">
+    <div class="mhead"><b>🧠 แบบทดสอบสุ่ม</b><span id="qProg"></span><button class="ib" id="qClose" title="ปิด">✕</button></div>
+    <div id="qBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $=(s,r=document)=>[...r.querySelectorAll(s)];
+const LS={get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v===null?d:v}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const root=document.documentElement, body=document.body;
+
+/* ---------- toast ---------- */
+let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),1800);}
+
+/* ---------- theme ---------- */
+function setTheme(t){root.dataset.theme=t;LS.set('mc-theme',t);$('#themeBtn').textContent=t==='light'?'🌙 โหมดมืด':'☀️ โหมดสว่าง';}
+function toggleTheme(){setTheme(root.dataset.theme==='light'?'dark':'light');}
+setTheme(LS.get('mc-theme',matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'));
+$('#themeBtn').onclick=toggleTheme;
+
+/* ---------- font size ---------- */
+let fs=LS.get('mc-fs',14.5);
+function setFs(v){fs=Math.min(19,Math.max(12,v));root.style.setProperty('--fs',fs+'px');LS.set('mc-fs',fs);}
+setFs(fs);$('#fsDown').onclick=()=>setFs(fs-1);$('#fsUp').onclick=()=>setFs(fs+1);
+
+/* ---------- cards: done / collapse ---------- */
+const cards=$('.card').filter(c=>$('h3',c));
+const done=new Set(LS.get('mc-done',[]));
+cards.forEach((c,i)=>{
+  c.id='c'+i;
+  const tools=document.createElement('span');tools.className='tools';
+  tools.innerHTML='<button class="ib fold" title="ย่อ/ขยาย">▾</button><button class="ib chk" title="จำได้แล้ว">✓</button>';
+  $('h3',c).appendChild(tools);
+  if(done.has(c.id))c.classList.add('done');
+});
+function updProg(){const n=cards.filter(c=>c.classList.contains('done')).length;$('#progTxt').textContent='จำได้แล้ว '+n+'/'+cards.length;$('#progBar').style.width=(n/cards.length*100)+'%';}
+updProg();
+$('#grid').addEventListener('click',e=>{
+  const b=e.target.closest('button.ib');
+  if(b){const c=b.closest('.card');
+    if(b.classList.contains('fold'))c.classList.toggle('collapsed');
+    else{const on=c.classList.toggle('done');on?done.add(c.id):done.delete(c.id);LS.set('mc-done',[...done]);updProg();if(on)toast('เก่งมาก! ✓ บันทึกแล้ว');}
+    return;}
+  const k=e.target.closest('b');
+  if(k&&body.classList.contains('cover'))k.classList.toggle('shown');
+});
+let allFolded=false;
+$('#foldBtn').onclick=function(){allFolded=!allFolded;cards.forEach(c=>c.classList.toggle('collapsed',allFolded));this.textContent=allFolded?'▸ ขยายทั้งหมด':'▾ ย่อทั้งหมด';};
+$('#todoBtn').onclick=function(){const on=body.classList.toggle('todo');this.classList.toggle('on',on);};
+$('#resetBtn').onclick=()=>{if(!confirm('ล้างเครื่องหมาย "จำได้แล้ว" ทั้งหมด?'))return;done.clear();LS.set('mc-done',[]);cards.forEach(c=>c.classList.remove('done'));updProg();};
+
+/* ---------- cover keywords ---------- */
+function toggleCover(){const on=body.classList.toggle('cover');$('#coverBtn').classList.toggle('on',on);$('b.shown').forEach(b=>b.classList.remove('shown'));if(on)toast('คลิกที่แถบเพื่อเปิดดูคำสำคัญ');}
+$('#coverBtn').onclick=toggleCover;
+
+/* ---------- search + highlight ---------- */
+const q=$('#q');let st;
+function clearMarks(){$('mark.hl').forEach(m=>{const p=m.parentNode;p.replaceChild(document.createTextNode(m.textContent),m);p.normalize();});}
+function markIn(el,v){
+  const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentNode.closest('svg,button,mark')?NodeFilter.FILTER_REJECT:(n.nodeValue.toLowerCase().includes(v)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP)});
+  const nodes=[];while(w.nextNode())nodes.push(w.currentNode);
+  nodes.forEach(n=>{const t=n.nodeValue,lo=t.toLowerCase(),f=document.createDocumentFragment();let i=0,j;
+    while((j=lo.indexOf(v,i))>-1){f.append(t.slice(i,j));const m=document.createElement('mark');m.className='hl';m.textContent=t.slice(j,j+v.length);f.append(m);i=j+v.length;}
+    f.append(t.slice(i));n.parentNode.replaceChild(f,n);});
 }
+function doSearch(){
+  const v=q.value.trim().toLowerCase();clearMarks();let n=0;
+  $('.card').forEach(c=>{const hit=!v||c.textContent.toLowerCase().includes(v);c.classList.toggle('hide',!hit);if(v&&hit){n++;c.classList.remove('collapsed');markIn(c,v);}});
+  $('.section').forEach(s=>s.classList.toggle('hide',!!v));
+  $('#cnt').textContent=v?('พบ '+n+' การ์ด'):'';
+}
+q.addEventListener('input',()=>{clearTimeout(st);st=setTimeout(doSearch,180);});
+
+/* ---------- random card ---------- */
+function randomCard(){
+  const pool=cards.filter(c=>!c.classList.contains('hide')&&!(body.classList.contains('todo')&&c.classList.contains('done')));
+  if(!pool.length){toast('ไม่มีการ์ดให้สุ่ม');return;}
+  const c=pool[Math.random()*pool.length|0];c.classList.remove('collapsed');
+  c.scrollIntoView({behavior:'smooth',block:'center'});
+  c.classList.remove('flash');void c.offsetWidth;c.classList.add('flash');
+}
+$('#randBtn').onclick=randomCard;
+
+/* ---------- animations: run only when visible ---------- */
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let paused=reduce||LS.get('mc-paused',false);
+const vis=new Set();
+function apply(s){const run=!paused&&vis.has(s);s.classList.toggle('idle',!run);try{run?s.unpauseAnimations():s.pauseAnimations();}catch(e){}}
+function setPaused(p,save){paused=p;if(save)LS.set('mc-paused',p);$('svg.diagram').forEach(apply);$('.anim-toggle').forEach(b=>b.textContent=p?'▶ เล่นแอนิเมชัน':'⏸ หยุดแอนิเมชัน');}
+const io=new IntersectionObserver(es=>es.forEach(e=>{e.isIntersecting?vis.add(e.target):vis.delete(e.target);apply(e.target);}),{rootMargin:'120px'});
+$('svg.diagram').forEach(s=>{s.classList.add('idle');io.observe(s);});
+setPaused(paused,false);
+$('.anim-toggle').forEach(b=>b.onclick=()=>setPaused(!paused,true));
+
+/* ---------- scroll progress / back to top / active chip ---------- */
+const sp=$('#sp'),topBtn=$('#top');let tick=false;
+addEventListener('scroll',()=>{if(tick)return;tick=true;requestAnimationFrame(()=>{const h=root,p=h.scrollTop/((h.scrollHeight-h.clientHeight)||1);sp.style.transform='scaleX('+p+')';topBtn.classList.toggle('show',h.scrollTop>600);tick=false;});},{passive:true});
+topBtn.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+const chips=$('#chips a');
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){chips.forEach(a=>{const on=a.getAttribute('href')==='#'+e.target.id;a.classList.toggle('on',on);if(on)a.scrollIntoView({block:'nearest',inline:'center'});});}}),{rootMargin:'-40% 0px -55% 0px'});
+$('.section').forEach(s=>so.observe(s));
+
+/* ---------- print ---------- */
+let prevTheme;
+addEventListener('beforeprint',()=>{prevTheme=root.dataset.theme;root.dataset.theme='light';});
+addEventListener('afterprint',()=>{if(prevTheme)root.dataset.theme=prevTheme;});
+$('#printBtn').onclick=()=>print();
+
+/* ---------- quiz ---------- */
+const QS=[
+ {q:'ผู้ที่ได้ชื่อว่า "บิดาแห่งวาทวิทยา (Rhetoric)" คือใคร',a:['อริสโตเติล','ลาสเวลล์','ชแรมม์','เบอร์โล'],p:'p.37–39'},
+ {q:'Ethos ในแนวคิดของอริสโตเติล หมายถึงข้อใด',a:['บุคลิกลักษณะของผู้พูด','การชี้แจงเหตุผล','สภาพอารมณ์ร่วม','ช่องทางการสื่อสาร'],p:'p.37–39'},
+ {q:'Pathos หมายถึงข้อใด',a:['สภาพอารมณ์ร่วม','บุคลิกลักษณะของผู้พูด','การชี้แจงเหตุผล','ความน่าเชื่อถือของสื่อ'],p:'p.37–39'},
+ {q:'แบบจำลองใดเพิ่มองค์ประกอบ C หรือ Gatekeeper (ผู้เฝ้าประตูสาร)',a:['เวสเลย์ & แมคลีน','แชนนอน & วีเวอร์','เบอร์โล','อริสโตเติล'],p:'p.50–52'},
+ {q:'แบบจำลองใดมี Noise Source และอธิบายการสื่อสารอิเล็กทรอนิกส์',a:['แชนนอน & วีเวอร์','ลาสเวลล์','ชแรมม์','อริสโตเติล'],p:'p.46–49'},
+ {q:'แบบจำลอง SMCR เป็นของนักวิชาการท่านใด',a:['เบอร์โล','ชแรมม์','ลาสเวลล์','เวสเลย์ & แมคลีน'],p:'p.57–58'},
+ {q:'ลาสเวลล์เชื่อว่าการสื่อสารมีลักษณะอย่างไร',a:['ต้องเกิดผล (Effect) เสมอ','ไม่จำเป็นต้องเกิดผล','ต้องมี Feedback ทันที','ต้องผ่าน Gatekeeper'],p:'p.44–45'},
+ {q:'แบบจำลองของชแรมม์แบบใดสมบูรณ์ที่สุด',a:['แบบที่ 4 แสดงปฏิสัมพันธ์ผู้ส่ง-ผู้รับ','แบบที่ 1 การสื่อสารพื้นฐาน','แบบที่ 2 ประสบการณ์ร่วม','แบบที่ 3 ผู้เข้ารหัส-ถอดรหัส'],p:'p.53–56'},
+ {q:'องค์ประกอบของ "สาร" ได้แก่ข้อใด',a:['รหัส เนื้อหา การจัดสาร','ทักษะ ทัศนคติ ความรู้','ภาพ เสียง สัมผัส','ผู้ส่ง สื่อ ผู้รับ'],p:'p.23'},
+ {q:'"สื่อร้อน (Hot Media)" ตามแนวคิด McLuhan คือข้อใด',a:['ผู้รับมีส่วนร่วมน้อย เช่น หนังสือพิมพ์','ผู้รับมีส่วนร่วมมาก เช่น โทรทัศน์','สื่อที่มีแสงเงา','สื่อบุคคล'],p:'p.25'},
+ {q:'ข้อใดเป็นตัวอย่างของ "สื่อเย็น (Cool Media)"',a:['วิทยุโทรทัศน์','หนังสือพิมพ์','นิตยสาร','จดหมาย'],p:'p.25'},
+ {q:'Feedback แบบล่าช้า มักเกิดกับการสื่อสารประเภทใด',a:['การสื่อสารมวลชน','การสื่อสารระหว่างบุคคล','การสื่อสารภายในบุคคล','การสื่อสารแบบเผชิญหน้า'],p:'p.59–61'},
+ {q:'การสื่อสารสองทาง (Two-way) เรียกอีกชื่อว่าอะไร',a:['ยุคลวิถี','เอกวิถี','วัจนะ','อวัจนะ'],p:'p.59–61'},
+ {q:'ข้อใดไม่ใช่ความน่าเชื่อถือของผู้ส่งสาร (Source Credibility)',a:['ความร่ำรวย','ความไว้วางใจ','ความเชี่ยวชาญ','ความดึงดูดใจ'],p:'p.22'},
+ {q:'Hard News จัดเป็นวัตถุประสงค์แบบใด',a:['วัตถุประสงค์ที่ใช้เป็นเครื่องมือ','วัตถุประสงค์ที่เกิดผลทันที','วัตถุประสงค์เพื่อความบันเทิง','วัตถุประสงค์ส่วนตัว'],p:'p.13–15'},
+ {q:'หน้าที่ "ให้ความบันเทิง" ของสื่อมวลชน ถูกเพิ่มโดยใคร',a:['ชแรมม์ & ไรท์','ลาสเวลล์','เบอร์โล','อริสโตเติล'],p:'p.93'},
+ {q:'ผู้รับสารในการสื่อสารมวลชนมีลักษณะอย่างไร',a:['จำนวนมาก ไม่รู้จักกัน แตกต่างกัน','จำนวนน้อย รู้จักกัน','เป็นองค์กรซับซ้อน','มีลักษณะเหมือนกันทั้งหมด'],p:'p.65–66'},
+ {q:'มนุษย์รับรู้ผ่านทางตาประมาณกี่เปอร์เซ็นต์',a:['75%','13%','50%','6%'],p:'p.82'},
+ {q:'ทฤษฎีที่เชื่อว่าสื่อส่งผลต่อผู้รับสารโดยตรงและเสมอ คือทฤษฎีใด',a:['Magic Bullet Theory','Limited Effects Theory','Two-Step Flow','Diffusion of Innovation'],p:'p.86–92'},
+ {q:'ขั้นแรกของ Diffusion of Innovation คือข้อใด',a:['Awareness (รับรู้)','Interest (สนใจ)','Trial (ทดลอง)','Adoption (ยอมรับ)'],p:'p.86–92'},
+ {q:'จริยธรรม "ความเป็นไท" ตรงกับคำภาษาอังกฤษใด',a:['Independence','Impartiality','Sincerity','Decency'],p:'p.95–97'},
+ {q:'ระบบการสื่อสารสังคม 4 อนุระบบ เป็นแนวคิดของใคร',a:['De Fleur','Berlo','Lasswell','McLuhan'],p:'p.107–115'},
+ {q:'ผู้ประดิษฐ์เครื่องพิมพ์ตัวโลหะคือใคร',a:['โยฮันน์ กูเตนเบิร์ก','หมอบรัดเลย์','แชนนอน','มาร์โคนี'],p:'p.120–126'},
+ {q:'Prosumption (ผู้บริโภคเป็นทั้งผู้ผลิตและผู้รับสาร) เกิดในยุคใด',a:['ยุคสังคมสารสนเทศ','ยุคการพิมพ์','ยุคโทรคมนาคม','ยุคภาษาเขียน'],p:'p.120–126'},
+ {q:'หนังสือพิมพ์ฉบับแรกของไทยคือฉบับใด',a:['บางกอกรีคอร์เดอร์','ราชกิจจานุเบกษา','สยามสมัย','ดรุโณวาท'],p:'p.138–141'},
+ {q:'รูปแบบการเขียนข่าวที่นิยมมากที่สุดคือแบบใด',a:['ปิรามิดหัวกลับ','ปิรามิดหัวตั้ง','สี่เหลี่ยมผืนผ้า','แบบวงกลม'],p:'p.160, 164'},
+ {q:'ส่วนของข่าวที่เชื่อมระหว่างความนำ (Lead) กับเนื้อข่าว คือข้อใด',a:['Neck / Bridge','Body','Headline','Ending'],p:'p.159–163'}
+];
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];}return a;}
+let qset=[],qi=0,score=0;
+function startQuiz(){qset=shuffle(QS.slice()).slice(0,10);qi=0;score=0;$('#quiz').hidden=false;showQ();}
+function showQ(){
+  const qb=$('#qBody');
+  if(qi>=qset.length){
+    $('#qProg').textContent='';
+    const msg=score>=8?'เก่งมาก! พร้อมสอบแล้ว 🎉':score>=5?'ดีแล้ว ทบทวนอีกนิด 💪':'ลองทบทวนการ์ดอีกรอบนะ 📚';
+    qb.innerHTML='<div class="qres"><div class="big">'+score+'/'+qset.length+'</div><p>'+msg+'</p><p style="margin-top:12px"><button class="btn" id="qAgain">ทำอีกครั้ง</button></p></div>';
+    return;
+  }
+  const it=qset[qi],opts=shuffle(it.a.map((t,i)=>({t,ok:i===0})));
+  $('#qProg').textContent='ข้อ '+(qi+1)+'/'+qset.length+' · คะแนน '+score;
+  qb.innerHTML='<p class="qq">'+it.q+'</p>'+opts.map(o=>'<button class="qo" data-ok="'+(o.ok?1:0)+'">'+o.t+'</button>').join('')+'<div class="qfb muted" id="qfb"></div>';
+}
+$('#qBody').addEventListener('click',e=>{
+  const b=e.target.closest('.qo');
+  if(b&&!b.disabled){
+    const ok=b.dataset.ok==='1';if(ok)score++;
+    $('.qo',$('#qBody')).forEach(x=>{x.disabled=true;if(x.dataset.ok==='1')x.classList.add('right');});
+    if(!ok)b.classList.add('wrong');
+    $('#qfb').innerHTML=(ok?'✅ ถูกต้อง':'❌ ยังไม่ถูก')+' · อ้างอิง '+qset[qi].p+' <button class="btn sm" id="qNext">'+(qi+1<qset.length?'ข้อต่อไป →':'ดูผลคะแนน')+'</button>';
+    $('#qProg').textContent='ข้อ '+(qi+1)+'/'+qset.length+' · คะแนน '+score;
+    return;
+  }
+  if(e.target.id==='qNext'){qi++;showQ();}
+  else if(e.target.id==='qAgain')startQuiz();
+});
+function closeQuiz(){$('#quiz').hidden=true;}
+$('#quizBtn').onclick=startQuiz;$('#qClose').onclick=closeQuiz;
+$('#quiz').addEventListener('click',e=>{if(e.target.id==='quiz')closeQuiz();});
+
+/* ---------- keyboard shortcuts ---------- */
+addEventListener('keydown',e=>{
+  const typing=/INPUT|TEXTAREA/.test(document.activeElement.tagName);
+  if(e.key==='Escape'){if(!$('#quiz').hidden){closeQuiz();return;}if(q.value){q.value='';doSearch();}q.blur();return;}
+  if(typing||e.ctrlKey||e.metaKey||e.altKey)return;
+  if(!$('#quiz').hidden)return;
+  const k=e.key.toLowerCase();
+  if(e.key==='/'){e.preventDefault();q.focus();}
+  else if(k==='t')toggleTheme();
+  else if(k==='k')toggleCover();
+  else if(k==='r')randomCard();
+  else if(k==='q')startQuiz();
+  else if(k==='p')setPaused(!paused,true);
+});
+})();
 </script>
 </body>
 </html>
